@@ -10,7 +10,8 @@ Tile::Tile()
 Tile::Tile( int newMapX, int newMapY, TileType newType, SDL_Texture* newImage ) :
     mapX(newMapX), mapY(newMapY), type(newType), image(newImage)
 {
-
+    assert( mapX >= 0 );
+    assert( mapY >= 0 );
 }
 
 Tile::~Tile()
@@ -45,11 +46,13 @@ SDL_Texture* Tile::getImage()
 void Tile::setMapX( int mapX )
 {
     this -> mapX = mapX;
+    assert( mapX >= 0 );
 }
 
 void Tile::setMapY( int mapY )
 {
     this -> mapY = mapY;
+    assert( mapY >= 0 );
 }
 
 void Tile::setType( TileType type )
@@ -60,6 +63,9 @@ void Tile::setType( TileType type )
 void Tile::setImage( SDL_Texture* image )
 {
     this -> image = image;
+
+    //Testing to make sure there is an image
+    assert( image != NULL );
 }
 
 /// ///////////////////////////////////////////////////////////////////
@@ -75,21 +81,8 @@ void Tile::displayTile( SDL_Renderer* renderer )
     positionRect.h = TILE_HEIGHT;
     positionRect.w = TILE_WIDTH;
 
-    if( mapY != 0 )
-    {
-        cutRect.x = 0;
-        cutRect.y = 25;
-        cutRect.h = TILE_HEIGHT;
-        cutRect.w = TILE_WIDTH;
+    assert( positionRect.x >= 0 );
+    assert( positionRect.y >= 0 );
 
-        SDL_RenderCopy( renderer, image, &cutRect, &positionRect );
-    }
-
-    else
-    {
-        SDL_RenderCopy( renderer, image, NULL, &positionRect );
-    }
-
-    std::cout << "Printing grass at " << positionRect.x << ", " << positionRect.y << std::endl;
-    std::cout << "Printing grass at " << mapX << ", " << mapY << std::endl;
+    SDL_RenderCopy( renderer, image, NULL, &positionRect );
 }

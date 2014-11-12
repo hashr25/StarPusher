@@ -19,7 +19,14 @@ enum TileType
     FLOOR,
     WALL,
     GRASS,
-    OTHER
+    TOTAL_TILES
+};
+
+enum TextureName
+{
+    GRASS_IMG,
+    PLAYER_IMG,
+    TOTAL_TEXTURES
 };
 
 #endif // ENUMTYPES_H
