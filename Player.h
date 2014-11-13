@@ -2,14 +2,14 @@
 #define PLAYER_H
 
 #include "Tile.h"
+#include "EnumTypes.h"
 #include <SDL.h>
 
-class Player : public Tile
+class Player
 {
 public:
     ///Constructors and Destructors
     Player();
-    Player( int newMapX, int newMapY, TileType newType, SDL_Texture* newImage );
 
     ///Getters and Setters
     //Getters
@@ -20,15 +20,32 @@ public:
     void oneMoreStep();
 
     ///Methods
-    Direction getMove( bool &exitFlag );
+    //Takes key presses and adjusts the dot's velocity
+    void handleEvent( SDL_Event& e );
 
-    void moveNorth();
-    void moveEast();
-    void moveSouth();
-    void moveWest();
+    //Moves the dot and check collision against tiles
+    void move( Tile *tiles[] );
+
+    //Centers the camera over the dot
+    void setCamera( SDL_Rect& camera );
+
+    //Shows the dot on the screen
+    void render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlayerTexture );
+
+    //Checks collision
+    bool checkCollision( SDL_Rect a, SDL_Rect b );
+
+    //Touches
+    bool touchesWall( SDL_Rect box, Tile* tiles[] );
 
 private:
     int steps;
+
+    //Collision box of the dot
+    SDL_Rect mBox;
+
+    //The velocity of the dot
+    int mVelX, mVelY;
 };
 
 #endif // PLAYER_H
