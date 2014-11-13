@@ -1,88 +1,80 @@
 #include "Tile.h"
 
-/// //////////////////////////////////////////////////////////////////////////////
-///Constructors and Destructors
-Tile::Tile()
+Tile::Tile( int x, int y, int tileType )
 {
-    image = NULL;
+    //Get the offsets
+    mBox.x = x;
+    mBox.y = y;
+
+    //Set the collision box
+    mBox.w = TILE_WIDTH;
+    mBox.h = TILE_HEIGHT;
+
+    //Get the tile type
+    mType = tileType;
 }
 
-Tile::Tile( int newMapX, int newMapY, TileType newType, SDL_Texture* newImage ) :
-    mapX(newMapX), mapY(newMapY), type(newType), image(newImage)
+void Tile::render( SDL_Rect& camera, SDL_Renderer* gRenderer, SDL_Rect gTileClips[ TOTAL_TILE_SPRITES ], LTexture& gTileTexture )
 {
-    assert( mapX >= 0 );
-    assert( mapY >= 0 );
+    //If the tile is on screen
+    if( checkCollision( camera, mBox ) )
+    {
+        //Show the tile
+        gTileTexture.render( mBox.x - camera.x, mBox.y - camera.y, &gTileClips[ mType ], gRenderer );
+    }
 }
 
-Tile::~Tile()
+int Tile::getType()
 {
-    image = NULL;
+    return mType;
 }
 
-/// /////////////////////////////////////////////////////////////////////////////
-///Getters and Setters
-//Getters
-int Tile::getMapX()
+SDL_Rect Tile::getBox()
 {
-    return mapX;
+    return mBox;
 }
 
-int Tile::getMapY()
+bool Tile::checkCollision( SDL_Rect a, SDL_Rect b )
 {
-    return mapY;
-}
+    //The sides of the rectangles
+    int leftA, leftB;
+    int rightA, rightB;
+    int topA, topB;
+    int bottomA, bottomB;
 
-TileType Tile::getType()
-{
-    return type;
-}
+    //Calculate the sides of rect A
+    leftA = a.x;
+    rightA = a.x + a.w;
+    topA = a.y;
+    bottomA = a.y + a.h;
 
-SDL_Texture* Tile::getImage()
-{
-    return image;
-}
+    //Calculate the sides of rect B
+    leftB = b.x;
+    rightB = b.x + b.w;
+    topB = b.y;
+    bottomB = b.y + b.h;
 
-//Setters
-void Tile::setMapX( int mapX )
-{
-    this -> mapX = mapX;
-    assert( mapX >= 0 );
-}
+    //If any of the sides from A are outside of B
+    if( bottomA <= topB )
+    {
+        return false;
+    }
 
-void Tile::setMapY( int mapY )
-{
-    this -> mapY = mapY;
-    assert( mapY >= 0 );
-}
+    if( topA >= bottomB )
+    {
+        return false;
+    }
 
-void Tile::setType( TileType type )
-{
-    this -> type = type;
-}
+    if( rightA <= leftB )
+    {
+        return false;
+    }
 
-void Tile::setImage( SDL_Texture* image )
-{
-    this -> image = image;
+    if( leftA >= rightB )
+    {
+        return false;
+    }
 
-    //Testing to make sure there is an image
-    assert( image != NULL );
-}
-
-/// ///////////////////////////////////////////////////////////////////
-///Methods
-
-void Tile::displayTile( SDL_Renderer* renderer )
-{
-    SDL_Rect positionRect;
-    SDL_Rect cutRect;
-
-    positionRect.x = mapX * TILE_WIDTH;
-    positionRect.y = mapY * TILE_FLOOR_HEIGHT;
-    positionRect.h = TILE_HEIGHT;
-    positionRect.w = TILE_WIDTH;
-
-    assert( positionRect.x >= 0 );
-    assert( positionRect.y >= 0 );
-
-    SDL_RenderCopy( renderer, image, NULL, &positionRect );
+    //If none of the sides from A are outside B
+    return true;
 }
