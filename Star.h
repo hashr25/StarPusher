@@ -1,13 +1,10 @@
-<<<<<<< HEAD
-
-=======
 #ifndef STAR_H_INCLUDED
 #define STAR_H_INCLUDED
 
 #include "Tile.h"
 #include "EnumTypes.h"
 
-class Star : public Tile
+class Star
 {
 public:
 
@@ -31,4 +28,4 @@ private:
 };
 
 #endif // STAR_H_INCLUDED
->>>>>>> 937284d44191c3d659af70ab23fa076925b53194
+
