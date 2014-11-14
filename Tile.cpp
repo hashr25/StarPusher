@@ -14,7 +14,7 @@ Tile::Tile( int x, int y, int tileType )
     mType = tileType;
 }
 
-void Tile::render( SDL_Rect& camera, SDL_Renderer* gRenderer, SDL_Rect gTileClips[ TOTAL_TILE_SPRITES ], LTexture& gTileTexture )
+void Tile::render( SDL_Rect& camera, SDL_Renderer* gRenderer, SDL_Rect gTileClips[ TOTAL_TEXTURES ], LTexture& gTileTexture )
 {
     //If the tile is on screen
     if( checkCollision( camera, mBox ) )

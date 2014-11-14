@@ -13,10 +13,10 @@ class Tile
 {
     public:
 		//Initializes position and type
-		Tile( int x, int y, int tileType );
+		Tile( int x, int y, int TileType );
 
 		//Shows the tile
-		void render( SDL_Rect& camera, SDL_Renderer* gRenderer, SDL_Rect gTileClips[ TOTAL_TILE_SPRITES ], LTexture& gTileTexture );
+		void render( SDL_Rect& camera, SDL_Renderer* gRenderer, SDL_Rect gTileClips[ TOTAL_TEXTURES ], LTexture& gTileTexture );
 
 		//Get the tile type
 		int getType();
