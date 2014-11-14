@@ -36,30 +36,24 @@ void Player::oneMoreStep()
 }
 
 ///Methods
-void Player::handleEvent( SDL_Event& e )
+void Player::handleEvent( SDL_Event& e, bool& exitFlag )
 {
+    if( e.type == SDL_QUIT )
+    {
+        exitFlag = true;
+        std::cout << "Trying to leave" << std::endl;
+    }
     //If a key was pressed
 	if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
     {
         //Adjust the velocity
         switch( e.key.keysym.sym )
         {
-            case SDLK_UP: mVelY -= PLAYER_VEL; break;
-            case SDLK_DOWN: mVelY += PLAYER_VEL; break;
-            case SDLK_LEFT: mVelX -= PLAYER_VEL; break;
-            case SDLK_RIGHT: mVelX += PLAYER_VEL; break;
-        }
-    }
-    //If a key was released
-    else if( e.type == SDL_KEYUP && e.key.repeat == 0 )
-    {
-        //Adjust the velocity
-        switch( e.key.keysym.sym )
-        {
-            case SDLK_UP: mVelY += PLAYER_VEL; break;
-            case SDLK_DOWN: mVelY -= PLAYER_VEL; break;
-            case SDLK_LEFT: mVelX += PLAYER_VEL; break;
-            case SDLK_RIGHT: mVelX -= PLAYER_VEL; break;
+            case SDLK_ESCAPE: exitFlag = true; break;
+            case SDLK_UP: mBox.y -= TILE_FLOOR_HEIGHT; break;
+            case SDLK_DOWN: mBox.y += TILE_FLOOR_HEIGHT; break;
+            case SDLK_LEFT: mBox.x -= TILE_WIDTH; break;
+            case SDLK_RIGHT: mBox.x += TILE_WIDTH; break;
         }
     }
 }
@@ -94,21 +88,21 @@ void Player::setCamera( SDL_Rect& camera )
 	camera.y = ( mBox.y + PLAYER_HEIGHT / 2 ) - SCREEN_HEIGHT / 2;
 
 	//Keep the camera in bounds
-	if( camera.x < 0 )
+	if( camera.x < 0 - LEVEL_WIDTH)
 	{
 		camera.x = 0;
 	}
-	if( camera.y < 0 )
+	if( camera.y < 0 - LEVEL_HEIGHT )
 	{
 		camera.y = 0;
 	}
-	if( camera.x > LEVEL_WIDTH - camera.w )
+	if( camera.x > LEVEL_WIDTH /*- camera.w*/ )
 	{
-		camera.x = LEVEL_WIDTH - camera.w;
+		camera.x = LEVEL_WIDTH /*- camera.w*/;
 	}
-	if( camera.y > LEVEL_HEIGHT - camera.h )
+	if( camera.y > LEVEL_HEIGHT /*- camera.h*/ )
 	{
-		camera.y = LEVEL_HEIGHT - camera.h;
+		camera.y = LEVEL_HEIGHT /*- camera.h*/;
 	}
 }
 

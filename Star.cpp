@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 #include "Star.h"
 
 /// //////////////////////////////////////////////////////////////////////////////
@@ -26,7 +23,10 @@ void Star::setIsAtGoal(bool isAtGoal)
 
 bool Star::isBlocked( Direction directionToCheckS )
 {
+    bool isBlocked = false;
 
+
+    return isBlocked;
 }
 
 void Star::push( Direction directionToPush )
@@ -35,24 +35,23 @@ void Star::push( Direction directionToPush )
     {
     case NORTH:
         {
-            setMapY( getMapY() - 1 );
+            //setMapY( getMapY() - 1 );
             break;
         }
     case EAST:
         {
-            setMapX( getMapX() + 1 );
+            //setMapX( getMapX() + 1 );
             break;
         }
     case WEST:
         {
-            setMapX( getMapX() - 1 );
+            //setMapX( getMapX() - 1 );
             break;
         }
     case SOUTH:
         {
-            setMapY( getMapY() + 1 );
+            //setMapY( getMapY() + 1 );
             break;
         }
     }
 }
->>>>>>> 937284d44191c3d659af70ab23fa076925b53194
