@@ -33,6 +33,9 @@ public:
     //Sets tiles from tile map
     bool setTiles( Tile *tiles[] );
 
+    //Main game loop
+    void runGame();
+
 private:
     //The window we'll be rendering to
     SDL_Window* gWindow = NULL;

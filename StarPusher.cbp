@@ -45,8 +45,16 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="EnumTypes.h" />
+		<Unit filename="GameController.cpp" />
+		<Unit filename="GameController.h" />
+		<Unit filename="LTexture.cpp" />
+		<Unit filename="LTexture.h" />
+		<Unit filename="Level.cpp" />
+		<Unit filename="Level.h" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />
+		<Unit filename="Star.cpp" />
+		<Unit filename="Star.h" />
 		<Unit filename="Tile.cpp" />
 		<Unit filename="Tile.h" />
 		<Unit filename="main.cpp" />

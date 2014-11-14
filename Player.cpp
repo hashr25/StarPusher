@@ -36,14 +36,20 @@ void Player::oneMoreStep()
 }
 
 ///Methods
-void Player::handleEvent( SDL_Event& e )
+void Player::handleEvent( SDL_Event& e, bool& exitFlag )
 {
+    if( e.type == SDL_QUIT )
+    {
+        exitFlag = true;
+        std::cout << "Trying to leave" << std::endl;
+    }
     //If a key was pressed
 	if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
     {
         //Adjust the velocity
         switch( e.key.keysym.sym )
         {
+            case SDLK_ESCAPE: exitFlag = true; break;
             case SDLK_UP: mBox.y -= TILE_FLOOR_HEIGHT; break;
             case SDLK_DOWN: mBox.y += TILE_FLOOR_HEIGHT; break;
             case SDLK_LEFT: mBox.x -= TILE_WIDTH; break;
