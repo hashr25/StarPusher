@@ -70,7 +70,7 @@ void Player::move( Tile *tiles[] )
     mBox.x += mVelX;
 
     //If the dot went too far to the left or right or touched a wall
-    if( ( mBox.x < 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) || touchesWall( mBox, tiles ) )
+    if( ( mBox.x < 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) )
     {
         //move back
         mBox.x -= mVelX;
@@ -80,7 +80,7 @@ void Player::move( Tile *tiles[] )
     mBox.y += mVelY;
 
     //If the dot went too far up or down or touched a wall
-    if( ( mBox.y < 0 ) || ( mBox.y + PLAYER_HEIGHT > LEVEL_HEIGHT ) || touchesWall( mBox, tiles ) )
+    if( ( mBox.y < 0 ) || ( mBox.y + PLAYER_HEIGHT > LEVEL_HEIGHT ) )
     {
         //move back
         mBox.y -= mVelY;
@@ -163,6 +163,7 @@ bool Player::checkCollision( SDL_Rect a, SDL_Rect b )
     return true;
 }
 
+/*
 bool Player::touchesWall( SDL_Rect box, Tile* tiles[] )
 {
     //Go through the tiles
@@ -181,4 +182,4 @@ bool Player::touchesWall( SDL_Rect box, Tile* tiles[] )
 
     //If no wall tiles were touched
     return false;
-}
+}*/
