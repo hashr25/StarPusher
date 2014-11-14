@@ -20,16 +20,16 @@ public:
     void oneMoreStep();
 
     ///Methods
-    //Takes key presses and adjusts the dot's velocity
-    void handleEvent( SDL_Event& e );
+    //Takes key presses and adjusts the Player's velocity
+    void handleEvent( SDL_Event& e, bool& exitFlag );
 
-    //Moves the dot and check collision against tiles
+    //Moves the Player and check collision against tiles
     void move( Tile *tiles[] );
 
-    //Centers the camera over the dot
+    //Centers the camera over the Player
     void setCamera( SDL_Rect& camera );
 
-    //Shows the dot on the screen
+    //Shows the Player on the screen
     void render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlayerTexture );
 
     //Checks collision
@@ -41,10 +41,10 @@ public:
 private:
     int steps;
 
-    //Collision box of the dot
+    //Collision box of the Player
     SDL_Rect mBox;
 
-    //The velocity of the dot
+    //The velocity of the Player
     int mVelX, mVelY;
 };
 
