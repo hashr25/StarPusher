@@ -6,40 +6,32 @@
 #include <iostream>
 
 #include "EnumTypes.h"
+#include "LTexture.h"
 
-/* Used for Testing Purposes */
-const int TILE_HEIGHT = 85;
-const int TILE_WIDTH = 50;
-const int TILE_FLOOR_HEIGHT = 40;
-
+//The tile
 class Tile
 {
-public:
-    ///Constructors and Destructors
-    Tile();
-    Tile( int mapX, int mapY, TileType type, SDL_Texture* image );
-    ~Tile();
+    public:
+		//Initializes position and type
+		Tile( int x, int y, int TileType );
 
-    ///Getters and Setters
-    //Getters
-    int getMapX();
-    int getMapY();
-    TileType getType();
-    SDL_Texture* getImage();
-    //Setters
-    void setMapX( int mapX );
-    void setMapY( int mapY );
-    void setType( TileType type );
-    void setImage( SDL_Texture* image );
+		//Shows the tile
+		void render( SDL_Rect& camera, SDL_Renderer* gRenderer, SDL_Rect gTileClips[ TOTAL_TEXTURES ], LTexture& gTileTexture );
 
-    ///Methods
-    void displayTile( SDL_Renderer* renderer );
+		//Get the tile type
+		int getType();
 
-private:
-    int mapX;
-    int mapY;
-    TileType type;
-    SDL_Texture* image;
+		//Get the collision box
+		SDL_Rect getBox();
+
+		//Check collision
+		bool checkCollision( SDL_Rect a, SDL_Rect b );
+
+    private:
+		//The attributes of the tile
+		SDL_Rect mBox;
+
+		//The tile type
+		int mType;
 };
-
 #endif // TILE_H
