@@ -38,6 +38,9 @@ public:
     //Touches
     bool touchesWall( SDL_Rect box, Tile* tiles[] );
 
+    //Display Steps
+    void displaySteps( SDL_Renderer* gRenderer );
+
 private:
     int steps;
 

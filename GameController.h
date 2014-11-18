@@ -3,11 +3,16 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
 
 #include "EnumTypes.h"
 #include "Tile.h"
 #include "Player.h"
 #include "Star.h"
+#include "Level.h"
 
 class GameController
 {
@@ -36,6 +41,11 @@ public:
     //Main game loop
     void runGame();
 
+    //Load game levels
+    void loadLevels();
+
+    std::vector<Level> getLevels();
+
 private:
     //The window we'll be rendering to
     SDL_Window* gWindow = NULL;
@@ -47,6 +57,10 @@ private:
     LTexture gPlayerTexture;
     LTexture gTileTexture;
     SDL_Rect gTileClips[ TOTAL_TEXTURES ];
+
+    //Levels
+    std::vector<Level> gameLevels;
+    int currentLevel;
 };
 
 #endif // GAMECONTROLLER_H

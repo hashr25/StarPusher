@@ -3,6 +3,7 @@
 GameController::GameController()
 {
     init();
+    loadLevels();
 }
 
 bool GameController::init()
@@ -192,7 +193,7 @@ bool GameController::setTiles( Tile* tiles[] )
 			if( map.fail() )
 			{
 				//Stop loading map
-				printf( "Error loading map: Unexpected end of file!\n" );
+				std::cout <<  "Error loading map: Unexpected end of file!" << std::endl;
 				tilesLoaded = false;
 				break;
 			}
@@ -374,7 +375,6 @@ void GameController::runGame()
 				}
 
 				//Move the dot
-				player.move( tileSet );
 				player.setCamera( camera );
 
 				//Clear screen
@@ -398,4 +398,135 @@ void GameController::runGame()
 		//Free resources and close SDL
 		close( tileSet );
 	}
+}
+
+//Load game levels
+void GameController::loadLevels()
+{
+    std::ifstream inputFile;
+    inputFile.open( "convertedMaps.txt" );
+
+    int lineCounter = 0;
+    std::string line = "";
+
+    std::vector<std::string> levelLines;
+    Level eachLevel;
+
+    int x = 0;
+    int y = 0;
+    int tileCounter = 0;
+
+    while( getline( inputFile, line ) )
+    {
+        if( line.size() > 2 )
+        {
+            if( line.at(0) == 'j' )
+            {
+                std::cout << line << std::endl;
+
+                //lineSS << line;
+            }
+        }
+
+
+        ///Finishing Level
+        if( lineCounter > 0 && line.size() < 2 )
+        {
+            ///Finishing level
+            gameLevels.push_back( eachLevel );
+            eachLevel.clear();
+            lineCounter = 0;
+            x = 0;
+            y = 0;
+            tileCounter = 0;
+        }
+
+        ///Blank Line
+        else if( line.size() < 2 )
+        {
+            //Leave it alone
+        }
+
+        ///Comment Line
+        else if( line.at(0) == ';' )
+        {
+            //Leave it alone too
+        }
+
+        ///The actual map lines
+        else
+        {
+            std::stringstream lineSS( line );
+            /// ////////////////////////////////////////////////
+            /// BUGGED SECTION
+
+            ///First line which holds map sizes
+
+            if( lineCounter == 0 )
+            {
+                int mapWidth;
+                int mapHeight;
+                //lineSS >> mapWidth;
+                //lineSS >> mapWidth;
+                //eachLevel.setLevelWidthInTiles( mapWidth );
+                //eachLevel.setLevelWidthInPixels( mapWidth * TILE_WIDTH );
+                //eachLevel.setLevelHeightInTiles( mapHeight );
+                //eachLevel.setLevelHeightInPixels( mapHeight * TILE_FLOOR_HEIGHT );
+                //eachLevel.tiles = new Tile*[mapHeight * mapWidth];
+            }
+
+            /// BUGGED SECTION
+
+            /// //////////////////////////////////////////////////////////////////////
+
+
+            ///Middle lines of key, contains the map key itself
+            /*if( lineCounter >= 1 && lineCounter <= eachLevel.getLevelHeightInTiles()+1 )
+            {
+                for( int j = 0; j < line.size(); j++ )
+                {
+                    int tileType;
+                    //lineSS >> tileType;
+                    eachLevel.tiles[ tileCounter ] = new Tile( x, y, tileType );
+                    tileCounter++;
+                    x += TILE_WIDTH;
+                }
+            }
+
+            ///First line after map key, holds number of stars
+            if( lineCounter == (2 + eachLevel.getLevelHeightInTiles() ) )
+            {
+                int numberOfStars;
+                //lineSS >> numberOfStars;
+                eachLevel.setNumberOfStars( numberOfStars );
+            }
+
+            ///Coordinates for stars
+            if( lineCounter == ( 3 + eachLevel.getLevelHeightInTiles() ) )
+            {
+                for( int i = 0; i < eachLevel.getNumberOfStars(); i++ )
+                {
+                    int starX, starY;
+                    //lineSS >> starX >> starY;
+                    Star thisStar( starX, starY );
+                    eachLevel.addStar( thisStar );
+                }
+            }
+
+            ///This only returns the carriage for tile display coordinates
+            if( x >= eachLevel.getLevelWidthInPixels() )
+            {
+                x = 0;
+                y += TILE_FLOOR_HEIGHT;
+            }
+
+            levelLines.push_back( line );
+            lineCounter++;
+        */}
+    }
+}
+
+std::vector<Level> GameController::getLevels()
+{
+    return gameLevels;
 }
