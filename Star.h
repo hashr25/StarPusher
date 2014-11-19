@@ -10,12 +10,15 @@ public:
 
     /// Constructors
     Star();
+    Star( int x, int y );
 
     /// Getters and Setters
     // Getters
     bool getIsAtGoal() const;
+    SDL_Rect getStarRect() const;
     // Setters
     void setIsAtGoal( bool isAtGoal );
+    void setTopLeft( int x, int y );
 
     /// Methods
     bool isBlocked( Direction directionToCheck );
@@ -24,6 +27,8 @@ public:
 private:
 
     bool isAtGoal;
+
+    SDL_Rect mBox;
 
 };
 
