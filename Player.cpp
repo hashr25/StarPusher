@@ -5,15 +5,17 @@ Player::Player()
 {
     steps = 0;
 
-    //Initialize the collision box
+    //Initialize the player offsets
     mBox.x = 0;
     mBox.y = 0;
-	mBox.w = PLAYER_WIDTH;
-	mBox.h = PLAYER_HEIGHT;
+    //mBox.w/h are strictly used for collision detection
+    // they have no part in players construction or functionality.
+	pCollider.w = PLAYER_WIDTH;
+	pCollider.h = PLAYER_HEIGHT;
 
-    //Initialize the velocity
-    mVelX = 0;
-    mVelY = 0;
+    //Initialize the velocity, the following are extraneous variables, the game runs without them.
+    //mVelX = 0;
+    //mVelY = 0;
 }
 
 ///Getters and Setters
@@ -51,33 +53,18 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
         {
             case SDLK_ESCAPE: exitFlag = true; break;
             case SDLK_UP: mBox.y -= TILE_FLOOR_HEIGHT; break;
+                pCollider.y = mBox.y;
+                if( ( mBox.y < 0 ) || ( mBox.y + PLAYER_HEIGHT > SCREEN_WIDTH ) )//|| checkCollision( pCollider//, wall ) )
+                {
+                    //Move back
+                    mBox.y += TILE_FLOOR_HEIGHT;
+                    pCollider.y = mBox.y;
+                }
             case SDLK_DOWN: mBox.y += TILE_FLOOR_HEIGHT; break;
             case SDLK_LEFT: mBox.x -= TILE_WIDTH; break;
             case SDLK_RIGHT: mBox.x += TILE_WIDTH; break;
+
         }
-    }
-}
-
-void Player::move( Tile *tiles[] )
-{
-    //Move the dot left or right
-    mBox.x += mVelX;
-
-    //If the dot went too far to the left or right or touched a wall
-    if( ( mBox.x < 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) )
-    {
-        //move back
-        mBox.x -= mVelX;
-    }
-
-    //Move the dot up or down
-    mBox.y += mVelY;
-
-    //If the dot went too far up or down or touched a wall
-    if( ( mBox.y < 0 ) || ( mBox.y + PLAYER_HEIGHT > LEVEL_HEIGHT ) )
-    {
-        //move back
-        mBox.y -= mVelY;
     }
 }
 
@@ -112,6 +99,7 @@ void Player::render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlaye
 	gPlayerTexture.render( mBox.x - camera.x, mBox.y - camera.y, gRenderer );
 }
 
+//
 bool Player::checkCollision( SDL_Rect a, SDL_Rect b )
 {
     //The sides of the rectangles
@@ -157,8 +145,7 @@ bool Player::checkCollision( SDL_Rect a, SDL_Rect b )
     return true;
 }
 
-/*
-bool Player::touchesWall( SDL_Rect box, Tile* tiles[] )
+/*bool Player::touchesWall( SDL_Rect box, Tile* tiles[] )
 {
     //Go through the tiles
     for( int i = 0; i < TOTAL_TILES; ++i )
@@ -173,7 +160,6 @@ bool Player::touchesWall( SDL_Rect box, Tile* tiles[] )
             }
         }
     }
-
     //If no wall tiles were touched
     return false;
 }*/

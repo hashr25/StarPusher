@@ -46,6 +46,9 @@ private:
 
     //The velocity of the Player
     int mVelX, mVelY;
+
+    // Player Collision box
+    SDL_Rect pCollider;
 };
 
 #endif // PLAYER_H

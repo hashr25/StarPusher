@@ -374,8 +374,9 @@ void GameController::runGame()
 				}
 
 				//Move the dot
-				player.move( tileSet );
+				//player.move( tileSet );
 				player.setCamera( camera );
+				//player.checkCollision( a, b );
 
 				//Clear screen
 				SDL_SetRenderDrawColor( gRenderer, 0xAA, 0xFF, 0xFF, 0xFF );
