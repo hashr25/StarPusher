@@ -25,10 +25,14 @@ public:
     void push( Direction directionToPush );
 
 private:
-
     bool isAtGoal;
 
+<<<<<<< HEAD
     SDL_Rect mBox;
+=======
+    int x;
+    int y;
+>>>>>>> master
 
 };
 

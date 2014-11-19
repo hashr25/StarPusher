@@ -23,6 +23,12 @@ Star::Star( int x, int y )
     mBox.h = TILE_HEIGHT;
 }
 
+Star::Star( int x, int y )
+{
+    this -> x = x;
+    this -> y = y;
+}
+
 /// /////////////////////////////////////////////////////////////////////////////
 ///Getters and Setters
 //Getters
