@@ -14,6 +14,14 @@ Player::Player()
     //Initialize the velocity
     mVelX = 0;
     mVelY = 0;
+
+    //load font
+    loadFont( "Test1.ttf" );
+}
+
+Player::~Player()
+{
+    TTF_CloseFont( font );
 }
 
 ///Getters and Setters
@@ -180,5 +188,32 @@ bool Player::touchesWall( SDL_Rect box, Tile* tiles[] )
 
 void Player::displaySteps( SDL_Renderer* gRenderer )
 {
+    LTexture stepTexture;
+    std::stringstream stepsSS;
+    stepsSS << steps;
+    std::string stepsOutput = "Steps: " + stepsSS.str();
 
+    stepTexture.loadFromRenderedText( stepsOutput, fontColor, font, gRenderer );
+
+    stepTexture.render( 25, 445, gRenderer );
+}
+
+bool Player::loadFont( std::string fileName )
+{
+    bool success = true;
+
+    font = TTF_OpenFont( fileName.c_str(), 20 );
+
+    if( font == NULL )
+    {
+        std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
+        success = false;
+    }
+
+    else
+    {
+        fontColor = { 255, 255, 255 };
+    }
+
+    return success;
 }

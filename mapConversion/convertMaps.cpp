@@ -8,6 +8,7 @@ using namespace std;
 vector<string> mapFill( vector<string> currentMap );
 string convertLine( string line );
 void floodFill( vector<string>& mapToFill, int x, int y, char convertFrom, char convertTo );
+void makeCorners( vector<string>& mapToFill, int mapHeight, int mapWidth, char convertFrom, char convertTo );
 
 
 int main()
@@ -48,7 +49,7 @@ int main()
             ///Finishing Map
             if( lineCounter > 0 && line.size() < 2 )
             {
-                ///Make Floors
+                ///Make Floors and Corners
                 floodFill( baseMapLines, playerX, playerY, ' ', '^' );
 
                 ///Adding in goals
@@ -57,7 +58,7 @@ int main()
                     baseMapLines.at(goalY.at(i)).at(goalX.at(i)) = '.';
                 }
 
-                makeCorners( baseMapLines, mapHeight, mapWidth );
+                makeCorners( baseMapLines, mapHeight, mapWidth, '#', '%' );
 
                 ///Converts to our format
                 for( int i = 0; i < baseMapLines.size(); i++ )
@@ -194,6 +195,11 @@ int main()
                         mapLine.append( "#" );
                     }
 
+                    else if( line[i] == '%' )
+                    {
+                        mapLine.append( "%" );
+                    }
+
                 }///INSIDE LINE
 
                 mapLine.append("\n");
@@ -303,17 +309,17 @@ string convertLine( string line )
         }
 
         else if( line.at(i) == '#' )
-        {
+        {//cout << "Writing Wall" << endl;
             mapLine.append("10 ");
         }
 
         else if( line.at(i) == '^' )
-        {
+        {//cout << "Writing floor" << endl;
             mapLine.append( "09 " );
         }
 
         else if( line.at(i) == '%' )
-        {
+        {//cout << "Writing corner" << endl;
             mapLine.append( "11 " );
         }
     }///INSIDE LINE
@@ -355,13 +361,61 @@ void floodFill( vector<string>& mapToFill, int x, int y, char convertFrom, char 
     }
 }
 
-void makeCorners( vector<string>& mapToFill, int mapHeight, int mapWidth )
+void makeCorners( vector<string>& mapToFill, int mapHeight, int mapWidth, char convertFrom, char convertTo )
 {
-    for( int mapY = 0; mapY < mapHeight; mapY++ )
+    for( int mapY = 0; mapY < mapToFill.size(); mapY++ )
     {
-        for( int mapX = 0; mapX < mapToFill.at(mapY); mapX++ )
+
+        for( int mapX = 0; mapX < mapToFill.at(mapY).size(); mapX++ )
         {
 
+            if( mapToFill.at(mapY).at(mapX) == convertFrom )
+            {
+
+                int numberOfWallsBeside = 0;
+                int numberOfWallsAbove = 0;
+
+                if( mapY+1 < mapToFill.size() && mapX < mapToFill.at(mapY+1).size() )
+                {
+                    if( mapToFill.at(mapY+1).at(mapX) == convertFrom ||
+                        mapToFill.at(mapY+1).at(mapX) == convertTo    )
+                    {
+                        numberOfWallsAbove++;
+                    }
+                }
+
+                if( mapY-1 > 0 && mapX < mapToFill.at(mapY-1).size())
+                {
+                    if( mapToFill.at(mapY-1).at(mapX) == convertFrom ||
+                        mapToFill.at(mapY-1).at(mapX) == convertTo    )
+                    {
+                        numberOfWallsAbove++;
+                    }
+                }
+
+                if( mapX+1 < mapToFill.at(mapY).size() )
+                {
+                    if( mapToFill.at(mapY).at(mapX+1) == convertFrom ||
+                        mapToFill.at(mapY).at(mapX+1) == convertTo    )
+                    {
+                        numberOfWallsBeside++;
+                    }
+                }
+
+                if( mapX-1 > 0 )
+                {
+                    if( mapToFill.at(mapY).at(mapX-1) == convertFrom ||
+                        mapToFill.at(mapY).at(mapX-1) == convertTo    )
+                    {
+                        numberOfWallsBeside++;
+                    }
+                }
+
+                if( numberOfWallsAbove > 0 && numberOfWallsBeside > 0 )
+                {//cout << "making Corner" << endl;
+                    mapToFill.at(mapY).at(mapX) = convertTo;
+                }
+            }
         }
     }
 }

@@ -53,6 +53,16 @@ bool GameController::init()
 					printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
 					success = false;
 				}
+
+				else
+                {
+                     //Initialize SDL_ttf
+                    if( TTF_Init() == -1 )
+                    {
+                        printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
+                        success = false;
+                    }
+                }
 			}
 		}
 	}
@@ -374,7 +384,7 @@ void GameController::runGame()
 					player.handleEvent( e, quit );
 				}
 
-				//Move the dot
+				//Move the camera
 				player.setCamera( camera );
 
 				//Clear screen
@@ -387,8 +397,9 @@ void GameController::runGame()
 					tileSet[ i ]->render( camera, gRenderer, gTileClips, gTileTexture );
 				}
 
-				//Render dot
+				//Render player
 				player.render( camera, gRenderer, gPlayerTexture );
+				player.displaySteps( gRenderer );
 
 				//Update screen
 				SDL_RenderPresent( gRenderer );
