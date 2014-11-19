@@ -27,6 +27,7 @@ public:
 
     //Loads media
     bool loadMedia( Tile* tiles[], SDL_Renderer* gRenderer );
+    bool loadFont( std::string fileName );
 
     //Frees media and shuts down SDL
     void close( Tile* tiles[] );
@@ -46,7 +47,12 @@ public:
     //Load game levels
     void loadLevels();
 
+    //Returns levels
     std::vector<Level> getLevels();
+
+    //Displays level number on screen
+    void displayLevelNumber();
+
 
 private:
     //The window we'll be rendering to
@@ -61,6 +67,8 @@ private:
     SDL_Rect gTileClips[ TOTAL_TEXTURES ];
 
     //Levels
+    TTF_Font* font;
+    SDL_Color fontColor;
     std::vector<Level> gameLevels;
     int currentLevel;
 };

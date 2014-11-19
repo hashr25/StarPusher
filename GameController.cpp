@@ -4,6 +4,7 @@ GameController::GameController()
 {
     init();
     loadLevels();
+    currentLevel = 0;
 }
 
 bool GameController::init()
@@ -96,7 +97,32 @@ bool GameController::loadMedia( Tile* tiles[], SDL_Renderer* gRenderer )
 		success = false;
 	}
 
+	if( !loadFont( "Test1.ttf" ) )
+    {
+        std::cout << "Failed to load font" << std::endl;
+    }
+
 	return success;
+}
+
+bool GameController::loadFont( std::string fileName )
+{
+    bool success = true;
+
+    font = TTF_OpenFont( fileName.c_str(), 20 );
+
+    if( font == NULL )
+    {
+        std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
+        success = false;
+    }
+
+    else
+    {
+        fontColor = { 255, 255, 255 };
+    }
+
+    return success;
 }
 
 void GameController::close( Tile* tiles[] )
@@ -400,6 +426,7 @@ void GameController::runGame()
 				//Render player
 				player.render( camera, gRenderer, gPlayerTexture );
 				player.displaySteps( gRenderer );
+				displayLevelNumber();
 
 				//Update screen
 				SDL_RenderPresent( gRenderer );
@@ -540,4 +567,16 @@ void GameController::loadLevels()
 std::vector<Level> GameController::getLevels()
 {
     return gameLevels;
+}
+
+void GameController::displayLevelNumber()
+{
+    LTexture levelTexture;
+    std::stringstream levelSS;
+    levelSS << "Level " << currentLevel << " of " << gameLevels.size();
+    std::string levelOutput = levelSS.str();
+
+    levelTexture.loadFromRenderedText( levelOutput, fontColor, font, gRenderer );
+
+    levelTexture.render( 25, 420, gRenderer );
 }
