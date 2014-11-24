@@ -2,9 +2,11 @@
 
 GameController::GameController()
 {
-    init();
     loadLevels();
     currentLevel = 0;
+    camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+    cameraVelX = 0;
+    cameraVelY = 0;
 }
 
 bool GameController::init()
@@ -403,7 +405,7 @@ void GameController::runGame()
 			Player player;
 
 			//Level camera
-			SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+			player.setCamera( camera );
 
 			//While application is running
 			while( !quit )
@@ -419,13 +421,14 @@ void GameController::runGame()
 
 					//Handle input for the dot
 					player.handleEvent( e, quit );
+					moveCamera( e );
 				}
 
 				//Move the camera
-				player.setCamera( camera );
+				//player.setCamera( camera );
 
 				//Clear screen
-				SDL_SetRenderDrawColor( gRenderer, 0xAA, 0xFF, 0xFF, 0xFF );
+				SDL_SetRenderDrawColor( gRenderer, 0x66, 0xAA, 0xFF, 0xFF );
 				SDL_RenderClear( gRenderer );
 
 				//Render level
@@ -613,4 +616,52 @@ void GameController::displayLevelNumber()
     levelTexture.loadFromRenderedText( levelOutput, fontColor, font, gRenderer );
 
     levelTexture.render( 25, 420, gRenderer );
+}
+
+void GameController::moveCamera( SDL_Event& e )
+{
+    if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
+    {
+        //Adjust the velocity
+        switch( e.key.keysym.sym )
+        {
+            case SDLK_w: cameraVelY -= CAMERA_SPEED; break;
+            case SDLK_a: cameraVelX -= CAMERA_SPEED; break;
+            case SDLK_s: cameraVelY += CAMERA_SPEED; break;
+            case SDLK_d: cameraVelX += CAMERA_SPEED; break;
+        }
+    }
+
+    //If a key was released
+    else if( e.type == SDL_KEYUP && e.key.repeat == 0 )
+    {
+        //Adjust the velocity
+        switch( e.key.keysym.sym )
+        {
+            case SDLK_w: cameraVelY += CAMERA_SPEED; break;
+            case SDLK_a: cameraVelX += CAMERA_SPEED; break;
+            case SDLK_s: cameraVelY -= CAMERA_SPEED; break;
+            case SDLK_d: cameraVelX -= CAMERA_SPEED; break;
+        }
+    }
+
+    //Move the dot left or right
+    camera.x += cameraVelX;
+
+    //If the dot went too far to the left or right or touched a wall
+    /*if( ( camera.x < 0 ) || ( camera.x > LEVEL_WIDTH ) )
+    {
+        //move back
+        camera.x -= cameraVelX;
+    }*/
+
+    //Move the dot up or down
+    camera.y += cameraVelY;
+
+    //If the dot went too far up or down or touched a wall
+    /*if( ( camera.y < 0 ) || ( camera.y > LEVEL_HEIGHT ) )
+    {
+        //move back
+        camera.y -= cameraVelY;
+    }*/
 }

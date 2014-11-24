@@ -96,7 +96,7 @@ void Player::setCamera( SDL_Rect& camera )
 	camera.y = ( mBox.y + PLAYER_HEIGHT / 2 ) - SCREEN_HEIGHT / 2;
 
 	//Keep the camera in bounds
-	if( camera.x < 0 - LEVEL_WIDTH)
+	/*if( camera.x < 0 - LEVEL_WIDTH)
 	{
 		camera.x = 0;
 	}
@@ -104,15 +104,17 @@ void Player::setCamera( SDL_Rect& camera )
 	{
 		camera.y = 0;
 	}
-	if( camera.x > LEVEL_WIDTH /*- camera.w*/ )
+	if( camera.x > LEVEL_WIDTH )
 	{
-		camera.x = LEVEL_WIDTH /*- camera.w*/;
+		camera.x = LEVEL_WIDTH;
 	}
-	if( camera.y > LEVEL_HEIGHT /*- camera.h*/ )
+	if( camera.y > LEVEL_HEIGHT )
 	{
-		camera.y = LEVEL_HEIGHT /*- camera.h*/;
-	}
+		camera.y = LEVEL_HEIGHT;
+	}*/
 }
+
+
 
 void Player::render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlayerTexture )
 {
