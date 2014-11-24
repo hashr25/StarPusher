@@ -53,6 +53,12 @@ public:
     //Displays level number on screen
     void displayLevelNumber();
 
+    //Camera Motion
+    void moveCamera( SDL_Event& e );
+    void changeCamera();
+    int cameraVelX;
+    int cameraVelY;
+
 
 private:
     //The window we'll be rendering to
@@ -60,6 +66,9 @@ private:
 
     //The window renderer
     SDL_Renderer* gRenderer = NULL;
+
+    //Camera
+    SDL_Rect camera;
 
     //Scene textures
     LTexture gPlayerTexture;

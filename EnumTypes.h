@@ -5,13 +5,11 @@
 static const int PLAYER_WIDTH = 50;
 static const int PLAYER_HEIGHT = 85;
 
-//Maximum axis velocity of the player
-static const int PLAYER_VEL = 15;
-
-//The dimensions of the level
+//The dimensions of the test level
 const int LEVEL_WIDTH = 750;
 const int LEVEL_HEIGHT = 675;
 
+//The dimensions of the game window
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
@@ -20,6 +18,10 @@ const int TILE_WIDTH = 50;
 const int TILE_HEIGHT = 85;
 const int TILE_FLOOR_HEIGHT = 40;
 const int TOTAL_TILES = 15*15;
+
+//Camera movement
+///number is pixels per second
+const int CAMERA_SPEED = 10;
 
 enum Direction
 {
@@ -33,22 +35,22 @@ enum Direction
 enum TileType
 {
     NO_TYPE,
-    BOY_IMG,
-    CAT_GIRL_IMG,
-    HORN_GIRL_IMG,
-    PINK_GIRL_IMG,
-    PRINCESS_IMG,
-    STAR_IMG,
-    ON_GOAL_IMG,
-    OFF_GOAL_IMG,
-    FLOOR_IMG,
-    WALL_IMG,
-    CORNER_IMG,
-    GRASS_IMG,
-    ROCK_IMG,
-    SHORT_TREE_IMG,
-    TALL_TREE_IMG,
-    UGLY_TREE_IMG,
+    BOY,
+    CAT_GIRL,
+    HORN_GIRL,
+    PINK_GIRL,
+    PRINCESS,
+    STAR,
+    ON_GOAL,
+    OFF_GOAL,
+    FLOOR,
+    WALL,
+    CORNER,
+    GRASS,
+    ROCK,
+    SHORT_TREE,
+    TALL_TREE,
+    UGLY_TREE,
     TOTAL_TEXTURES
 };
 
