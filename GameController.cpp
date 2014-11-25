@@ -2,7 +2,11 @@
 
 GameController::GameController()
 {
-    init();
+//    loadLevels();
+    currentLevel = 0;
+    camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+    cameraVelX = 0;
+    cameraVelY = 0;
 }
 
 bool GameController::init()
@@ -52,6 +56,16 @@ bool GameController::init()
 					printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
 					success = false;
 				}
+
+				else
+                {
+                     //Initialize SDL_ttf
+                    if( TTF_Init() == -1 )
+                    {
+                        printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
+                        success = false;
+                    }
+                }
 			}
 		}
 	}
@@ -64,10 +78,10 @@ bool GameController::loadMedia( Tile* tiles[], SDL_Renderer* gRenderer )
 	//Loading success flag
 	bool success = true;
 
-	//Load dot texture
+	//Load Player texture
 	if( !gPlayerTexture.loadFromFile( "Images/boy.png", gRenderer ) )
 	{
-		printf( "Failed to load dot texture!\n" );
+		printf( "Failed to load Player texture!\n" );
 		success = false;
 	}
 
@@ -85,7 +99,32 @@ bool GameController::loadMedia( Tile* tiles[], SDL_Renderer* gRenderer )
 		success = false;
 	}
 
+	if( !loadFont( "Test1.ttf" ) )
+    {
+        std::cout << "Failed to load font" << std::endl;
+    }
+
 	return success;
+}
+
+bool GameController::loadFont( std::string fileName )
+{
+    bool success = true;
+
+    font = TTF_OpenFont( fileName.c_str(), 20 );
+
+    if( font == NULL )
+    {
+        std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
+        success = false;
+    }
+
+    else
+    {
+        fontColor = { 255, 255, 255 };
+    }
+
+    return success;
 }
 
 void GameController::close( Tile* tiles[] )
@@ -160,6 +199,8 @@ bool GameController::checkCollision( SDL_Rect a, SDL_Rect b )
     return true;
 }
 
+/// //////////////////////////////////////////////////////////////////////////////////////
+/// WHERE THE SAME THING ACTUALLY WORKS
 bool GameController::setTiles( Tile* tiles[] )
 {
 	//Success flag
@@ -192,16 +233,23 @@ bool GameController::setTiles( Tile* tiles[] )
 			if( map.fail() )
 			{
 				//Stop loading map
-				printf( "Error loading map: Unexpected end of file!\n" );
+				std::cout <<  "Error loading map: Unexpected end of file!" << std::endl;
 				tilesLoaded = false;
 				break;
 			}
+
+/// //////////////////////////////////////////////////////////////////////////////////////
+/// Works here
 
 			//If the number is a valid tile number
 			if( ( tileType >= 0 ) && ( tileType < TOTAL_TEXTURES ) )
 			{
 				tiles[ i ] = new Tile( x, y, tileType );
 			}
+
+/// Works here
+/// ///////////////////////////////////////////////////////////////////////////////////////
+
 			//If we don't recognize the tile type
 			else
 			{
@@ -237,85 +285,85 @@ bool GameController::setTiles( Tile* tiles[] )
 		//Clip the sprite sheet
 		if( tilesLoaded )
 		{
-			gTileClips[ BOY_IMG ].x = 0;
-			gTileClips[ BOY_IMG ].y = 0;
-			gTileClips[ BOY_IMG ].w = TILE_WIDTH;
-			gTileClips[ BOY_IMG ].h = TILE_HEIGHT;
+			gTileClips[ BOY ].x = 0;
+			gTileClips[ BOY ].y = 0;
+			gTileClips[ BOY ].w = TILE_WIDTH;
+			gTileClips[ BOY ].h = TILE_HEIGHT;
 
-			gTileClips[ CAT_GIRL_IMG ].x = 50;
-			gTileClips[ CAT_GIRL_IMG ].y = 0;
-			gTileClips[ CAT_GIRL_IMG ].w = TILE_WIDTH;
-			gTileClips[ CAT_GIRL_IMG ].h = TILE_HEIGHT;
+			gTileClips[ CAT_GIRL ].x = 50;
+			gTileClips[ CAT_GIRL ].y = 0;
+			gTileClips[ CAT_GIRL ].w = TILE_WIDTH;
+			gTileClips[ CAT_GIRL ].h = TILE_HEIGHT;
 
-			gTileClips[ HORN_GIRL_IMG ].x = 100;
-			gTileClips[ HORN_GIRL_IMG ].y = 0;
-			gTileClips[ HORN_GIRL_IMG ].w = TILE_WIDTH;
-			gTileClips[ HORN_GIRL_IMG ].h = TILE_HEIGHT;
+			gTileClips[ HORN_GIRL ].x = 100;
+			gTileClips[ HORN_GIRL ].y = 0;
+			gTileClips[ HORN_GIRL ].w = TILE_WIDTH;
+			gTileClips[ HORN_GIRL ].h = TILE_HEIGHT;
 
-			gTileClips[ PINK_GIRL_IMG ].x = 150;
-			gTileClips[ PINK_GIRL_IMG ].y = 0;
-			gTileClips[ PINK_GIRL_IMG ].w = TILE_WIDTH;
-			gTileClips[ PINK_GIRL_IMG ].h = TILE_HEIGHT;
+			gTileClips[ PINK_GIRL ].x = 150;
+			gTileClips[ PINK_GIRL ].y = 0;
+			gTileClips[ PINK_GIRL ].w = TILE_WIDTH;
+			gTileClips[ PINK_GIRL ].h = TILE_HEIGHT;
 
-			gTileClips[ PRINCESS_IMG ].x = 0;
-			gTileClips[ PRINCESS_IMG ].y = 85;
-			gTileClips[ PRINCESS_IMG ].w = TILE_WIDTH;
-			gTileClips[ PRINCESS_IMG ].h = TILE_HEIGHT;
+			gTileClips[ PRINCESS ].x = 0;
+			gTileClips[ PRINCESS ].y = 85;
+			gTileClips[ PRINCESS ].w = TILE_WIDTH;
+			gTileClips[ PRINCESS ].h = TILE_HEIGHT;
 
-			gTileClips[ STAR_IMG ].x = 50;
-			gTileClips[ STAR_IMG ].y = 85;
-			gTileClips[ STAR_IMG ].w = TILE_WIDTH;
-			gTileClips[ STAR_IMG ].h = TILE_HEIGHT;
+			gTileClips[ STAR ].x = 50;
+			gTileClips[ STAR ].y = 85;
+			gTileClips[ STAR ].w = TILE_WIDTH;
+			gTileClips[ STAR ].h = TILE_HEIGHT;
 
-			gTileClips[ ON_GOAL_IMG ].x = 100;
-			gTileClips[ ON_GOAL_IMG ].y = 85;
-			gTileClips[ ON_GOAL_IMG ].w = TILE_WIDTH;
-			gTileClips[ ON_GOAL_IMG ].h = TILE_HEIGHT;
+			gTileClips[ ON_GOAL ].x = 100;
+			gTileClips[ ON_GOAL ].y = 85;
+			gTileClips[ ON_GOAL ].w = TILE_WIDTH;
+			gTileClips[ ON_GOAL ].h = TILE_HEIGHT;
 
-			gTileClips[ OFF_GOAL_IMG ].x = 150;
-			gTileClips[ OFF_GOAL_IMG ].y = 85;
-			gTileClips[ OFF_GOAL_IMG ].w = TILE_WIDTH;
-			gTileClips[ OFF_GOAL_IMG ].h = TILE_HEIGHT;
+			gTileClips[ OFF_GOAL ].x = 150;
+			gTileClips[ OFF_GOAL ].y = 85;
+			gTileClips[ OFF_GOAL ].w = TILE_WIDTH;
+			gTileClips[ OFF_GOAL ].h = TILE_HEIGHT;
 
-			gTileClips[ FLOOR_IMG ].x = 0;
-			gTileClips[ FLOOR_IMG ].y = 170;
-			gTileClips[ FLOOR_IMG ].w = TILE_WIDTH;
-			gTileClips[ FLOOR_IMG ].h = TILE_HEIGHT;
+			gTileClips[ FLOOR ].x = 0;
+			gTileClips[ FLOOR ].y = 170;
+			gTileClips[ FLOOR ].w = TILE_WIDTH;
+			gTileClips[ FLOOR ].h = TILE_HEIGHT;
 
-			gTileClips[ WALL_IMG ].x = 50;
-			gTileClips[ WALL_IMG ].y = 170;
-			gTileClips[ WALL_IMG ].w = TILE_WIDTH;
-			gTileClips[ WALL_IMG ].h = TILE_HEIGHT;
+			gTileClips[ WALL ].x = 50;
+			gTileClips[ WALL ].y = 170;
+			gTileClips[ WALL ].w = TILE_WIDTH;
+			gTileClips[ WALL ].h = TILE_HEIGHT;
 
-			gTileClips[ CORNER_IMG ].x = 100;
-			gTileClips[ CORNER_IMG ].y = 170;
-			gTileClips[ CORNER_IMG ].w = TILE_WIDTH;
-			gTileClips[ CORNER_IMG ].h = TILE_HEIGHT;
+			gTileClips[ CORNER ].x = 100;
+			gTileClips[ CORNER ].y = 170;
+			gTileClips[ CORNER ].w = TILE_WIDTH;
+			gTileClips[ CORNER ].h = TILE_HEIGHT;
 
-			gTileClips[ GRASS_IMG ].x = 150;
-			gTileClips[ GRASS_IMG ].y = 170;
-			gTileClips[ GRASS_IMG ].w = TILE_WIDTH;
-			gTileClips[ GRASS_IMG ].h = TILE_HEIGHT;
+			gTileClips[ GRASS ].x = 150;
+			gTileClips[ GRASS ].y = 170;
+			gTileClips[ GRASS ].w = TILE_WIDTH;
+			gTileClips[ GRASS ].h = TILE_HEIGHT;
 
-			gTileClips[ ROCK_IMG ].x = 0;
-			gTileClips[ ROCK_IMG ].y = 255;
-			gTileClips[ ROCK_IMG ].w = TILE_WIDTH;
-			gTileClips[ ROCK_IMG ].h = TILE_HEIGHT;
+			gTileClips[ ROCK ].x = 0;
+			gTileClips[ ROCK ].y = 255;
+			gTileClips[ ROCK ].w = TILE_WIDTH;
+			gTileClips[ ROCK ].h = TILE_HEIGHT;
 
-			gTileClips[ SHORT_TREE_IMG ].x = 50;
-			gTileClips[ SHORT_TREE_IMG ].y = 255;
-			gTileClips[ SHORT_TREE_IMG ].w = TILE_WIDTH;
-			gTileClips[ SHORT_TREE_IMG ].h = TILE_HEIGHT;
+			gTileClips[ SHORT_TREE ].x = 50;
+			gTileClips[ SHORT_TREE ].y = 255;
+			gTileClips[ SHORT_TREE ].w = TILE_WIDTH;
+			gTileClips[ SHORT_TREE ].h = TILE_HEIGHT;
 
-			gTileClips[ TALL_TREE_IMG ].x = 100;
-			gTileClips[ TALL_TREE_IMG ].y = 255;
-			gTileClips[ TALL_TREE_IMG ].w = TILE_WIDTH;
-			gTileClips[ TALL_TREE_IMG ].h = TILE_HEIGHT;
+			gTileClips[ TALL_TREE ].x = 100;
+			gTileClips[ TALL_TREE ].y = 255;
+			gTileClips[ TALL_TREE ].w = TILE_WIDTH;
+			gTileClips[ TALL_TREE ].h = TILE_HEIGHT;
 
-			gTileClips[ UGLY_TREE_IMG ].x = 150;
-			gTileClips[ UGLY_TREE_IMG ].y = 255;
-			gTileClips[ UGLY_TREE_IMG ].w = TILE_WIDTH;
-			gTileClips[ UGLY_TREE_IMG ].h = TILE_HEIGHT;
+			gTileClips[ UGLY_TREE ].x = 150;
+			gTileClips[ UGLY_TREE ].y = 255;
+			gTileClips[ UGLY_TREE ].w = TILE_WIDTH;
+			gTileClips[ UGLY_TREE ].h = TILE_HEIGHT;
 		}
 	}
 
@@ -325,6 +373,8 @@ bool GameController::setTiles( Tile* tiles[] )
     //If the map was loaded fine
     return tilesLoaded;
 }
+/// WHERE THE SAME THING ACTUALLY WORKS
+/// //////////////////////////////////////////////////////////////////////////////////////
 
 void GameController::runGame()
 {
@@ -351,11 +401,11 @@ void GameController::runGame()
 			//Event handler
 			SDL_Event e;
 
-			//The dot that will be moving around on the screen
+			//The Player that will be moving around on the screen
 			Player player;
 
 			//Level camera
-			SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+			player.setCamera( camera );
 
 			//While application is running
 			while( !quit )
@@ -369,17 +419,16 @@ void GameController::runGame()
 						quit = true;
 					}
 
-					//Handle input for the dot
+					//Handle input for the Player
 					player.handleEvent( e, quit );
+					moveCamera( e );
 				}
 
-				//Move the dot
-				//player.move( tileSet );
-				player.setCamera( camera );
-				//player.checkCollision( a, b );
+				//Move the camera
+				//player.setCamera( camera );
 
 				//Clear screen
-				SDL_SetRenderDrawColor( gRenderer, 0xAA, 0xFF, 0xFF, 0xFF );
+				SDL_SetRenderDrawColor( gRenderer, 0x66, 0xAA, 0xFF, 0xFF );
 				SDL_RenderClear( gRenderer );
 
 				//Render level
@@ -388,8 +437,10 @@ void GameController::runGame()
 					tileSet[ i ]->render( camera, gRenderer, gTileClips, gTileTexture );
 				}
 
-				//Render dot
+				//Render player
 				player.render( camera, gRenderer, gPlayerTexture );
+				player.displaySteps( gRenderer );
+				displayLevelNumber();
 
 				//Update screen
 				SDL_RenderPresent( gRenderer );
@@ -399,4 +450,218 @@ void GameController::runGame()
 		//Free resources and close SDL
 		close( tileSet );
 	}
+}
+/*
+//Load game levels
+/// //////////////////////////////////////////////////////////////////////////////////////
+/// WHERE THE PART OF CODE THAT CRASHES IS
+void GameController::loadLevels()
+{
+    std::ifstream inputFile;
+    inputFile.open( "convertedMaps.txt" );
+
+    int lineCounter = 0;
+    std::string line = "";
+
+    std::vector<std::string> levelLines;
+    Level eachLevel;
+
+    int levelCounter = 0;
+
+    int x = 0;
+    int y = 0;
+    int tileCounter = 0;
+
+    while( getline( inputFile, line ) )
+    {
+        if( line.size() > 2 )
+        {
+            if( line.at(0) == 'j' )
+            {
+                std::cout << line << std::endl;
+
+                //lineSS << line;
+            }
+        }
+
+
+        ///Finishing Level
+        if( lineCounter > 0 && line.size() < 2 )
+        {
+            ///Finishing level
+            gameLevels.push_back( eachLevel );
+            eachLevel.clear();
+            lineCounter = 0;
+            x = 0;
+            y = 0;
+            tileCounter = 0;
+
+            levelCounter++;
+        }
+
+        ///Blank Line
+        else if( line.size() < 2 )
+        {
+            //Leave it alone
+        }
+
+        ///Comment Line
+        else if( line.at(0) == ';' )
+        {
+            //Leave it alone too
+        }
+
+        ///The actual map lines
+        else
+        {
+            std::stringstream lineSS( line );
+            /// ////////////////////////////////////////////////
+            /// BUGGED SECTION
+
+            ///First line which holds map sizes
+
+            if( lineCounter == 0 )
+            {
+                int mapWidth;
+                int mapHeight;
+                lineSS >> mapWidth;
+                lineSS >> mapWidth;
+                eachLevel.setLevelWidthInTiles( mapWidth );
+                eachLevel.setLevelWidthInPixels( mapWidth * TILE_WIDTH );
+                eachLevel.setLevelHeightInTiles( mapHeight );
+                eachLevel.setLevelHeightInPixels( mapHeight * TILE_FLOOR_HEIGHT );
+            }
+
+            /// BUGGED SECTION
+
+            /// //////////////////////////////////////////////////////////////////////
+
+
+            ///Middle lines of key, contains the map key itself
+            if( lineCounter >= 1 && lineCounter <= eachLevel.getLevelHeightInTiles()+1 )
+            {
+                for( int i = 0; i < line.size(); i++ )
+                {
+                    ///Used for Testing
+                    //std::cout << levelCounter << " - " << x << " x " << y << std::endl;
+                    //std::cout << "TileCounter: " << tileCounter << std::endl;
+
+                    int tileType;
+                    lineSS >> tileType;
+
+/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// BUGGED SECTION CAUSING CRASH
+
+                    if( tileType >= 0 && tileType < TOTAL_TEXTURES )
+                    {
+                        ///eachLevel.tiles[ tileCounter ] = new Tile( x, y, tileType );
+                    }
+
+/// BUGGED SECTION CAUSING CRASH
+/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    tileCounter++;
+                    x += TILE_WIDTH;
+                }
+            }
+
+
+            ///First line after map key, holds number of stars
+            if( lineCounter == (2 + eachLevel.getLevelHeightInTiles() ) )
+            {
+                int numberOfStars;
+                lineSS >> numberOfStars;
+                eachLevel.setNumberOfStars( numberOfStars );
+            }
+
+            ///Coordinates for stars
+            if( lineCounter == ( 3 + eachLevel.getLevelHeightInTiles() ) )
+            {
+                for( int i = 0; i < eachLevel.getNumberOfStars(); i++ )
+                {
+                    int starX, starY;
+                    lineSS >> starX >> starY;
+                    Star thisStar( starX, starY );
+                    eachLevel.addStar( thisStar );
+                }
+            }
+
+            ///This only returns the carriage for tile display coordinates
+            if( x >= eachLevel.getLevelWidthInPixels() )
+            {
+                x = 0;
+                y += TILE_FLOOR_HEIGHT;
+            }
+
+            levelLines.push_back( line );
+            lineCounter++;
+        }
+    }
+}
+/// WHERE THE PART OF CODE THAT CRASHES IS
+/// //////////////////////////////////////////////////////////////////////////////////////
+
+std::vector<Level> GameController::getLevels()
+{
+    return gameLevels;
+}
+*/
+void GameController::displayLevelNumber()
+{
+    LTexture levelTexture;
+    std::stringstream levelSS;
+    levelSS << "Level " << currentLevel << " of " << gameLevels.size();
+    std::string levelOutput = levelSS.str();
+
+    levelTexture.loadFromRenderedText( levelOutput, fontColor, font, gRenderer );
+
+    levelTexture.render( 25, 420, gRenderer );
+}
+
+void GameController::moveCamera( SDL_Event& e )
+{
+    if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
+    {
+        //Adjust the velocity
+        switch( e.key.keysym.sym )
+        {
+            case SDLK_w: cameraVelY -= CAMERA_SPEED; break;
+            case SDLK_a: cameraVelX -= CAMERA_SPEED; break;
+            case SDLK_s: cameraVelY += CAMERA_SPEED; break;
+            case SDLK_d: cameraVelX += CAMERA_SPEED; break;
+        }
+    }
+
+    //If a key was released
+    else if( e.type == SDL_KEYUP && e.key.repeat == 0 )
+    {
+        //Adjust the velocity
+        switch( e.key.keysym.sym )
+        {
+            case SDLK_w: cameraVelY += CAMERA_SPEED; break;
+            case SDLK_a: cameraVelX += CAMERA_SPEED; break;
+            case SDLK_s: cameraVelY -= CAMERA_SPEED; break;
+            case SDLK_d: cameraVelX -= CAMERA_SPEED; break;
+        }
+    }
+
+    //Move the Player left or right
+    camera.x += cameraVelX;
+
+    //If the Player went too far to the left or right or touched a wall
+    /*if( ( camera.x < 0 ) || ( camera.x > LEVEL_WIDTH ) )
+    {
+        //move back
+        camera.x -= cameraVelX;
+    }*/
+
+    //Move the Player up or down
+    camera.y += cameraVelY;
+
+    //If the Player went too far up or down or touched a wall
+    /*if( ( camera.y < 0 ) || ( camera.y > LEVEL_HEIGHT ) )
+    {
+        //move back
+        camera.y -= cameraVelY;
+    }*/
 }

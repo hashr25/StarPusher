@@ -3,12 +3,12 @@
 Tile::Tile( int x, int y, int tileType )
 {
     //Get the offsets
-    mBox.x = x;
-    mBox.y = y;
+    pBox.x = x;
+    pBox.y = y;
 
     //Set the collision box
-    mBox.w = TILE_WIDTH;
-    mBox.h = TILE_HEIGHT;
+    pBox.w = TILE_WIDTH;
+    pBox.h = TILE_HEIGHT;
 
     //Get the tile type
     mType = tileType;
@@ -17,10 +17,10 @@ Tile::Tile( int x, int y, int tileType )
 void Tile::render( SDL_Rect& camera, SDL_Renderer* gRenderer, SDL_Rect gTileClips[ TOTAL_TEXTURES ], LTexture& gTileTexture )
 {
     //If the tile is on screen
-    if( checkCollision( camera, mBox ) )
+    if( checkCollision( camera, pBox ) )
     {
         //Show the tile
-        gTileTexture.render( mBox.x - camera.x, mBox.y - camera.y, &gTileClips[ mType ], gRenderer );
+        gTileTexture.render( pBox.x - camera.x, pBox.y - camera.y, &gTileClips[ mType ], gRenderer );
     }
 }
 
@@ -31,7 +31,7 @@ int Tile::getType()
 
 SDL_Rect Tile::getBox()
 {
-    return mBox;
+    return pBox;
 }
 
 bool Tile::checkCollision( SDL_Rect a, SDL_Rect b )

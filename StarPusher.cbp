@@ -16,6 +16,7 @@
 					<Add directory="32 Bit SDL Library/SDL2/include/SDL2" />
 					<Add directory="32 Bit SDL Library/SDL2 Image/include/SDL2" />
 					<Add directory="32 Bit SDL Library/SDL2 Mixer/include/SDL2" />
+					<Add directory="32 Bit SDL Library/SDL2 TTF/include/SDL2" />
 				</Compiler>
 				<Linker>
 					<Add option="-lmingw32" />
@@ -23,9 +24,11 @@
 					<Add option="-lSDL2" />
 					<Add option="-lSDL2_image" />
 					<Add option="-lSDL2_mixer" />
+					<Add option="-lSDL2_ttf" />
 					<Add directory="32 Bit SDL Library/SDL2/lib" />
 					<Add directory="32 Bit SDL Library/SDL2 Image/lib" />
 					<Add directory="32 Bit SDL Library/SDL2 Mixer/lib" />
+					<Add directory="32 Bit SDL Library/SDL2 TTF/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">

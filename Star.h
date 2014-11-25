@@ -10,6 +10,7 @@ public:
 
     /// Constructors
     Star();
+    Star( int x, int y );
 
     /// Getters and Setters
     // Getters
@@ -22,8 +23,10 @@ public:
     void push( Direction directionToPush );
 
 private:
-
     bool isAtGoal;
+
+    int x;
+    int y;
 
 };
 

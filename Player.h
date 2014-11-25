@@ -4,12 +4,16 @@
 #include "Tile.h"
 #include "EnumTypes.h"
 #include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+#include <sstream>
 
 class Player
 {
 public:
     ///Constructors and Destructors
     Player();
+    ~Player();
 
     ///Getters and Setters
     //Getters
@@ -38,17 +42,19 @@ public:
     //Touches
     bool touchesWall( SDL_Rect box, Tile* tiles[] );
 
+    //Display Steps
+    void displaySteps( SDL_Renderer* gRenderer );
+
+    //Load font file
+    bool loadFont( std::string fileName );
+
 private:
     int steps;
+    TTF_Font* font;
+    SDL_Color fontColor;
 
     //Collision box of the Player
-    SDL_Rect mBox;
-
-    //The velocity of the Player
-    int mVelX, mVelY;
-
-    // Player Collision box
-    SDL_Rect pCollider;
+    SDL_Rect pBox;
 };
 
 #endif // PLAYER_H
