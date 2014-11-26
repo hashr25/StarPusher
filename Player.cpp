@@ -57,9 +57,9 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
             case SDLK_ESCAPE: exitFlag = true; break;
             case SDLK_UP:
                 //If the dot went too far up or down or touched a wall
-                if( ( mBox.y < 0 ) || ( mBox.y + PLAYER_WIDTH > LEVEL_HEIGHT ) /*|| touchesWall( mBox, tiles ) */)
+                if( ( mBox.y < 1 ) || ( mBox.y + PLAYER_HEIGHT > LEVEL_HEIGHT ) /*|| touchesWall( mBox, tiles ) */)
                 {
-                    //move back
+                    //move forward
                     mBox.y += TILE_FLOOR_HEIGHT;
                 }
                 else
@@ -68,10 +68,10 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
                 }
             case SDLK_DOWN:
                 //If the dot went too far up or down or touched a wall
-                if( /*( mBox.y > 0 ) ||*/ ( mBox.y + PLAYER_WIDTH > LEVEL_HEIGHT ) /*|| touchesWall( mBox, tiles ) */)
+                if( ( mBox.y + PLAYER_HEIGHT > (LEVEL_HEIGHT - PLAYER_HEIGHT) ) /*|| touchesWall( mBox, tiles ) */)
                 {
                     //move back
-                    mBox.y -= TILE_FLOOR_HEIGHT;
+                    mBox.y -= ( TILE_FLOOR_HEIGHT - 1 );
                 }
                 else
                 {
@@ -80,8 +80,8 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
             case SDLK_LEFT:
                 if( ( mBox.x < 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles ) */)
                 {
-                    //move back
-                    mBox.x += TILE_FLOOR_HEIGHT;
+                    //move right
+                    mBox.x += TILE_WIDTH;
                 }
                 else
                 {
@@ -91,7 +91,7 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
             case SDLK_RIGHT:
             if( ( mBox.y == 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles ) */)
                 {
-                    //move back
+                    //move left
                     mBox.x -= TILE_FLOOR_HEIGHT;
                 }
                 else
