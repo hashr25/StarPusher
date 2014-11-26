@@ -54,7 +54,7 @@ private:
     SDL_Color fontColor;
 
     //Collision box of the Player
-    SDL_Rect pBox;
+    SDL_Rect mBox;
 };
 
 #endif // PLAYER_H

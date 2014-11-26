@@ -5,11 +5,12 @@ Player::Player()
 {
     steps = 0;
 
+    mBox.x = 250;
+    mBox.y = 250;
+
     //Initialize the collision box
-    pBox.x = 0;
-    pBox.y = 0;
-	pBox.w = PLAYER_WIDTH;
-	pBox.h = PLAYER_HEIGHT;
+	mBox.w = PLAYER_WIDTH;
+	mBox.h = PLAYER_HEIGHT;
 
     //load font
     loadFont( "Test1.ttf" );
@@ -56,46 +57,46 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
             case SDLK_ESCAPE: exitFlag = true; break;
             case SDLK_UP:
                 //If the dot went too far up or down or touched a wall
-                if( ( pBox.y < 0 ) || ( pBox.y + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( pBox, tiles ) */)
+                if( ( mBox.y < 0 ) || ( mBox.y + PLAYER_WIDTH > LEVEL_HEIGHT ) /*|| touchesWall( mBox, tiles ) */)
                 {
                     //move back
-                    pBox.y -= TILE_FLOOR_HEIGHT;
+                    mBox.y += TILE_FLOOR_HEIGHT;
                 }
                 else
                 {
-                    pBox.y -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                    mBox.y -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
                 }
             case SDLK_DOWN:
                 //If the dot went too far up or down or touched a wall
-                if( ( pBox.y < 0 ) || ( pBox.y + PLAYER_WIDTH > LEVEL_HEIGHT ) /*|| touchesWall( pBox, tiles ) */)
+                if( /*( mBox.y > 0 ) ||*/ ( mBox.y + PLAYER_WIDTH > LEVEL_HEIGHT ) /*|| touchesWall( mBox, tiles ) */)
                 {
                     //move back
-                    pBox.y += TILE_FLOOR_HEIGHT;
+                    mBox.y -= TILE_FLOOR_HEIGHT;
                 }
                 else
                 {
-                    pBox.y += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                    mBox.y += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
                 }
             case SDLK_LEFT:
-                if( ( pBox.x < 0 ) || ( pBox.x + PLAYER_WIDTH > TILE_WIDTH ) /*|| touchesWall( pBox, tiles ) */)
+                if( ( mBox.x < 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles ) */)
                 {
                     //move back
-                    pBox.x -= TILE_FLOOR_HEIGHT;
+                    mBox.x += TILE_FLOOR_HEIGHT;
                 }
                 else
                 {
-                     pBox.x -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                     mBox.x -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
                 }
 
             case SDLK_RIGHT:
-            if( ( pBox.x < 0 ) || ( pBox.x + PLAYER_WIDTH > TILE_WIDTH ) /*|| touchesWall( pBox, tiles ) */)
+            if( ( mBox.y == 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles ) */)
                 {
                     //move back
-                    pBox.x += TILE_FLOOR_HEIGHT;
+                    mBox.x -= TILE_FLOOR_HEIGHT;
                 }
                 else
                 {
-                     pBox.x -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                     mBox.x += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
                 }
         }
     }
@@ -104,8 +105,8 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
 void Player::setCamera( SDL_Rect& camera )
 {
 	//Center the camera over the Player
-	camera.x = ( pBox.x + PLAYER_WIDTH / 2 ) - SCREEN_WIDTH / 2;
-	camera.y = ( pBox.y + PLAYER_HEIGHT / 2 ) - SCREEN_HEIGHT / 2;
+	camera.x = ( mBox.x + PLAYER_WIDTH / 2 ) - SCREEN_WIDTH / 2;
+	camera.y = ( mBox.y + PLAYER_HEIGHT / 2 ) - SCREEN_HEIGHT / 2;
 
 	//Keep the camera in bounds
 	/*if( camera.x < 0 - TILE_WIDTH)
@@ -131,7 +132,7 @@ void Player::setCamera( SDL_Rect& camera )
 void Player::render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlayerTexture )
 {
     //Show the Player
-	gPlayerTexture.render( pBox.x - camera.x, pBox.y - camera.y, gRenderer );
+	gPlayerTexture.render( mBox.x- camera.x, mBox.y - camera.y, gRenderer );
 }
 
 bool Player::checkCollision( SDL_Rect a, SDL_Rect b )

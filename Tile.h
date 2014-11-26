@@ -29,7 +29,7 @@ class Tile
 
     private:
 		//The attributes of the tile
-		SDL_Rect pBox;
+		SDL_Rect mBox;
 
 		//The tile type
 		int mType;
