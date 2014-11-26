@@ -57,10 +57,10 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
             case SDLK_ESCAPE: exitFlag = true; break;
             case SDLK_UP:
                 //If the dot went too far up or down or touched a wall
-                if( ( mBox.y < 1 ) || ( mBox.y + PLAYER_HEIGHT > LEVEL_HEIGHT ) /*|| touchesWall( mBox, tiles ) */)
+                if( ( mBox.y < 1) /*|| touchesWall( mBox, tiles ) */)
                 {
                     //move forward
-                    mBox.y += TILE_FLOOR_HEIGHT;
+                    mBox.y += ( TILE_FLOOR_HEIGHT + 1) ;
                 }
                 else
                 {
