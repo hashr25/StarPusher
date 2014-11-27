@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "GameController.h"
+#include "Tile.h"
 
 ///Constructors and Destructors
 Player::Player()
@@ -6,14 +8,14 @@ Player::Player()
     steps = 0;
 
     mBox.x = 250;
-    mBox.y = 250;
+    mBox.y = 180;
 
     //Initialize the collision box
 	mBox.w = PLAYER_WIDTH;
 	mBox.h = PLAYER_HEIGHT;
 
     //load font
-    loadFont( "Test1.ttf" );
+    //loadFont( "Test1.ttf" );
 }
 
 Player::~Player()
@@ -41,7 +43,7 @@ void Player::oneMoreStep()
 }
 
 ///Methods
-void Player::handleEvent( SDL_Event& e, bool& exitFlag )
+int Player::handleEvent( SDL_Event& e, bool& exitFlag )
 {
     if( e.type == SDL_QUIT )
     {
@@ -56,51 +58,85 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
         {
             case SDLK_ESCAPE: exitFlag = true; break;
             case SDLK_UP:
-                //If the dot went too far up or down or touched a wall
-                if( ( mBox.y < 1) /*|| touchesWall( mBox, tiles ) */)
-                {
-                    //move forward
-                    mBox.y += ( TILE_FLOOR_HEIGHT + 1) ;
-                }
-                else
                 {
                     mBox.y -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                    return 0;
                 }
             case SDLK_DOWN:
-                //If the dot went too far up or down or touched a wall
-                if( ( mBox.y + PLAYER_HEIGHT > (LEVEL_HEIGHT - PLAYER_HEIGHT) ) /*|| touchesWall( mBox, tiles ) */)
-                {
-                    //move back
-                    mBox.y -= ( TILE_FLOOR_HEIGHT - 1 );
-                }
-                else
                 {
                     mBox.y += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                    return 1;
                 }
             case SDLK_LEFT:
-                if( ( mBox.x < 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles ) */)
-                {
-                    //move right
-                    mBox.x += TILE_WIDTH;
-                }
-                else
                 {
                      mBox.x -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                     return 2;
                 }
 
             case SDLK_RIGHT:
-            if( ( mBox.y == 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles ) */)
-                {
-                    //move left
-                    mBox.x -= TILE_FLOOR_HEIGHT;
-                }
-                else
                 {
                      mBox.x += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                     return 3;
                 }
         }
     }
 }
+
+void Player::move( Tile *tiles[], int moveMadeByPlayer )
+{
+    int evaluateMove = moveMadeByPlayer;
+
+    if ( evaluateMove == 0 )
+    {
+        mBox.y -= TILE_FLOOR_HEIGHT;
+
+        if( ( mBox.y < 1) /*|| touchesWall( mBox, tiles )*/ )
+        {
+            //move forward
+            mBox.y += ( TILE_FLOOR_HEIGHT + 1);
+        }
+    }
+    else if ( evaluateMove == 1 )
+    {
+        mBox.y += TILE_FLOOR_HEIGHT;
+        if( ( mBox.y + PLAYER_HEIGHT > (LEVEL_HEIGHT - PLAYER_HEIGHT) ) /*|| touchesWall( mBox, tiles )*/ )
+        {
+            //move back
+            mBox.y -= ( TILE_FLOOR_HEIGHT - 1 );
+        }
+    }
+    else if ( evaluateMove == 2)
+    {
+        mBox.x -= TILE_FLOOR_HEIGHT;
+        if( ( mBox.x < 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles )*/ )
+        {
+            //move right
+            mBox.x += TILE_WIDTH;
+        }
+    }
+    else if ( evaluateMove == 3 )
+    {
+        mBox.x += TILE_FLOOR_HEIGHT;
+        if( ( mBox.y == 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles )*/)
+        {
+            //move left
+            mBox.x -= TILE_FLOOR_HEIGHT;
+        }
+    }
+   /* if( ( mBox.x < 0 ) || ( mBox.x + DOT_WIDTH > LEVEL_WIDTH ) || touchesWall( mBox, tiles ) )
+    {
+        //move back
+        mBox.x -= mVelX;
+    }
+
+    //If the dot went too far up or down or touched a wall
+    if( ( mBox.y < 0 ) || ( mBox.y + DOT_HEIGHT > LEVEL_HEIGHT ) || touchesWall( mBox, tiles ) )
+    {
+        //move back
+        mBox.y -= mVelY;
+    }*/
+}
+
 
 void Player::setCamera( SDL_Rect& camera )
 {
@@ -127,13 +163,13 @@ void Player::setCamera( SDL_Rect& camera )
 	}*/
 }
 
-
-
 void Player::render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlayerTexture )
 {
-    //Show the Player
-	gPlayerTexture.render( mBox.x- camera.x, mBox.y - camera.y, gRenderer );
+        //Show the Player
+        gPlayerTexture.render( mBox.x- camera.x, mBox.y - camera.y, gRenderer );
 }
+
+
 
 bool Player::checkCollision( SDL_Rect a, SDL_Rect b )
 {
@@ -180,17 +216,16 @@ bool Player::checkCollision( SDL_Rect a, SDL_Rect b )
     return true;
 }
 
-/*
-bool Player::touchesWall( SDL_Rect box, Tile* tiles[] )
+bool Player::touchesWall( SDL_Rect mBox, Tile* tiles[] )
 {
     //Go through the tiles
     for( int i = 0; i < TOTAL_TILES; ++i )
     {
         //If the tile is a wall type tile
-        if( ( tiles[ i ]->getType() >= TILE_CENTER ) && ( tiles[ i ]->getType() <= TILE_TOPLEFT ) )
+        if( ( tiles[ i ]->getType() >= WALL ) /*&& ( tiles[ i ]->getType() <= TILE_TOPLEFT ) */)
         {
             //If the collision box touches the wall tile
-            if( checkCollision( box, tiles[ i ]->getBox() ) )
+            if( checkCollision( mBox, tiles[ i ]->getBox() ) )
             {
                 return true;
             }
@@ -199,8 +234,8 @@ bool Player::touchesWall( SDL_Rect box, Tile* tiles[] )
 
     //If no wall tiles were touched
     return false;
-}*/
-
+}
+/*
 void Player::displaySteps( SDL_Renderer* gRenderer )
 {
     LTexture stepTexture;
@@ -212,6 +247,7 @@ void Player::displaySteps( SDL_Renderer* gRenderer )
 
     stepTexture.render( 25, 445, gRenderer );
 }
+
 
 bool Player::loadFont( std::string fileName )
 {
@@ -232,3 +268,4 @@ bool Player::loadFont( std::string fileName )
 
     return success;
 }
+*/

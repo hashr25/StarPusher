@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-
 #include "Tile.h"
+#include "GameController.h"
 #include "EnumTypes.h"
 #include <SDL.h>
 #include <SDL_image.h>
@@ -25,10 +25,10 @@ public:
 
     ///Methods
     //Takes key presses and adjusts the Player's velocity
-    void handleEvent( SDL_Event& e, bool& exitFlag );
+    int handleEvent( SDL_Event& e, bool& exitFlag );
 
     //Moves the Player and check collision against tiles
-    void move( Tile *tiles[] );
+    void move( Tile *tiles[], int moveMadeByPlayer );
 
     //Centers the camera over the Player
     void setCamera( SDL_Rect& camera );
@@ -41,12 +41,13 @@ public:
 
     //Touches
     bool touchesWall( SDL_Rect box, Tile* tiles[] );
-
+/*
     //Display Steps
     void displaySteps( SDL_Renderer* gRenderer );
 
     //Load font file
     bool loadFont( std::string fileName );
+*/
 
 private:
     int steps;

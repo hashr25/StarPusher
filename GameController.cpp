@@ -1,4 +1,5 @@
 #include "GameController.h"
+#include "Player.h"
 
 GameController::GameController()
 {
@@ -99,14 +100,14 @@ bool GameController::loadMedia( Tile* tiles[], SDL_Renderer* gRenderer )
 		success = false;
 	}
 
-	if( !loadFont( "Test1.ttf" ) )
+	/*if( !loadFont( "Test1.ttf" ) )
     {
         std::cout << "Failed to load font" << std::endl;
-    }
+    }*/
 
 	return success;
 }
-
+/*
 bool GameController::loadFont( std::string fileName )
 {
     bool success = true;
@@ -126,7 +127,7 @@ bool GameController::loadFont( std::string fileName )
 
     return success;
 }
-
+*/
 void GameController::close( Tile* tiles[] )
 {
 	//Deallocate tiles
@@ -376,7 +377,7 @@ bool GameController::setTiles( Tile* tiles[] )
 /// WHERE THE SAME THING ACTUALLY WORKS
 /// //////////////////////////////////////////////////////////////////////////////////////
 
-void GameController::runGame()
+void GameController::runGame( )
 {
     //Start up SDL and create window
 	if( !init() )
@@ -420,7 +421,9 @@ void GameController::runGame()
 					}
 
 					//Handle input for the Player
-					player.handleEvent( e, quit );
+					int forMoveMethodUse = 0;
+					forMoveMethodUse = player.handleEvent( e, quit );
+					player.move( tileSet, forMoveMethodUse);
 					moveCamera( e );
 				}
 
@@ -439,8 +442,8 @@ void GameController::runGame()
 
 				//Render player
 				player.render( camera, gRenderer, gPlayerTexture );
-				player.displaySteps( gRenderer );
-				displayLevelNumber();
+				//player.displaySteps( gRenderer );
+				//displayLevelNumber();
 
 				//Update screen
 				SDL_RenderPresent( gRenderer );
