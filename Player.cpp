@@ -69,7 +69,6 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
                 {
                      mBox.x -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
                 }
-
             case SDLK_RIGHT:
                 {
                      mBox.x += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
@@ -80,6 +79,7 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
 
 void Player::move( Tile *tiles[] )
 {
+    //Up move
     if( ( mBox.y < 1) /*|| touchesWall( mBox, tiles )*/ )
     {
     //move forward
@@ -89,6 +89,7 @@ void Player::move( Tile *tiles[] )
     {
         mBox.y -= TILE_FLOOR_HEIGHT;
     }
+    //Down Move
     if( ( mBox.y + PLAYER_HEIGHT > (LEVEL_HEIGHT - PLAYER_HEIGHT) ) /*|| touchesWall( mBox, tiles )*/ )
     {
         //move back
@@ -98,7 +99,8 @@ void Player::move( Tile *tiles[] )
     {
         mBox.y += TILE_FLOOR_HEIGHT; oneMoreStep();
     }
-    if( ( mBox.x < 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles )*/ )
+    //Left Move
+    if( ( mBox.x < 0 ) /*|| ( mBox.x - PLAYER_WIDTH < LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles )*/ )
     {
         //move right
         mBox.x += TILE_WIDTH;
@@ -107,10 +109,11 @@ void Player::move( Tile *tiles[] )
     {
         mBox.x -= TILE_WIDTH;
     }
-    if( ( mBox.y == LEVEL_WIDTH ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles )*/ )
+    //Right Move
+    if( ( mBox.x == LEVEL_WIDTH - 1 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles )*/ )
     {
         //move left
-        mBox.x -= TILE_WIDTH;
+        mBox.x -= TILE_WIDTH ;
     }
     else
     {
