@@ -421,9 +421,9 @@ void GameController::runGame( )
 					}
 
 					//Handle input for the Player
-					int forMoveMethodUse = 0;
-					forMoveMethodUse = player.handleEvent( e, quit );
-					player.move( tileSet, forMoveMethodUse);
+
+                    player.handleEvent( e, quit );
+					player.move( tileSet);
 					moveCamera( e );
 				}
 

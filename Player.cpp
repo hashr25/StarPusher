@@ -43,7 +43,7 @@ void Player::oneMoreStep()
 }
 
 ///Methods
-int Player::handleEvent( SDL_Event& e, bool& exitFlag )
+void Player::handleEvent( SDL_Event& e, bool& exitFlag )
 {
     if( e.type == SDL_QUIT )
     {
@@ -58,71 +58,74 @@ int Player::handleEvent( SDL_Event& e, bool& exitFlag )
         {
             case SDLK_ESCAPE: exitFlag = true; break;
             case SDLK_UP:
+                //If the dot went too far up or down or touched a wall
+               /* if( ( mBox.y < 1) /*|| touchesWall( mBox, tiles ) )
+                {
+                    //move forward
+                    mBox.y += ( TILE_FLOOR_HEIGHT + 1) ;
+                }
+                else*/
                 {
                     mBox.y -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
-                    return 0;
                 }
             case SDLK_DOWN:
+                //If the dot went too far up or down or touched a wall
+                /*if( ( mBox.y + PLAYER_HEIGHT > (LEVEL_HEIGHT - PLAYER_HEIGHT) ) /*|| touchesWall( mBox, tiles ) )
+                {
+                    //move back
+                    mBox.y -= ( TILE_FLOOR_HEIGHT - 1 );
+                }
+                else*/
                 {
                     mBox.y += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
-                    return 1;
                 }
             case SDLK_LEFT:
+                /*if( ( mBox.x < 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles ) )
+                {
+                    //move right
+                    mBox.x += TILE_WIDTH;
+                }
+                else*/
                 {
                      mBox.x -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
-                     return 2;
                 }
 
             case SDLK_RIGHT:
+          /*  if( ( mBox.y == 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles ) )
+                {
+                    //move left
+                    mBox.x -= TILE_FLOOR_HEIGHT;
+                }
+                else*/
                 {
                      mBox.x += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
-                     return 3;
                 }
         }
     }
 }
 
-void Player::move( Tile *tiles[], int moveMadeByPlayer )
+void Player::move( Tile *tiles[] )
 {
-    int evaluateMove = moveMadeByPlayer;
-
-    if ( evaluateMove == 0 )
+    if( ( mBox.y < 1) /*|| touchesWall( mBox, tiles )*/ )
+    {
+    //move forward
+        mBox.y += ( TILE_FLOOR_HEIGHT + 1) ;
+    }
+    else
     {
         mBox.y -= TILE_FLOOR_HEIGHT;
+    }
+    if( ( mBox.y + PLAYER_HEIGHT > (LEVEL_HEIGHT - PLAYER_HEIGHT) ) /*|| touchesWall( mBox, tiles )*/ )
+    {
+        //move back
+        mBox.y -= ( TILE_FLOOR_HEIGHT - 1 );
+    }
+    else
+    {
+        mBox.y += TILE_FLOOR_HEIGHT; oneMoreStep();
+    }
 
-        if( ( mBox.y < 1) /*|| touchesWall( mBox, tiles )*/ )
-        {
-            //move forward
-            mBox.y += ( TILE_FLOOR_HEIGHT + 1);
-        }
-    }
-    else if ( evaluateMove == 1 )
-    {
-        mBox.y += TILE_FLOOR_HEIGHT;
-        if( ( mBox.y + PLAYER_HEIGHT > (LEVEL_HEIGHT - PLAYER_HEIGHT) ) /*|| touchesWall( mBox, tiles )*/ )
-        {
-            //move back
-            mBox.y -= ( TILE_FLOOR_HEIGHT - 1 );
-        }
-    }
-    else if ( evaluateMove == 2)
-    {
-        mBox.x -= TILE_FLOOR_HEIGHT;
-        if( ( mBox.x < 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles )*/ )
-        {
-            //move right
-            mBox.x += TILE_WIDTH;
-        }
-    }
-    else if ( evaluateMove == 3 )
-    {
-        mBox.x += TILE_FLOOR_HEIGHT;
-        if( ( mBox.y == 0 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles )*/)
-        {
-            //move left
-            mBox.x -= TILE_FLOOR_HEIGHT;
-        }
-    }
+
    /* if( ( mBox.x < 0 ) || ( mBox.x + DOT_WIDTH > LEVEL_WIDTH ) || touchesWall( mBox, tiles ) )
     {
         //move back

@@ -25,10 +25,10 @@ public:
 
     ///Methods
     //Takes key presses and adjusts the Player's velocity
-    int handleEvent( SDL_Event& e, bool& exitFlag );
+    void handleEvent( SDL_Event& e, bool& exitFlag );
 
     //Moves the Player and check collision against tiles
-    void move( Tile *tiles[], int moveMadeByPlayer );
+    void move( Tile *tiles[] );
 
     //Centers the camera over the Player
     void setCamera( SDL_Rect& camera );
