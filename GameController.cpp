@@ -154,7 +154,7 @@ void GameController::close( Tile* tiles[] )
 	IMG_Quit();
 	SDL_Quit();
 }
-/*
+
 bool GameController::touchesWall( SDL_Rect mBox, Tile* tiles[] )
 {
     //Go through the tiles
@@ -185,15 +185,15 @@ bool GameController::checkCollision( SDL_Rect a, SDL_Rect b )
 
     //Calculate the sides of rect A
     leftA = a.x;
-    rightA = a.x + a.w;
+    rightA = a.x + (a.w/2);
     topA = a.y;
-    bottomA = a.y + a.h;
+    bottomA = a.y + (a.h/2);
 
     //Calculate the sides of rect B
     leftB = b.x;
-    rightB = b.x + b.w;
+    rightB = b.x + (b.w/2);
     topB = b.y;
-    bottomB = b.y + b.h;
+    bottomB = b.y + (b.h/2);
 
     //If any of the sides from A are outside of B
     if( bottomA <= topB )
@@ -219,7 +219,7 @@ bool GameController::checkCollision( SDL_Rect a, SDL_Rect b )
     //If none of the sides from A are outside B
     return true;
 }
-*/
+
 /// //////////////////////////////////////////////////////////////////////////////////////
 /// WHERE THE SAME THING ACTUALLY WORKS
 bool GameController::setTiles( Tile* tiles[] )
@@ -428,6 +428,9 @@ void GameController::runGame( )
 			//Level camera
 			player.setCamera( camera );
 
+            //where the player was before
+            SDL_Rect newPos;
+
 			//While application is running
 			while( !quit )
 			{
@@ -440,20 +443,101 @@ void GameController::runGame( )
 						quit = true;
 					}
 
-					//Handle input for the Player
+                    //If a key was pressed
+                    if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
+                    {
+                        //Adjust the velocity
+                        switch( e.key.keysym.sym )
+                        {
+                            case SDLK_ESCAPE: quit = true; break;
+                            case SDLK_UP:
+                                {
+                                    std::cout <<"Up\n";
 
-                    player.handleEvent( e, quit, tileSet );
+                                    SDL_Rect currentPos = player.getBox();
+                                    newPos.x = currentPos.x;
+                                    newPos.y = currentPos.y -= TILE_FLOOR_HEIGHT;
+                                    newPos.h = currentPos.h;
+                                    newPos.w = currentPos.w;
+
+                                    if(touchesWall(newPos,tileSet))
+                                    {
+                                      std::cout<<"Wall\n";
+                                    }
+                                    else{
+                                        player.setX(newPos.x);
+                                        player.setY(newPos.y);
+                                    }
+                                    break;
+                                }
+                            case SDLK_DOWN:
+                                {
+                                    std::cout <<"Down\n";
+
+                                    SDL_Rect currentPos = player.getBox();
+                                    newPos.x = currentPos.x;
+                                    newPos.y = currentPos.y += TILE_FLOOR_HEIGHT;
+                                    newPos.h = currentPos.h;
+                                    newPos.w = currentPos.w;
+
+                                    if(touchesWall(newPos,tileSet))
+                                    {
+                                      std::cout<<"Wall\n";
+                                    }
+                                    else{
+                                        player.setX(newPos.x);
+                                        player.setY(newPos.y);
+                                    }
+                                    break;
+                                }
+                            case SDLK_LEFT:
+                                {
+                                    std::cout <<"Left\n";
+
+                                    SDL_Rect currentPos = player.getBox();
+                                    newPos.x = currentPos.x -= TILE_FLOOR_HEIGHT;
+                                    newPos.y = currentPos.y;
+                                    newPos.h = currentPos.h;
+                                    newPos.w = currentPos.w;
+
+                                    if(touchesWall(newPos,tileSet))
+                                    {
+                                      std::cout<<"Wall\n";
+                                    }
+                                    else{
+                                        player.setX(newPos.x);
+                                        player.setY(newPos.y);
+                                    }
+                                    break;
+                                }
+                            case SDLK_RIGHT:
+                                {
+                                    std::cout <<"Right\n";
+
+                                    SDL_Rect currentPos = player.getBox();
+                                    newPos.x = currentPos.x += TILE_FLOOR_HEIGHT;
+                                    newPos.y = currentPos.y;
+                                    newPos.h = currentPos.h;
+                                    newPos.w = currentPos.w;
+
+                                    if(touchesWall(newPos,tileSet))
+                                    {
+                                      std::cout<<"Wall\n";
+                                    }
+                                    else{
+                                        player.setX(newPos.x);
+                                        player.setY(newPos.y);
+                                    }
+                                    break;
+                                }
+                        }
+                    }
                 }
-                /*SDL_Rect mBox = player.getBox();
-                //bool touchesWall( SDL_Rect mBox, Tile* tiles[] );
-                //bool GameController::touchesWall( SDL_Rect mBox, Tile* tiles[] )
-                typedef bool (*touchesW)(SDL_Rect, Tile*tiles[] );
-                touchesW func = &touchesWall*/
-                //player.move( tileSet );
+
                 moveCamera( e );
 
 				//Move the camera
-				//player.setCamera( camera );
+				player.setCamera( camera );
 
 				//Clear screen
 				SDL_SetRenderDrawColor( gRenderer, 0x66, 0xAA, 0xFF, 0xFF );

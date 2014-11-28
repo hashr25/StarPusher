@@ -22,6 +22,7 @@ const int TOTAL_TILES = 15*15;
 //Camera movement
 ///number is pixels per second
 const int CAMERA_SPEED = 10;
+const int CAMERA_STOP_SPEED = 0;
 
 enum Direction
 {

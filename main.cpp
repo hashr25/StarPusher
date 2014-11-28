@@ -14,10 +14,13 @@ and may not be redistributed without written permission.*/
 #include "Player.h"
 #include "GameController.h"
 
+void rungame();
+
 int main( int argc, char* args[] )
 {
 	GameController StarPusher;
 	StarPusher.runGame();
-//    std::cout << "How many levels: " << StarPusher.getLevels().size() << std:: endl;
+    //    std::cout << "How many levels: " << StarPusher.getLevels().size() << std:: endl;
 	return 0;
 }
+

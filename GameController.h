@@ -33,10 +33,10 @@ public:
     void close( Tile* tiles[] );
 
     //Box collision detector
-    //bool checkCollision( SDL_Rect a, SDL_Rect b );
+    bool checkCollision( SDL_Rect a, SDL_Rect b );
 
     //Checks collision box against set of tiles
-    //bool touchesWall( SDL_Rect mBox, Tile* tiles[] );
+    bool touchesWall( SDL_Rect box, Tile* tiles[] );
 
     //Sets tiles from tile map
     bool setTiles( Tile *tiles[] );

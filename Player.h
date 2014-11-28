@@ -25,25 +25,22 @@ public:
 
     ///Methods
     //Takes key presses and adjusts the Player's velocity
-    void handleEvent( SDL_Event& e, bool& exitFlag, Tile* tiles[] );
+    void handleEvent( SDL_Event& e, bool& exitFlag );
 
     //Moves the Player and check collision against tiles
+    //void move( Tile *tiles[], bool(*f)(SDL_Rect a, SDL_Rect b ) );
     //void move( Tile *tiles[]);
-
     //Centers the camera over the Player
     void setCamera( SDL_Rect& camera );
 
     //Shows the Player on the screen
     void render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlayerTexture );
 
-    //gives us the box to pass around and check collision
+    //gives us the box to pass around an check collision
     SDL_Rect getBox();
 
-    //Box collision detector
-    bool checkCollision( SDL_Rect a, SDL_Rect b );
-
-    //Checks collision box against set of tiles
-    bool touchesWall( SDL_Rect mBox, Tile* tiles[] );
+    void setX(int newX);
+    void setY(int newY);
 
     //Checks collision
   /*  int checkCollision( SDL_Rect a, SDL_Rect b );
