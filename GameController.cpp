@@ -444,8 +444,8 @@ void GameController::runGame( )
 
                     player.handleEvent( e, quit );
                 }
-
-                player.move( tileSet);
+                SDL_Rect mBox = player.getBox();
+                player.move( tileSet, touchesWall( tileSet, mBox  ));
                 moveCamera( e );
 
 				//Move the camera

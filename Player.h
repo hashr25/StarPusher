@@ -28,13 +28,16 @@ public:
     void handleEvent( SDL_Event& e, bool& exitFlag );
 
     //Moves the Player and check collision against tiles
-    void move( Tile *tiles[] );
+    void move( Tile *tiles[], bool(*f)(SDL_Rect a, SDL_Rect b ) );
 
     //Centers the camera over the Player
     void setCamera( SDL_Rect& camera );
 
     //Shows the Player on the screen
     void render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlayerTexture );
+
+    //gives us the box to pass around an check collision
+    SDL_Rect getBox();
 
     //Checks collision
   /*  int checkCollision( SDL_Rect a, SDL_Rect b );

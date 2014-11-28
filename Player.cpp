@@ -30,6 +30,11 @@ int Player::getSteps()
     return steps;
 }
 
+SDL_Rect Player::getBox()
+{
+    return mBox;
+}
+
 //Setters
 void Player::setSteps( int steps )
 {
@@ -77,7 +82,7 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
     }
 }
 
-void Player::move( Tile *tiles[] )
+void Player::move( bool(*f)(SDL_Rect a, Tile* tiles ) )
 {
     mBox.y -= TILE_FLOOR_HEIGHT; //moving up
     if ( mBox.y < 0 || touchesWall( mBox, tiles ))
