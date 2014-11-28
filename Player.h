@@ -37,10 +37,10 @@ public:
     void render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlayerTexture );
 
     //Checks collision
-    bool checkCollision( SDL_Rect a, SDL_Rect b );
+  /*  int checkCollision( SDL_Rect a, SDL_Rect b );
 
     //Touches
-    bool touchesWall( SDL_Rect box, Tile* tiles[] );
+    bool touchesWall( SDL_Rect box, Tile* tiles[] );*/
 /*
     //Display Steps
     void displaySteps( SDL_Renderer* gRenderer );

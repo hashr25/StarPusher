@@ -155,6 +155,26 @@ void GameController::close( Tile* tiles[] )
 	SDL_Quit();
 }
 
+bool GameController::touchesWall( SDL_Rect mBox, Tile* tiles[] )
+{
+    //Go through the tiles
+    for( int i = 0; i < TOTAL_TILES; ++i )
+    {
+        //If the tile is a wall type tile
+        if( ( tiles[ i ]->getType() >= WALL ) )
+        {
+            //If the collision box touches the wall tile
+            if( checkCollision( mBox, tiles[ i ]->getBox() ) )
+            {
+                return true;
+            }
+        }
+    }
+
+    //If no wall tiles were touched
+    return false;
+}
+
 bool GameController::checkCollision( SDL_Rect a, SDL_Rect b )
 {
     //The sides of the rectangles
@@ -423,9 +443,10 @@ void GameController::runGame( )
 					//Handle input for the Player
 
                     player.handleEvent( e, quit );
-					player.move( tileSet);
-					moveCamera( e );
-				}
+                }
+
+                player.move( tileSet);
+                moveCamera( e );
 
 				//Move the camera
 				//player.setCamera( camera );

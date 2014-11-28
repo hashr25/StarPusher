@@ -79,8 +79,31 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
 
 void Player::move( Tile *tiles[] )
 {
-    //Up move
-    if( ( mBox.y < 1) /*|| touchesWall( mBox, tiles )*/ )
+    mBox.y -= TILE_FLOOR_HEIGHT; //moving up
+    if ( mBox.y < 0 || touchesWall( mBox, tiles ))
+    {
+        mBox.y += TILE_FLOOR_HEIGHT;
+    }
+
+    mBox.y += TILE_FLOOR_HEIGHT; // moving down
+    if ( mBox.y > LEVEL_HEIGHT || touchesWall( mBox, tiles))
+    {
+        mBox.y -= TILE_FLOOR_HEIGHT;
+    }
+
+    mBox.x -= TILE_WIDTH;
+    if ( mBox.x < 0 || touchesWall( mBox, tiles ))
+    {
+        mBox.x += TILE_WIDTH;
+    }
+
+    mBox.x += TILE_WIDTH;
+    if ( mBox.x > LEVEL_WIDTH || touchesWall( mBox, tiles ))
+    {
+        mBox.x -= TILE_WIDTH;
+    }
+    /*//Up move
+    if( ( mBox.y < 1) || touchesWall( mBox, tiles ) != 4 )
     {
     //move forward
         mBox.y += ( TILE_FLOOR_HEIGHT + 1) ;
@@ -90,7 +113,7 @@ void Player::move( Tile *tiles[] )
         mBox.y -= TILE_FLOOR_HEIGHT;
     }
     //Down Move
-    if( ( mBox.y + PLAYER_HEIGHT > (LEVEL_HEIGHT - PLAYER_HEIGHT) ) /*|| touchesWall( mBox, tiles )*/ )
+    if( ( mBox.y + PLAYER_HEIGHT > (LEVEL_HEIGHT - PLAYER_HEIGHT) ) /*|| touchesWall( mBox, tiles )/ )
     {
         //move back
         mBox.y -= ( TILE_FLOOR_HEIGHT - 1 );
@@ -100,7 +123,7 @@ void Player::move( Tile *tiles[] )
         mBox.y += TILE_FLOOR_HEIGHT; oneMoreStep();
     }
     //Left Move
-    if( ( mBox.x < 0 ) /*|| ( mBox.x - PLAYER_WIDTH < LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles )*/ )
+    if( ( mBox.x < 0 ) /*|| ( mBox.x - PLAYER_WIDTH < LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles )/ )
     {
         //move right
         mBox.x += TILE_WIDTH;
@@ -110,7 +133,7 @@ void Player::move( Tile *tiles[] )
         mBox.x -= TILE_WIDTH;
     }
     //Right Move
-    if( ( mBox.x == LEVEL_WIDTH - 1 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles )*/ )
+    if( ( mBox.x == LEVEL_WIDTH - 1 ) || ( mBox.x + PLAYER_WIDTH > LEVEL_WIDTH ) /*|| touchesWall( mBox, tiles )/ )
     {
         //move left
         mBox.x -= TILE_WIDTH ;
@@ -169,7 +192,7 @@ void Player::render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlaye
 
 
 
-bool Player::checkCollision( SDL_Rect a, SDL_Rect b )
+/*int Player::checkCollision( SDL_Rect a, SDL_Rect b )
 {
     //The sides of the rectangles
     int leftA, leftB;
@@ -192,35 +215,37 @@ bool Player::checkCollision( SDL_Rect a, SDL_Rect b )
     //If any of the sides from A are outside of B
     if( bottomA <= topB )
     {
-        return false;
+        return 0;
     }
 
     if( topA >= bottomB )
     {
-        return false;
+        return 1;
     }
 
     if( rightA <= leftB )
     {
-        return false;
+        return 2;
     }
 
     if( leftA >= rightB )
     {
-        return false;
+        return 3;
     }
 
     //If none of the sides from A are outside B
-    return true;
+    return 4;
 }
 
 bool Player::touchesWall( SDL_Rect mBox, Tile* tiles[] )
 {
     //Go through the tiles
+
+
     for( int i = 0; i < TOTAL_TILES; ++i )
     {
         //If the tile is a wall type tile
-        if( ( tiles[ i ]->getType() >= WALL ) /*&& ( tiles[ i ]->getType() <= TILE_TOPLEFT ) */)
+        if( ( tiles[ i ]->getType() >= WALL ) )
         {
             //If the collision box touches the wall tile
             if( checkCollision( mBox, tiles[ i ]->getBox() ) )
@@ -233,6 +258,7 @@ bool Player::touchesWall( SDL_Rect mBox, Tile* tiles[] )
     //If no wall tiles were touched
     return false;
 }
+*/
 /*
 void Player::displaySteps( SDL_Renderer* gRenderer )
 {
