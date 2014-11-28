@@ -423,7 +423,7 @@ void GameController::runGame( )
 					//Handle input for the Player
 
                     player.handleEvent( e, quit );
-					player.move( tileSet );
+					player.move( tileSet);
 					moveCamera( e );
 				}
 
