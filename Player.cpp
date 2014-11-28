@@ -48,7 +48,7 @@ void Player::oneMoreStep()
 }
 
 ///Methods
-void Player::handleEvent( SDL_Event& e, bool& exitFlag )
+void Player::handleEvent( SDL_Event& e, bool& exitFlag, Tile* tiles[] )
 {
     if( e.type == SDL_QUIT )
     {
@@ -63,6 +63,43 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
         {
             case SDLK_ESCAPE: exitFlag = true; break;
             case SDLK_UP:
+                if ( mBox.y < 1 || touchesWall(mBox, tiles) == true )
+                {
+                    mBox.y += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                }
+                else
+                {
+                    mBox.y -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                }
+            case SDLK_DOWN:
+                if ( mBox.y > LEVEL_HEIGHT || touchesWall( mBox, tiles ) == true )
+                {
+                    mBox.y -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                }
+                else
+                {
+                    mBox.y += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                }
+            case SDLK_LEFT:
+                if ( mBox.x < 1 || touchesWall( mBox, tiles ) == true )
+                {
+                     mBox.x += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                }
+                else
+                {
+                     mBox.x -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                }
+            case SDLK_RIGHT:
+                if ( mBox.x > LEVEL_HEIGHT || touchesWall( mBox, tiles ) == true)
+                {
+                     mBox.x -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                }
+                else
+                {
+                     mBox.x += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                }
+
+            /*case SDLK_UP:
                 {
                     mBox.y -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
                 }
@@ -77,12 +114,12 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
             case SDLK_RIGHT:
                 {
                      mBox.x += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
-                }
+                }*/
         }
     }
 }
 
-void Player::move( Tile* tiles[] )
+/*void Player::move( Tile* tiles[] )
 {
     mBox.y -= TILE_FLOOR_HEIGHT; //moving up
     if ( mBox.y < 0 || touchesWall( mBox, tiles ))
@@ -107,8 +144,8 @@ void Player::move( Tile* tiles[] )
     {
         mBox.x -= TILE_WIDTH;
     }
-    /*//Up move
-    if( ( mBox.y < 1) || touchesWall( mBox, tiles ) != 4 )
+    //Up move
+    if( ( mBox.y < 1) || touchesWall( mBox, tiles ) 0 == 4 )
     {
     //move forward
         mBox.y += ( TILE_FLOOR_HEIGHT + 1) ;
@@ -160,8 +197,8 @@ void Player::move( Tile* tiles[] )
     {
         //move back
         mBox.y -= mVelY;
-    }*/
-}
+    }
+}*/
 
 
 void Player::setCamera( SDL_Rect& camera )

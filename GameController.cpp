@@ -442,14 +442,14 @@ void GameController::runGame( )
 
 					//Handle input for the Player
 
-                    player.handleEvent( e, quit );
+                    player.handleEvent( e, quit, tileSet );
                 }
                 /*SDL_Rect mBox = player.getBox();
                 //bool touchesWall( SDL_Rect mBox, Tile* tiles[] );
                 //bool GameController::touchesWall( SDL_Rect mBox, Tile* tiles[] )
                 typedef bool (*touchesW)(SDL_Rect, Tile*tiles[] );
                 touchesW func = &touchesWall*/
-                player.move( tileSet );
+                //player.move( tileSet );
                 moveCamera( e );
 
 				//Move the camera
