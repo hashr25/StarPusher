@@ -82,7 +82,7 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
     }
 }
 
-void Player::move( bool(*f)(SDL_Rect a, Tile* tiles ) )
+void Player::move( Tile* tiles[] )
 {
     mBox.y -= TILE_FLOOR_HEIGHT; //moving up
     if ( mBox.y < 0 || touchesWall( mBox, tiles ))
@@ -197,7 +197,7 @@ void Player::render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlaye
 
 
 
-/*int Player::checkCollision( SDL_Rect a, SDL_Rect b )
+bool Player::checkCollision( SDL_Rect a, SDL_Rect b )
 {
     //The sides of the rectangles
     int leftA, leftB;
@@ -263,7 +263,6 @@ bool Player::touchesWall( SDL_Rect mBox, Tile* tiles[] )
     //If no wall tiles were touched
     return false;
 }
-*/
 /*
 void Player::displaySteps( SDL_Renderer* gRenderer )
 {

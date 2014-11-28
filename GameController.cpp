@@ -154,7 +154,7 @@ void GameController::close( Tile* tiles[] )
 	IMG_Quit();
 	SDL_Quit();
 }
-
+/*
 bool GameController::touchesWall( SDL_Rect mBox, Tile* tiles[] )
 {
     //Go through the tiles
@@ -219,7 +219,7 @@ bool GameController::checkCollision( SDL_Rect a, SDL_Rect b )
     //If none of the sides from A are outside B
     return true;
 }
-
+*/
 /// //////////////////////////////////////////////////////////////////////////////////////
 /// WHERE THE SAME THING ACTUALLY WORKS
 bool GameController::setTiles( Tile* tiles[] )
@@ -444,8 +444,12 @@ void GameController::runGame( )
 
                     player.handleEvent( e, quit );
                 }
-                SDL_Rect mBox = player.getBox();
-                player.move( tileSet, touchesWall( tileSet, mBox  ));
+                /*SDL_Rect mBox = player.getBox();
+                //bool touchesWall( SDL_Rect mBox, Tile* tiles[] );
+                //bool GameController::touchesWall( SDL_Rect mBox, Tile* tiles[] )
+                typedef bool (*touchesW)(SDL_Rect, Tile*tiles[] );
+                touchesW func = &touchesWall*/
+                player.move( tileSet );
                 moveCamera( e );
 
 				//Move the camera
