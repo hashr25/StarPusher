@@ -73,7 +73,7 @@ bool GameController::init()
 	return success;
 }
 
-bool GameController::loadMedia( SDL_Renderer* gRenderer )
+bool GameController::loadMedia( Tile* tiles[], SDL_Renderer* gRenderer )
 {
 	//Loading success flag
 	bool success = true;
@@ -92,7 +92,13 @@ bool GameController::loadMedia( SDL_Renderer* gRenderer )
 		success = false;
 	}
 
-	//Load font
+	//Load tile map
+	if( !setTiles( tiles ) )
+	{
+		std::cout << "Failed to load tile set!\n" << std::endl;
+		success = false;
+	}
+
 	if( !loadFont( "Test1.ttf" ) )
     {
         std::cout << "Failed to load font" << std::endl;
@@ -121,8 +127,18 @@ bool GameController::loadFont( std::string fileName )
     return success;
 }
 
-void GameController::close()
+void GameController::close( Tile* tiles[] )
 {
+	//Deallocate tiles
+	for( int i = 0; i < TOTAL_TILES; ++i )
+	{
+		 if( tiles[ i ] == NULL )
+		 {
+			delete tiles[ i ];
+			tiles[ i ] = NULL;
+		 }
+	}
+
 	//Free loaded images
 	gPlayerTexture.free();
 	gTileTexture.free();
@@ -359,29 +375,23 @@ void GameController::runGame()
 	else
 	{
 		//The level tiles
-		//Tile* tileSet[ TOTAL_TILES ];
+		Tile* tileSet[ TOTAL_TILES ];
 
 		//Load media
-		if( !loadMedia( gRenderer ) )
+		if( !loadMedia( tileSet, gRenderer ) )
 		{
 			printf( "Failed to load media!\n" );
 		}
 		else
 		{
-		    for( int i = 0; i < gameLevels[currentLevel].getLevelHeightInTiles(); i++ )
-            {
-                for( int j = 0; j < gameLevels[currentLevel].getLevelWidthInTiles(); j++ )
-                {
-                    std::cout << gameLevels[currentLevel].getTiles()[ (gameLevels[currentLevel].getLevelWidthInTiles() * i) + j ].getType() << " ";
-                }
-                std::cout << "\n";
-            }
-
 			//Main loop flag
 			bool quit = false;
 
 			//Event handler
 			SDL_Event e;
+
+			//The dot that will be moving around on the screen
+			Player player;
 
 			//Level camera
 			player.setCamera( camera );
@@ -413,7 +423,10 @@ void GameController::runGame()
 				SDL_RenderClear( gRenderer );
 
 				//Render level
-				renderLevel();
+				for( int i = 0; i < TOTAL_TILES; ++i )
+				{
+					tileSet[ i ]->render( camera, gRenderer, gTileClips, gTileTexture );
+				}
 
 				//Render player
 				player.render( camera, gRenderer, gPlayerTexture );
@@ -426,11 +439,13 @@ void GameController::runGame()
 		}
 
 		//Free resources and close SDL
-		close();
+		close( tileSet );
 	}
 }
 
 //Load game levels
+/// //////////////////////////////////////////////////////////////////////////////////////
+/// WHERE THE PART OF CODE THAT CRASHES IS
 void GameController::loadLevels()
 {
     std::ifstream inputFile;
@@ -440,10 +455,8 @@ void GameController::loadLevels()
     std::string line = "";
 
     std::vector<std::string> levelLines;
-    std::vector<Tile> levelTiles;
-
-    Level singleLevel;
-    Tile* singleTile;
+    Level* eachLevel;
+    Tile* tile;
 
     int levelCounter = 0;
 
@@ -468,8 +481,8 @@ void GameController::loadLevels()
         if( lineCounter > 0 && line.size() < 2 )
         {
             ///Finishing level
-            gameLevels.push_back( singleLevel );
-            singleLevel.clear();
+            gameLevels.push_back( eachLevel& );
+            eachLevel.clear();
             lineCounter = 0;
             x = 0;
             y = 0;
@@ -493,76 +506,83 @@ void GameController::loadLevels()
         ///The actual map lines
         else
         {
-            ///Create stringstream to convert lines to integers
             std::stringstream lineSS( line );
-
+            /// ////////////////////////////////////////////////
+            /// BUGGED SECTION
 
             ///First line which holds map sizes
+
             if( lineCounter == 0 )
             {
+                eachLevel = new Level;
                 int mapWidth;
                 int mapHeight;
                 lineSS >> mapWidth;
-                lineSS >> mapHeight;std::cout << "MapWidth: " << mapWidth << "\nMapHeight: " << mapHeight << std::endl;
-                singleLevel.setLevelWidthInTiles( mapWidth );
-                singleLevel.setLevelWidthInPixels( mapWidth * TILE_WIDTH );
-                singleLevel.setLevelHeightInTiles( mapHeight );
-                singleLevel.setLevelHeightInPixels( mapHeight * TILE_FLOOR_HEIGHT );
-
-                //std::cout << "setting map #" << levelCounter <<  " mapHeight to " << mapHeight << std::endl;
-
-                lineCounter++;
+                lineSS >> mapWidth;
+                eachLevel.setLevelWidthInTiles( mapWidth );
+                eachLevel.setLevelWidthInPixels( mapWidth * TILE_WIDTH );
+                eachLevel.setLevelHeightInTiles( mapHeight );
+                eachLevel.setLevelHeightInPixels( mapHeight * TILE_FLOOR_HEIGHT );
             }
+
+            /// BUGGED SECTION
+
+            /// //////////////////////////////////////////////////////////////////////
 
 
             ///Middle lines of key, contains the map key itself
-            if( lineCounter >= 1 && lineCounter <= singleLevel.getLevelHeightInTiles()+1 )
+            if( lineCounter >= 1 && lineCounter <= eachLevel.getLevelHeightInTiles()+1 )
             {
                 for( int i = 0; i < line.size(); i++ )
                 {
+                    ///Used for Testing
+                    std::cout << levelCounter << " - " << x << " x " << y << std::endl;
+                    std::cout << "TileCounter: " << tileCounter << std::endl;
+
                     int tileType;
                     lineSS >> tileType;
 
+/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// BUGGED SECTION CAUSING CRASH
+
                     if( tileType >= 0 && tileType < TOTAL_TEXTURES )
-                    {
-                        singleTile = new Tile( x, y, tileType );
-                        levelTiles.push_back( *singleTile );
-                        delete singleTile;
+                    {std::cout << "Attempting to make tile: x = " << x << ", y = " << y << ", and tileType = " << tileType << std::endl;
+                        ///tile = new Tile( x, y, tileType ); //Tested to see if a tile could be created.
+                        ///eachLevel.tiles[ tileCounter ] = tile;
+                        eachLevel.tiles[ tileCounter ] = new Tile( x, y, tileType );
                     }
+
+/// BUGGED SECTION CAUSING CRASH
+/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                     tileCounter++;
                     x += TILE_WIDTH;
                 }
             }
 
-            //std::cout << lineCounter << " : " << singleLevel.getLevelHeightInTiles()+2 << std::endl;
-            ///First line after map key, holds number of stars
-            if( lineCounter == 2 + singleLevel.getLevelHeightInTiles() )
-            {
-                //Ending tile creation
-                singleLevel.setTiles( levelTiles );std::cout << "number of total Tiles: " << levelTiles.size() << std::endl;
-                levelTiles.clear();std::cout << "number of total Tiles: " << levelTiles.size() << std::endl;
 
-                //Setting up number of stars
+            ///First line after map key, holds number of stars
+            if( lineCounter == (2 + eachLevel.getLevelHeightInTiles() ) )
+            {
                 int numberOfStars;
                 lineSS >> numberOfStars;
-                singleLevel.setNumberOfStars( numberOfStars );
+                eachLevel.setNumberOfStars( numberOfStars );
             }
 
             ///Coordinates for stars
-            if( lineCounter == ( 3 + singleLevel.getLevelHeightInTiles() ) )
+            if( lineCounter == ( 3 + eachLevel.getLevelHeightInTiles() ) )
             {
-                for( int i = 0; i < singleLevel.getNumberOfStars(); i++ )
+                for( int i = 0; i < eachLevel.getNumberOfStars(); i++ )
                 {
                     int starX, starY;
                     lineSS >> starX >> starY;
                     Star thisStar( starX, starY );
-                    singleLevel.addStar( thisStar );
+                    eachLevel.addStar( thisStar );
                 }
             }
 
             ///This only returns the carriage for tile display coordinates
-            if( x >= singleLevel.getLevelWidthInPixels() )
+            if( x >= eachLevel.getLevelWidthInPixels() )
             {
                 x = 0;
                 y += TILE_FLOOR_HEIGHT;
@@ -573,6 +593,8 @@ void GameController::loadLevels()
         }
     }
 }
+/// WHERE THE PART OF CODE THAT CRASHES IS
+/// //////////////////////////////////////////////////////////////////////////////////////
 
 std::vector<Level> GameController::getLevels()
 {
@@ -637,30 +659,4 @@ void GameController::moveCamera( SDL_Event& e )
         //move back
         camera.y -= cameraVelY;
     }*/
-}
-
-//Level Methods
-void GameController::renderLevel()
-{
-    for( int i = 0; i < gameLevels[ currentLevel ].getTiles().size(); ++i )
-    {
-        gameLevels[ currentLevel ].getTiles()[i].render( camera, gRenderer, gTileClips, gTileTexture );
-    }
-}
-
-void GameController::nextLevel()
-{
-    if( currentLevel < 201 )
-    {
-        currentLevel++;
-        player.setPosition( gameLevels[currentLevel].getPlayerX(), gameLevels[currentLevel].getPlayerY() )
-    }
-}
-
-void GameController::previousLevel()
-{
-    if( currentLevel > 0 )
-    {
-        currentLevel--;
-    }
 }

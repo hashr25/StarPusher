@@ -8,7 +8,7 @@ Level::Level()
 
 ///Getters and Setters
 //Getters
-Tile** Level::getTiles() { return tiles; }
+std::vector<Tile> Level::getTiles() { return tiles; }
 std::vector<Star> Level::getStars() { return stars; }
 int Level::getTotalTiles() { return totalTiles; }
 int Level::getNumberOfStars() { return numberOfStars; }
@@ -20,7 +20,7 @@ int Level::getLevelHeightInPixels() { return levelHeightInPixels; }
 int Level::getLevelWidthInPixels() { return levelWidthInPixels; }
 
 //Setters
-void Level::setTiles( Tile** tiles ) { this -> tiles = tiles; }
+void Level::setTiles( std::vector<Tile> tiles ) { this -> tiles = tiles; }
 void Level::setStars( std::vector<Star> stars ) { this -> stars = stars; }
 void Level::setTotalTiles( int totalTiles ) { this -> totalTiles = totalTiles; }
 void Level::setNumberOfStars( int numberOfStars ) { this -> numberOfStars = numberOfStars; }
@@ -34,7 +34,7 @@ void Level::setLevelWidthInPixels( int levelWidthInPixels ) { this -> levelWidth
 ///Methods
 void Level::clear()
 {
-    delete tiles;
+    tiles.clear();
     stars.clear();
     totalTiles = 0;
     playerStartX = 0;
@@ -48,4 +48,9 @@ void Level::clear()
 void Level::addStar( Star newStar )
 {
     stars.push_back( newStar );
+}
+
+void Level::addTile( Tile tile )
+{
+    tiles.push_back( tile );
 }

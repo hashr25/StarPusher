@@ -14,7 +14,7 @@ public:
 
     ///Getters and Setters
     //Getters
-    Tile** getTiles();
+    std::vector<Tile> getTiles();
     std::vector<Star> getStars();
     int getTotalTiles();
     int getNumberOfStars();
@@ -26,7 +26,7 @@ public:
     int getLevelWidthInPixels();
 
     //Setters
-    void setTiles( Tile** tiles );
+    void setTiles( std::vector<Tile> tiles );
     void setStars( std::vector<Star> stars );
     void setTotalTiles( int totalTiles );
     void setNumberOfStars( int numberOfStars );
@@ -42,9 +42,10 @@ public:
     void addStar( Star newStar );
 
     ///Public Data for Now
-    Tile** tiles;
+    void addTile( Tile tile );
 
 private:
+    std::vector<Tile> tiles;
     std::vector<Star> stars;
 
     int totalTiles;
