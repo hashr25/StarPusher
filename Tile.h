@@ -13,7 +13,6 @@ class Tile
 {
     public:
 		//Initializes position and type
-		Tile();
 		Tile( int x, int y, int TileType );
 
 		//Shows the tile
@@ -21,11 +20,6 @@ class Tile
 
 		//Get the tile type
 		int getType();
-		void setType( int type );
-
-		void setX( int x );
-		void setY( int y );
-		void setPosition( int x, int y );
 
 		//Get the collision box
 		SDL_Rect getBox();

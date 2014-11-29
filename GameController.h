@@ -26,11 +26,11 @@ public:
     bool init();
 
     //Loads media
-    bool loadMedia( SDL_Renderer* gRenderer );
+    bool loadMedia( Tile* tiles[], SDL_Renderer* gRenderer );
     bool loadFont( std::string fileName );
 
     //Frees media and shuts down SDL
-    void close();
+    void close( Tile* tiles[] );
 
     //Box collision detector
     bool checkCollision( SDL_Rect a, SDL_Rect b );
@@ -59,10 +59,6 @@ public:
     int cameraVelX;
     int cameraVelY;
 
-    //Render level
-    void renderLevel();
-    void nextLevel();
-    void previousLevel();
 
 private:
     //The window we'll be rendering to
@@ -84,8 +80,6 @@ private:
     SDL_Color fontColor;
     std::vector<Level> gameLevels;
     int currentLevel;
-
-    Player player;
 };
 
 #endif // GAMECONTROLLER_H
