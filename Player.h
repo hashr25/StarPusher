@@ -24,6 +24,8 @@ public:
     void oneMoreStep();
     //Set Position
     void setPosition( int xPosition, int yPosition );
+    //Get box
+    SDL_Rect getBox();
 
     ///Methods
     //Takes key presses and adjusts the Player's velocity

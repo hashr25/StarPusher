@@ -770,6 +770,8 @@ void GameController::nextLevel()
         std::cout << "moving player to " << gameLevels[currentLevel].getPlayerX() << ", " << gameLevels[currentLevel].getPlayerY() << std::endl;
         player.setPosition( gameLevels[currentLevel].getPlayerX(), gameLevels[currentLevel].getPlayerY() );
         gameStars = gameLevels[ currentLevel ].getStars();
+        player.setSteps(0);
+        centerCamera();
     }
 }
 
@@ -781,6 +783,8 @@ void GameController::previousLevel()
         std::cout << "moving player to " << gameLevels[currentLevel].getPlayerX() << ", " << gameLevels[currentLevel].getPlayerY() << std::endl;
         player.setPosition( gameLevels[currentLevel].getPlayerX(), gameLevels[currentLevel].getPlayerY() );
         gameStars = gameLevels[ currentLevel ].getStars();
+        player.setSteps(0);
+        centerCamera();
     }
 }
 
@@ -789,4 +793,12 @@ void GameController::resetLevel()
     std::cout << "moving player to " << gameLevels[currentLevel].getPlayerX() << ", " << gameLevels[currentLevel].getPlayerY() << std::endl;
     player.setPosition( gameLevels[currentLevel].getPlayerX(), gameLevels[currentLevel].getPlayerY() );
     gameStars = gameLevels[ currentLevel ].getStars();
+    player.setSteps(0);
+    centerCamera();
+}
+
+void GameController::centerCamera()
+{
+    camera.x = ( player.getBox().x + PLAYER_WIDTH / 2 ) - SCREEN_WIDTH / 2;
+	camera.y = ( player.getBox().y + PLAYER_HEIGHT / 2 ) - SCREEN_HEIGHT / 2;
 }

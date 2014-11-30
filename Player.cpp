@@ -51,6 +51,12 @@ void Player::setPosition( int xPosition, int yPosition )
     mBox.y = yPosition * TILE_FLOOR_HEIGHT;
 }
 
+//Get box
+SDL_Rect Player::getBox()
+{
+    return mBox;
+}
+
 ///Methods
 void Player::handleEvent( SDL_Event& e, bool& exitFlag )
 {

@@ -67,6 +67,7 @@ public:
     void nextLevel();
     void previousLevel();
     void resetLevel();
+    void centerCamera();
 
 private:
     //The window we'll be rendering to
