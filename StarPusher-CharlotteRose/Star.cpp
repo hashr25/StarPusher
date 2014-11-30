@@ -7,12 +7,6 @@ Star::Star()
     isAtGoal = false;
 }
 
-Star::Star( int x, int y )
-{
-    this -> x = x;
-    this -> y = y;
-}
-
 /// /////////////////////////////////////////////////////////////////////////////
 ///Getters and Setters
 //Getters

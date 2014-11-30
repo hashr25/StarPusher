@@ -3,7 +3,6 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
-#include <SDL_ttf.h>
 #include <stdio.h>
 #include <string>
 #include <fstream>
@@ -23,7 +22,7 @@ class LTexture
 
 		#ifdef _SDL_TTF_H
 		//Creates image from font string
-		bool loadFromRenderedText( std::string textureText, SDL_Color textColor, TTF_Font* gFont, SDL_Renderer* gRenderer );
+		bool loadFromRenderedText( std::string textureText, SDL_Color textColor );
 		#endif
 
 		//Deallocates texture
