@@ -226,7 +226,7 @@ bool GameController::setTiles( Tile* tiles[] )
 /// Works here
 
 			//If the number is a valid tile number
-			if( ( tileType >= 0 ) && ( tileType < TOTAL_TEXTURES ) )
+			if( ( tileType >= 0 ) && ( tileType < TOTAL_TYPES ) )
 			{
 				tiles[ i ] = new Tile( x, y, tileType );
 			}
@@ -372,7 +372,7 @@ void GameController::runGame()
             {
                 for( int j = 0; j < gameLevels[currentLevel].getLevelWidthInTiles(); j++ )
                 {
-                    std::cout << gameLevels[currentLevel].getTiles()[ (gameLevels[currentLevel].getLevelWidthInTiles() * i) + j ].getType() << " ";
+                    std::cout << gameLevels[currentLevel].getTiles()[ (gameLevels[currentLevel].getLevelWidthInTiles() * i) + j ] -> getType() << " ";
                 }
                 std::cout << "\n";
             }
@@ -440,12 +440,13 @@ void GameController::loadLevels()
     std::string line = "";
 
     std::vector<std::string> levelLines;
-    std::vector<Tile> levelTiles;
+    std::vector<Tile*> levelTiles;
 
     Level singleLevel;
     Tile* singleTile;
 
     int levelCounter = 0;
+    bool levelDone = false;
 
     int x = 0;
     int y = 0;
@@ -465,16 +466,22 @@ void GameController::loadLevels()
 
 
         ///Finishing Level
-        if( lineCounter > 0 && line.size() < 2 )
-        {
+        if( lineCounter > 0 && levelDone )
+        {std::cout << "finishing level" << std::endl;
             ///Finishing level
-            gameLevels.push_back( singleLevel );
-            singleLevel.clear();
+            singleLevel.setTotalTiles();std::cout << "set total tiles" << std::endl;
+
+            int blank;
+            std::cin >> blank;
+
+            gameLevels.push_back( singleLevel );std::cout << "Pushed level to vector" << std::endl;
+            singleLevel.clear();std::cout << "cleared singleLevel" << std::endl;
             lineCounter = 0;
             x = 0;
             y = 0;
             tileCounter = 0;
 
+            levelDone = false;
             levelCounter++;
         }
 
@@ -504,30 +511,35 @@ void GameController::loadLevels()
                 int mapHeight;
                 lineSS >> mapWidth;
                 lineSS >> mapHeight;std::cout << "MapWidth: " << mapWidth << "\nMapHeight: " << mapHeight << std::endl;
+
+                std::cout << "setting map #" << levelCounter <<  " mapHeight to " << mapHeight << std::endl;
+
                 singleLevel.setLevelWidthInTiles( mapWidth );
                 singleLevel.setLevelWidthInPixels( mapWidth * TILE_WIDTH );
                 singleLevel.setLevelHeightInTiles( mapHeight );
                 singleLevel.setLevelHeightInPixels( mapHeight * TILE_FLOOR_HEIGHT );
-
-                //std::cout << "setting map #" << levelCounter <<  " mapHeight to " << mapHeight << std::endl;
 
                 lineCounter++;
             }
 
 
             ///Middle lines of key, contains the map key itself
-            if( lineCounter >= 1 && lineCounter <= singleLevel.getLevelHeightInTiles()+1 )
-            {
-                for( int i = 0; i < line.size(); i++ )
+            else if( lineCounter >= 1 && lineCounter <= singleLevel.getLevelHeightInTiles()+1 )
+            {std::cout << line <<std::endl;
+                for( int i = 0; i < singleLevel.getLevelWidthInTiles(); i++ )
                 {
+                    std::string blank;
+                    std::stringstream tileTypeSS( line.substr(i*3, 3) );
                     int tileType;
-                    lineSS >> tileType;
+                    tileTypeSS >> tileType;
 
-                    if( tileType >= 0 && tileType < TOTAL_TEXTURES )
+                    //assert( tileType > TOTAL_TYPES );
+
+                    if( tileType >= 0 && tileType < TOTAL_TYPES )
                     {
                         singleTile = new Tile( x, y, tileType );
-                        levelTiles.push_back( *singleTile );
-                        delete singleTile;
+                        levelTiles.push_back( singleTile );
+                        std::cout << "pushed a tile at " << singleTile -> getBox().x << ", " << singleTile -> getBox().y << " of type " << singleTile -> getType() << std::endl;
                     }
 
                     tileCounter++;
@@ -535,10 +547,20 @@ void GameController::loadLevels()
                 }
             }
 
-            //std::cout << lineCounter << " : " << singleLevel.getLevelHeightInTiles()+2 << std::endl;
-            ///First line after map key, holds number of stars
-            if( lineCounter == 2 + singleLevel.getLevelHeightInTiles() )
+            ///First line after map key, hold coordinates for player
+            else if( lineCounter == 2 + singleLevel.getLevelHeightInTiles() )
             {
+                int playerX, playerY;
+                lineSS >> playerX;
+                lineSS >> playerY;
+                std::cout << "placing player at " << playerX << ", " << playerY << std::endl;
+                player.setPosition( playerX, playerY );
+            }
+
+            //std::cout << lineCounter << " : " << singleLevel.getLevelHeightInTiles()+2 << std::endl;
+            ///Second line after map key, holds number of stars
+            else if( lineCounter == 3 + singleLevel.getLevelHeightInTiles() )
+            {std::cout << line << std::endl;
                 //Ending tile creation
                 singleLevel.setTiles( levelTiles );std::cout << "number of total Tiles: " << levelTiles.size() << std::endl;
                 levelTiles.clear();std::cout << "number of total Tiles: " << levelTiles.size() << std::endl;
@@ -549,16 +571,20 @@ void GameController::loadLevels()
                 singleLevel.setNumberOfStars( numberOfStars );
             }
 
-            ///Coordinates for stars
-            if( lineCounter == ( 3 + singleLevel.getLevelHeightInTiles() ) )
-            {
+            ///Third line after map key, coordinates for stars
+            else if( lineCounter == ( 4 + singleLevel.getLevelHeightInTiles() ) )
+            {std::cout << line << std::endl;
                 for( int i = 0; i < singleLevel.getNumberOfStars(); i++ )
                 {
                     int starX, starY;
-                    lineSS >> starX >> starY;
+                    lineSS >> starX;
+                    lineSS >> starY;
+
                     Star thisStar( starX, starY );
-                    singleLevel.addStar( thisStar );
+                    singleLevel.addStar( thisStar );std::cout << "Creating star at " << starX << ", " << starY << std::endl;
                 }
+
+                levelDone = true;std::cout << "Changed levelDone flag to True" << std::endl;
             }
 
             ///This only returns the carriage for tile display coordinates
@@ -568,7 +594,7 @@ void GameController::loadLevels()
                 y += TILE_FLOOR_HEIGHT;
             }
 
-            levelLines.push_back( line );
+            //levelLines.push_back( line );
             lineCounter++;
         }
     }
@@ -644,7 +670,7 @@ void GameController::renderLevel()
 {
     for( int i = 0; i < gameLevels[ currentLevel ].getTiles().size(); ++i )
     {
-        gameLevels[ currentLevel ].getTiles()[i].render( camera, gRenderer, gTileClips, gTileTexture );
+        gameLevels[ currentLevel ].getTiles()[i] -> render( camera, gRenderer, gTileClips, gTileTexture );
     }
 }
 
@@ -653,7 +679,7 @@ void GameController::nextLevel()
     if( currentLevel < 201 )
     {
         currentLevel++;
-        player.setPosition( gameLevels[currentLevel].getPlayerX(), gameLevels[currentLevel].getPlayerY() )
+        player.setPosition( gameLevels[currentLevel].getPlayerX(), gameLevels[currentLevel].getPlayerY() );
     }
 }
 
@@ -662,5 +688,6 @@ void GameController::previousLevel()
     if( currentLevel > 0 )
     {
         currentLevel--;
+        player.setPosition( gameLevels[currentLevel].getPlayerX(), gameLevels[currentLevel].getPlayerY() );
     }
 }

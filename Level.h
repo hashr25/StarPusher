@@ -11,10 +11,11 @@ class Level
 public:
     ///Constructor and destructors
     Level();
+    ~Level();
 
     ///Getters and Setters
     //Getters
-    std::vector<Tile> getTiles();
+    std::vector<Tile*> getTiles();
     std::vector<Star> getStars();
     int getTotalTiles();
     int getNumberOfStars();
@@ -26,9 +27,10 @@ public:
     int getLevelWidthInPixels();
 
     //Setters
-    void setTiles( std::vector<Tile> tiles );
+    void setTiles( std::vector<Tile*> tiles );
     void setStars( std::vector<Star> stars );
     void setTotalTiles( int totalTiles );
+    void setTotalTiles();
     void setNumberOfStars( int numberOfStars );
     void setPlayerX( int playerStartX );
     void setPlayerY( int playerStartY );
@@ -41,11 +43,10 @@ public:
     void clear();
     void addStar( Star newStar );
 
-    ///Public Data for Now
-    void addTile( Tile tile );
+    void addTile( Tile* tile );
 
 private:
-    std::vector<Tile> tiles;
+    std::vector<Tile*> tiles;
     std::vector<Star> stars;
 
     int totalTiles;

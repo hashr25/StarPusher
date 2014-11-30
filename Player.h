@@ -22,6 +22,8 @@ public:
     void setSteps( int steps );
     //Increment
     void oneMoreStep();
+    //Set Position
+    void setPosition( int xPosition, int yPosition );
 
     ///Methods
     //Takes key presses and adjusts the Player's velocity

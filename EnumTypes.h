@@ -51,7 +51,7 @@ enum TileType
     SHORT_TREE,     //14
     TALL_TREE,      //15
     UGLY_TREE,      //16
-    TOTAL_TEXTURES  //17
+    TOTAL_TYPES     //17
 };
 
 #endif // ENUMTYPES_H

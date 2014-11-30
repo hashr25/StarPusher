@@ -77,7 +77,7 @@ private:
     //Scene textures
     LTexture gPlayerTexture;
     LTexture gTileTexture;
-    SDL_Rect gTileClips[ TOTAL_TEXTURES ];
+    SDL_Rect gTileClips[ TOTAL_TYPES ];
 
     //Levels
     TTF_Font* font;

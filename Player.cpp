@@ -16,6 +16,7 @@ Player::Player()
     mVelY = 0;
 
     //load font
+    TTF_Init();
     loadFont( "Test1.ttf" );
 }
 
@@ -41,6 +42,13 @@ void Player::setSteps( int steps )
 void Player::oneMoreStep()
 {
     steps++;
+}
+
+//Set position
+void Player::setPosition( int xPosition, int yPosition )
+{
+    mBox.x = xPosition;
+    mBox.y = yPosition;
 }
 
 ///Methods
