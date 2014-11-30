@@ -4,7 +4,7 @@ and may not be redistributed without written permission.*/
 //Using SDL, SDL_image, standard IO, strings, and file streams
 #include <SDL.h>
 #include <SDL_image.h>
-#include <stdio.h>
+#include <iostream>
 #include <string>
 #include <fstream>
 
@@ -14,10 +14,13 @@ and may not be redistributed without written permission.*/
 #include "Player.h"
 #include "GameController.h"
 
+void rungame();
+
 int main( int argc, char* args[] )
 {
 	GameController StarPusher;
 	StarPusher.runGame();
-
+    //    std::cout << "How many levels: " << StarPusher.getLevels().size() << std:: endl;
 	return 0;
 }
+

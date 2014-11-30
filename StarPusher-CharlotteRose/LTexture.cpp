@@ -56,7 +56,7 @@ bool LTexture::loadFromFile( std::string path, SDL_Renderer* gRenderer )
 }
 
 #ifdef _SDL_TTF_H
-bool LTexture::loadFromRenderedText( std::string textureText, SDL_Color textColor )
+bool LTexture::loadFromRenderedText( std::string textureText, SDL_Color textColor, TTF_Font* gFont, SDL_Renderer* gRenderer )
 {
 	//Get rid of preexisting texture
 	free();
