@@ -47,8 +47,8 @@ void Player::oneMoreStep()
 //Set position
 void Player::setPosition( int xPosition, int yPosition )
 {
-    mBox.x = xPosition;
-    mBox.y = yPosition;
+    mBox.x = xPosition * TILE_WIDTH;
+    mBox.y = yPosition * TILE_FLOOR_HEIGHT;
 }
 
 ///Methods
@@ -57,7 +57,7 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
     if( e.type == SDL_QUIT )
     {
         exitFlag = true;
-        std::cout << "Trying to leave" << std::endl;
+        //std::cout << "Trying to leave" << std::endl;
     }
     //If a key was pressed
 	if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
@@ -216,7 +216,7 @@ bool Player::loadFont( std::string fileName )
 
     if( font == NULL )
     {
-        std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
+        //std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
         success = false;
     }
 

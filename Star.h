@@ -22,6 +22,9 @@ public:
     bool isBlocked( Direction directionToCheck );
     void push( Direction directionToPush );
 
+    bool checkCollision( SDL_Rect a, SDL_Rect b );
+    void render( SDL_Rect& camera, SDL_Renderer* gRenderer, SDL_Rect gTileClips[ TOTAL_TYPES ], LTexture& gTileTexture );
+
 private:
     bool isAtGoal;
 

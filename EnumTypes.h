@@ -19,6 +19,9 @@ const int TILE_HEIGHT = 85;
 const int TILE_FLOOR_HEIGHT = 40;
 const int TOTAL_TILES = 15*15;
 
+//Levels
+const int TOTAL_LEVELS = 201;
+
 //Camera movement
 ///number is pixels per second
 const int CAMERA_SPEED = 10;

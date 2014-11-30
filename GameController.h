@@ -48,7 +48,10 @@ public:
     void loadLevels();
 
     //Returns levels
-    std::vector<Level> getLevels();
+    Level* getLevels();
+
+    //Changes levels
+    void changeLevels( SDL_Event& e );
 
     //Displays level number on screen
     void displayLevelNumber();
@@ -63,6 +66,7 @@ public:
     void renderLevel();
     void nextLevel();
     void previousLevel();
+    void resetLevel();
 
 private:
     //The window we'll be rendering to
@@ -82,10 +86,11 @@ private:
     //Levels
     TTF_Font* font;
     SDL_Color fontColor;
-    std::vector<Level> gameLevels;
+    Level gameLevels[ TOTAL_LEVELS ];
     int currentLevel;
 
     Player player;
+    std::vector<Star> gameStars;
 };
 
 #endif // GAMECONTROLLER_H

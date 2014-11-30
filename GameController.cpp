@@ -81,22 +81,102 @@ bool GameController::loadMedia( SDL_Renderer* gRenderer )
 	//Load dot texture
 	if( !gPlayerTexture.loadFromFile( "Images/boy.png", gRenderer ) )
 	{
-		std::cout << "Failed to load dot texture!\n" << std::endl;
+		//std::cout << "Failed to load dot texture!\n" << std::endl;
 		success = false;
 	}
 
 	//Load tile texture
 	if( !gTileTexture.loadFromFile( "Images/StarTiles.png", gRenderer ) )
 	{
-		std::cout << "Failed to load tile set texture!\n" << std::endl;
+		//std::cout << "Failed to load tile set texture!\n" << std::endl;
 		success = false;
 	}
 
 	//Load font
 	if( !loadFont( "Test1.ttf" ) )
     {
-        std::cout << "Failed to load font" << std::endl;
+        //std::cout << "Failed to load font" << std::endl;
     }
+
+    gTileClips[ BOY ].x = 0;
+    gTileClips[ BOY ].y = 0;
+    gTileClips[ BOY ].w = TILE_WIDTH;
+    gTileClips[ BOY ].h = TILE_HEIGHT;
+
+    gTileClips[ CAT_GIRL ].x = 50;
+    gTileClips[ CAT_GIRL ].y = 0;
+    gTileClips[ CAT_GIRL ].w = TILE_WIDTH;
+    gTileClips[ CAT_GIRL ].h = TILE_HEIGHT;
+
+    gTileClips[ HORN_GIRL ].x = 100;
+    gTileClips[ HORN_GIRL ].y = 0;
+    gTileClips[ HORN_GIRL ].w = TILE_WIDTH;
+    gTileClips[ HORN_GIRL ].h = TILE_HEIGHT;
+
+    gTileClips[ PINK_GIRL ].x = 150;
+    gTileClips[ PINK_GIRL ].y = 0;
+    gTileClips[ PINK_GIRL ].w = TILE_WIDTH;
+    gTileClips[ PINK_GIRL ].h = TILE_HEIGHT;
+
+    gTileClips[ PRINCESS ].x = 0;
+    gTileClips[ PRINCESS ].y = 85;
+    gTileClips[ PRINCESS ].w = TILE_WIDTH;
+    gTileClips[ PRINCESS ].h = TILE_HEIGHT;
+
+    gTileClips[ STAR ].x = 50;
+    gTileClips[ STAR ].y = 85;
+    gTileClips[ STAR ].w = TILE_WIDTH;
+    gTileClips[ STAR ].h = TILE_HEIGHT;
+
+    gTileClips[ ON_GOAL ].x = 100;
+    gTileClips[ ON_GOAL ].y = 85;
+    gTileClips[ ON_GOAL ].w = TILE_WIDTH;
+    gTileClips[ ON_GOAL ].h = TILE_HEIGHT;
+
+    gTileClips[ OFF_GOAL ].x = 150;
+    gTileClips[ OFF_GOAL ].y = 85;
+    gTileClips[ OFF_GOAL ].w = TILE_WIDTH;
+    gTileClips[ OFF_GOAL ].h = TILE_HEIGHT;
+
+    gTileClips[ FLOOR ].x = 0;
+    gTileClips[ FLOOR ].y = 170;
+    gTileClips[ FLOOR ].w = TILE_WIDTH;
+    gTileClips[ FLOOR ].h = TILE_HEIGHT;
+
+    gTileClips[ WALL ].x = 50;
+    gTileClips[ WALL ].y = 170;
+    gTileClips[ WALL ].w = TILE_WIDTH;
+    gTileClips[ WALL ].h = TILE_HEIGHT;
+
+    gTileClips[ CORNER ].x = 100;
+    gTileClips[ CORNER ].y = 170;
+    gTileClips[ CORNER ].w = TILE_WIDTH;
+    gTileClips[ CORNER ].h = TILE_HEIGHT;
+
+    gTileClips[ GRASS ].x = 150;
+    gTileClips[ GRASS ].y = 170;
+    gTileClips[ GRASS ].w = TILE_WIDTH;
+    gTileClips[ GRASS ].h = TILE_HEIGHT;
+
+    gTileClips[ ROCK ].x = 0;
+    gTileClips[ ROCK ].y = 255;
+    gTileClips[ ROCK ].w = TILE_WIDTH;
+    gTileClips[ ROCK ].h = TILE_HEIGHT;
+
+    gTileClips[ SHORT_TREE ].x = 50;
+    gTileClips[ SHORT_TREE ].y = 255;
+    gTileClips[ SHORT_TREE ].w = TILE_WIDTH;
+    gTileClips[ SHORT_TREE ].h = TILE_HEIGHT;
+
+    gTileClips[ TALL_TREE ].x = 100;
+    gTileClips[ TALL_TREE ].y = 255;
+    gTileClips[ TALL_TREE ].w = TILE_WIDTH;
+    gTileClips[ TALL_TREE ].h = TILE_HEIGHT;
+
+    gTileClips[ UGLY_TREE ].x = 150;
+    gTileClips[ UGLY_TREE ].y = 255;
+    gTileClips[ UGLY_TREE ].w = TILE_WIDTH;
+    gTileClips[ UGLY_TREE ].h = TILE_HEIGHT;
 
 	return success;
 }
@@ -109,7 +189,7 @@ bool GameController::loadFont( std::string fileName )
 
     if( font == NULL )
     {
-        std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
+        //std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
         success = false;
     }
 
@@ -217,7 +297,7 @@ bool GameController::setTiles( Tile* tiles[] )
 			if( map.fail() )
 			{
 				//Stop loading map
-				std::cout <<  "Error loading map: Unexpected end of file!" << std::endl;
+				//std::cout <<  "Error loading map: Unexpected end of file!" << std::endl;
 				tilesLoaded = false;
 				break;
 			}
@@ -368,14 +448,7 @@ void GameController::runGame()
 		}
 		else
 		{
-		    for( int i = 0; i < gameLevels[currentLevel].getLevelHeightInTiles(); i++ )
-            {
-                for( int j = 0; j < gameLevels[currentLevel].getLevelWidthInTiles(); j++ )
-                {
-                    std::cout << gameLevels[currentLevel].getTiles()[ (gameLevels[currentLevel].getLevelWidthInTiles() * i) + j ] -> getType() << " ";
-                }
-                std::cout << "\n";
-            }
+		    resetLevel();
 
 			//Main loop flag
 			bool quit = false;
@@ -401,6 +474,7 @@ void GameController::runGame()
 					//Handle input for the dot
 					player.handleEvent( e, quit );
 					moveCamera( e );
+					changeLevels( e );
 				}
 
                 SDL_RenderPresent( gRenderer );
@@ -458,7 +532,7 @@ void GameController::loadLevels()
         {
             if( line.at(0) == 'j' )
             {
-                std::cout << line << std::endl;
+                //std::cout << line << std::endl;
 
                 //lineSS << line;
             }
@@ -467,15 +541,12 @@ void GameController::loadLevels()
 
         ///Finishing Level
         if( lineCounter > 0 && levelDone )
-        {std::cout << "finishing level" << std::endl;
+        {//std::cout << "finishing level" << std::endl;
             ///Finishing level
-            singleLevel.setTotalTiles();std::cout << "set total tiles" << std::endl;
+            singleLevel.setTotalTiles();//std::cout << "set total tiles" << std::endl;
 
-            int blank;
-            std::cin >> blank;
-
-            gameLevels.push_back( singleLevel );std::cout << "Pushed level to vector" << std::endl;
-            singleLevel.clear();std::cout << "cleared singleLevel" << std::endl;
+            gameLevels[levelCounter] = singleLevel;//std::cout << "Pushed level to vector" << std::endl;
+            singleLevel.clear();//std::cout << "cleared singleLevel" << std::endl;
             lineCounter = 0;
             x = 0;
             y = 0;
@@ -510,9 +581,9 @@ void GameController::loadLevels()
                 int mapWidth;
                 int mapHeight;
                 lineSS >> mapWidth;
-                lineSS >> mapHeight;std::cout << "MapWidth: " << mapWidth << "\nMapHeight: " << mapHeight << std::endl;
+                lineSS >> mapHeight;//std::cout << "MapWidth: " << mapWidth << "\nMapHeight: " << mapHeight << std::endl;
 
-                std::cout << "setting map #" << levelCounter <<  " mapHeight to " << mapHeight << std::endl;
+                //std::cout << "setting map #" << levelCounter <<  " mapHeight to " << mapHeight << std::endl;
 
                 singleLevel.setLevelWidthInTiles( mapWidth );
                 singleLevel.setLevelWidthInPixels( mapWidth * TILE_WIDTH );
@@ -525,10 +596,9 @@ void GameController::loadLevels()
 
             ///Middle lines of key, contains the map key itself
             else if( lineCounter >= 1 && lineCounter <= singleLevel.getLevelHeightInTiles()+1 )
-            {std::cout << line <<std::endl;
+            {//std::cout << line <<std::endl;
                 for( int i = 0; i < singleLevel.getLevelWidthInTiles(); i++ )
                 {
-                    std::string blank;
                     std::stringstream tileTypeSS( line.substr(i*3, 3) );
                     int tileType;
                     tileTypeSS >> tileType;
@@ -539,7 +609,7 @@ void GameController::loadLevels()
                     {
                         singleTile = new Tile( x, y, tileType );
                         levelTiles.push_back( singleTile );
-                        std::cout << "pushed a tile at " << singleTile -> getBox().x << ", " << singleTile -> getBox().y << " of type " << singleTile -> getType() << std::endl;
+                        //std::cout << "pushed a tile at " << singleTile -> getBox().x << ", " << singleTile -> getBox().y << " of type " << singleTile -> getType() << std::endl;
                     }
 
                     tileCounter++;
@@ -553,17 +623,18 @@ void GameController::loadLevels()
                 int playerX, playerY;
                 lineSS >> playerX;
                 lineSS >> playerY;
-                std::cout << "placing player at " << playerX << ", " << playerY << std::endl;
-                player.setPosition( playerX, playerY );
+                singleLevel.setPlayerX( playerX );
+                singleLevel.setPlayerY( playerY );
+                //std::cout << "placing player at " << playerX << ", " << playerY << std::endl;
             }
 
-            //std::cout << lineCounter << " : " << singleLevel.getLevelHeightInTiles()+2 << std::endl;
+            ////std::cout << lineCounter << " : " << singleLevel.getLevelHeightInTiles()+2 << std::endl;
             ///Second line after map key, holds number of stars
             else if( lineCounter == 3 + singleLevel.getLevelHeightInTiles() )
-            {std::cout << line << std::endl;
+            {//std::cout << line << std::endl;
                 //Ending tile creation
-                singleLevel.setTiles( levelTiles );std::cout << "number of total Tiles: " << levelTiles.size() << std::endl;
-                levelTiles.clear();std::cout << "number of total Tiles: " << levelTiles.size() << std::endl;
+                singleLevel.setTiles( levelTiles );//std::cout << "number of total Tiles: " << levelTiles.size() << std::endl;
+                levelTiles.clear();//std::cout << "number of total Tiles: " << levelTiles.size() << std::endl;
 
                 //Setting up number of stars
                 int numberOfStars;
@@ -573,7 +644,7 @@ void GameController::loadLevels()
 
             ///Third line after map key, coordinates for stars
             else if( lineCounter == ( 4 + singleLevel.getLevelHeightInTiles() ) )
-            {std::cout << line << std::endl;
+            {//std::cout << line << std::endl;
                 for( int i = 0; i < singleLevel.getNumberOfStars(); i++ )
                 {
                     int starX, starY;
@@ -581,10 +652,10 @@ void GameController::loadLevels()
                     lineSS >> starY;
 
                     Star thisStar( starX, starY );
-                    singleLevel.addStar( thisStar );std::cout << "Creating star at " << starX << ", " << starY << std::endl;
+                    singleLevel.addStar( thisStar );//std::cout << "Creating star at " << starX << ", " << starY << std::endl;
                 }
 
-                levelDone = true;std::cout << "Changed levelDone flag to True" << std::endl;
+                levelDone = true;//std::cout << "Changed levelDone flag to True" << std::endl;
             }
 
             ///This only returns the carriage for tile display coordinates
@@ -600,16 +671,29 @@ void GameController::loadLevels()
     }
 }
 
-std::vector<Level> GameController::getLevels()
+Level* GameController::getLevels()
 {
     return gameLevels;
+}
+
+void GameController::changeLevels( SDL_Event& e )
+{
+    if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
+    {
+        switch( e.key.keysym.sym )
+        {
+            case SDLK_n: nextLevel(); break;
+            case SDLK_p: previousLevel(); break;
+            case SDLK_r: resetLevel(); break;
+        }
+    }
 }
 
 void GameController::displayLevelNumber()
 {
     LTexture levelTexture;
     std::stringstream levelSS;
-    levelSS << "Level " << currentLevel << " of " << gameLevels.size();
+    levelSS << "Level " << currentLevel << " of " << TOTAL_LEVELS;
     std::string levelOutput = levelSS.str();
 
     levelTexture.loadFromRenderedText( levelOutput, fontColor, font, gRenderer );
@@ -668,9 +752,13 @@ void GameController::moveCamera( SDL_Event& e )
 //Level Methods
 void GameController::renderLevel()
 {
-    for( int i = 0; i < gameLevels[ currentLevel ].getTiles().size(); ++i )
+    for( int i = 0; i < gameLevels[ currentLevel ].getTiles().size(); i++ )
     {
         gameLevels[ currentLevel ].getTiles()[i] -> render( camera, gRenderer, gTileClips, gTileTexture );
+    }
+    for( int i = 0; i < gameStars.size(); i++ )
+    {
+        gameStars.at(i).render( camera, gRenderer, gTileClips, gTileTexture );
     }
 }
 
@@ -679,7 +767,9 @@ void GameController::nextLevel()
     if( currentLevel < 201 )
     {
         currentLevel++;
+        std::cout << "moving player to " << gameLevels[currentLevel].getPlayerX() << ", " << gameLevels[currentLevel].getPlayerY() << std::endl;
         player.setPosition( gameLevels[currentLevel].getPlayerX(), gameLevels[currentLevel].getPlayerY() );
+        gameStars = gameLevels[ currentLevel ].getStars();
     }
 }
 
@@ -688,6 +778,15 @@ void GameController::previousLevel()
     if( currentLevel > 0 )
     {
         currentLevel--;
+        std::cout << "moving player to " << gameLevels[currentLevel].getPlayerX() << ", " << gameLevels[currentLevel].getPlayerY() << std::endl;
         player.setPosition( gameLevels[currentLevel].getPlayerX(), gameLevels[currentLevel].getPlayerY() );
+        gameStars = gameLevels[ currentLevel ].getStars();
     }
+}
+
+void GameController::resetLevel()
+{
+    std::cout << "moving player to " << gameLevels[currentLevel].getPlayerX() << ", " << gameLevels[currentLevel].getPlayerY() << std::endl;
+    player.setPosition( gameLevels[currentLevel].getPlayerX(), gameLevels[currentLevel].getPlayerY() );
+    gameStars = gameLevels[ currentLevel ].getStars();
 }
