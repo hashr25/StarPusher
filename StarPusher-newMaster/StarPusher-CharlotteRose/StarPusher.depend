@@ -1,0 +1,1494 @@
+# depslib dependency file v1.0
+1415973247 source:c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\player.cpp
+	"Player.h"
+
+1415973583 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\player.h
+	"Tile.h"
+	"EnumTypes.h"
+	<SDL.h>
+
+1415927530 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\tile.h
+	<SDL.h>
+	<cassert>
+	<iostream>
+	"EnumTypes.h"
+	"LTexture.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1415319060 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\begin_code.h
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\close_code.h
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933596 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394933597 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415930921 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\enumtypes.h
+
+1415930410 source:c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\tile.cpp
+	"Tile.h"
+
+1415973088 source:c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\gamecontroller.cpp
+	"GameController.h"
+
+1415907915 source:c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\level.cpp
+
+1415907915 source:c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\ltexture.cpp
+	"LTexture.h"
+
+1415907915 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\ltexture.h
+	<SDL.h>
+	<SDL_image.h>
+	<stdio.h>
+	<string>
+	<fstream>
+
+1376152742 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\32 bit sdl library\sdl2 image\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415972960 source:c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\main.cpp
+	<SDL.h>
+	<SDL_image.h>
+	<stdio.h>
+	<string>
+	<fstream>
+	"LTexture.h"
+	"Tile.h"
+	"EnumTypes.h"
+	"Player.h"
+	"GameController.h"
+
+1415931942 source:c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\star.cpp
+	"Star.h"
+
+1415812402 source:c:\users\chris\documents\github\starpusher\main.cpp
+	<SDL.h>
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\begin_code.h
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\close_code.h
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415716198 c:\users\chris\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415812401 source:c:\users\chris\documents\github\starpusher\player.cpp
+	"Player.h"
+
+1415812401 c:\users\chris\documents\github\starpusher\player.h
+	"Tile.h"
+	<SDL.h>
+
+1415716198 c:\users\chris\documents\github\starpusher\tile.h
+	<SDL.h>
+	<cassert>
+	<iostream>
+	"EnumTypes.h"
+
+1415812401 c:\users\chris\documents\github\starpusher\enumtypes.h
+
+1415812401 source:c:\users\chris\documents\github\starpusher\tile.cpp
+	"Tile.h"
+
+1415931829 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\star.h
+	"Tile.h"
+	"EnumTypes.h"
+
+1415972883 c:\users\hashr25\onedrive\concord university\fall 2014\cs240\assignments\group assignment 2\github project\starpusher\starpusher\gamecontroller.h
+	<SDL.h>
+	<SDL_image.h>
+	"EnumTypes.h"
+	"Tile.h"
+	"Player.h"
+	"Star.h"
+
+1416366913 source:c:\users\charlotte\documents\github\starpusher\gamecontroller.cpp
+	"GameController.h"
+
+1415990385 c:\users\charlotte\documents\github\starpusher\gamecontroller.h
+	<SDL.h>
+	<SDL_image.h>
+	"EnumTypes.h"
+	"Tile.h"
+	"Player.h"
+	"Star.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1415733474 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\begin_code.h
+
+1415733474 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\close_code.h
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733474 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733474 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733474 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733474 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733474 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415733473 c:\users\charlotte\documents\github\starpusher\32 bit sdl library\sdl2 image\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1415988183 c:\users\charlotte\documents\github\starpusher\enumtypes.h
+
+1415988183 c:\users\charlotte\documents\github\starpusher\tile.h
+	<SDL.h>
+	<cassert>
+	<iostream>
+	"EnumTypes.h"
+	"LTexture.h"
+
+1415988183 c:\users\charlotte\documents\github\starpusher\ltexture.h
+	<SDL.h>
+	<SDL_image.h>
+	<stdio.h>
+	<string>
+	<fstream>
+
+1416366774 c:\users\charlotte\documents\github\starpusher\player.h
+	"Tile.h"
+	"EnumTypes.h"
+	<SDL.h>
+
+1415988183 c:\users\charlotte\documents\github\starpusher\star.h
+	"Tile.h"
+	"EnumTypes.h"
+
+1415988183 source:c:\users\charlotte\documents\github\starpusher\level.cpp
+
+1415988183 source:c:\users\charlotte\documents\github\starpusher\ltexture.cpp
+	"LTexture.h"
+
+1415990592 source:c:\users\charlotte\documents\github\starpusher\main.cpp
+	<SDL.h>
+	<SDL_image.h>
+	<stdio.h>
+	<string>
+	<fstream>
+	"LTexture.h"
+	"Tile.h"
+	"EnumTypes.h"
+	"Player.h"
+	"GameController.h"
+
+1416366897 source:c:\users\charlotte\documents\github\starpusher\player.cpp
+	"Player.h"
+
+1415988183 source:c:\users\charlotte\documents\github\starpusher\star.cpp
+	"Star.h"
+
+1415988183 source:c:\users\charlotte\documents\github\starpusher\tile.cpp
+	"Tile.h"
+
+1417410151 source:c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\gamecontroller.cpp
+	"GameController.h"
+
+1417410151 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\gamecontroller.h
+	<SDL.h>
+	<SDL_image.h>
+	"EnumTypes.h"
+	"Tile.h"
+	"Player.h"
+	"Star.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1417410153 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\begin_code.h
+
+1417410153 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\close_code.h
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410153 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410153 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410153 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410152 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410153 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410153 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410151 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\32 bit sdl library\sdl2 image\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1417410151 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\enumtypes.h
+
+1417410151 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\tile.h
+	<SDL.h>
+	<cassert>
+	<iostream>
+	"EnumTypes.h"
+	"LTexture.h"
+
+1417410151 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\ltexture.h
+	<SDL.h>
+	<SDL_image.h>
+	<stdio.h>
+	<string>
+	<fstream>
+
+1417410151 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\player.h
+	"Tile.h"
+	"EnumTypes.h"
+	<SDL.h>
+
+1417410151 c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\star.h
+	"Tile.h"
+	"EnumTypes.h"
+
+1417410151 source:c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\level.cpp
+
+1417410151 source:c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\ltexture.cpp
+	"LTexture.h"
+
+1417410151 source:c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\main.cpp
+	<SDL.h>
+	<SDL_image.h>
+	<stdio.h>
+	<string>
+	<fstream>
+	"LTexture.h"
+	"Tile.h"
+	"EnumTypes.h"
+	"Player.h"
+	"GameController.h"
+
+1417410151 source:c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\player.cpp
+	"Player.h"
+
+1417410151 source:c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\star.cpp
+	"Star.h"
+
+1417410151 source:c:\users\cheech wife\documents\github\starpusher\starpusher-newmaster\starpusher-charlotterose\tile.cpp
+	"Tile.h"
+
