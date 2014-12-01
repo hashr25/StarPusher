@@ -13,13 +13,19 @@ class Tile
 {
     public:
 		//Initializes position and type
+		Tile();
 		Tile( int x, int y, int TileType );
 
 		//Shows the tile
-		void render( SDL_Rect& camera, SDL_Renderer* gRenderer, SDL_Rect gTileClips[ TOTAL_TEXTURES ], LTexture& gTileTexture );
+		void render( SDL_Rect& camera, SDL_Renderer* gRenderer, SDL_Rect gTileClips[ TOTAL_TYPES ], LTexture& gTileTexture );
 
 		//Get the tile type
 		int getType();
+		void setType( int type );
+
+		void setX( int x );
+		void setY( int y );
+		void setPosition( int x, int y );
 
 		//Get the collision box
 		SDL_Rect getBox();

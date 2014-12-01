@@ -11,8 +11,8 @@
 #include <vector>
 
 #include "EnumTypes.h"
-#include "Tile.h"
 #include "Player.h"
+#include "Tile.h"
 #include "Star.h"
 #include "Level.h"
 
@@ -26,17 +26,21 @@ public:
     bool init();
 
     //Loads media
-    bool loadMedia( Tile* tiles[], SDL_Renderer* gRenderer );
+    bool loadMedia( SDL_Renderer* gRenderer );
     bool loadFont( std::string fileName );
 
     //Frees media and shuts down SDL
-    void close( Tile* tiles[] );
+    void close();
 
     //Box collision detector
     bool checkCollision( SDL_Rect a, SDL_Rect b );
 
     //Checks collision box against set of tiles
-    bool touchesWall( SDL_Rect box, Tile* tiles[] );
+    bool touchesWall( SDL_Rect box, int x, int y );
+    bool starTouchesWall(int x, int y);
+    bool starTouchesStar(int x, int y);
+    int touchesStar( int x, int y );
+
 
     //Sets tiles from tile map
     bool setTiles( Tile *tiles[] );
@@ -45,10 +49,13 @@ public:
     void runGame();
 
     //Load game levels
-    //void loadLevels();
+    void loadLevels();
 
     //Returns levels
-    //std::vector<Level> getLevels();
+    Level* getLevels();
+
+    //Changes levels
+    void changeLevels( SDL_Event& e );
 
     //Displays level number on screen
     void displayLevelNumber();
@@ -59,6 +66,12 @@ public:
     int cameraVelX;
     int cameraVelY;
 
+    //Render level
+    void renderLevel();
+    void nextLevel();
+    void previousLevel();
+    void resetLevel();
+    void centerCamera();
 
 private:
     //The window we'll be rendering to
@@ -73,13 +86,16 @@ private:
     //Scene textures
     LTexture gPlayerTexture;
     LTexture gTileTexture;
-    SDL_Rect gTileClips[ TOTAL_TEXTURES ];
+    SDL_Rect gTileClips[ TOTAL_TYPES ];
 
     //Levels
     TTF_Font* font;
     SDL_Color fontColor;
-    std::vector<Level> gameLevels;
+    Level gameLevels[ TOTAL_LEVELS ];
     int currentLevel;
+
+    Player player;
+    std::vector<Star> gameStars;
 };
 
 #endif // GAMECONTROLLER_H

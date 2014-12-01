@@ -15,7 +15,9 @@ Player::Player()
 	mBox.h = PLAYER_HEIGHT;
 
     //load font
-    //loadFont( "Test1.ttf" );
+    TTF_Init();
+    loadFont( "Test1.ttf" );
+
 }
 
 Player::~Player()
@@ -47,13 +49,21 @@ void Player::oneMoreStep()
     steps++;
 }
 
-///Methods
-void Player::handleEvent( SDL_Event& e, bool& exitFlag )
+//Set position
+void Player::setPosition( int xPosition, int yPosition )
 {
+    mBox.x = xPosition * TILE_WIDTH;
+    mBox.y = yPosition * TILE_FLOOR_HEIGHT;
+}
+
+///Methods
+void Player::handleEvent( SDL_Event& e, bool& exitFlag, std::vector<Tile*> tiles )
+{
+    SDL_Rect newPos;
     if( e.type == SDL_QUIT )
     {
         exitFlag = true;
-        std::cout << "Trying to leave" << std::endl;
+        //std::cout << "Trying to leave" << std::endl;
     }
     //If a key was pressed
 	if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
@@ -63,24 +73,93 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
         {
             case SDLK_ESCAPE: exitFlag = true; break;
             case SDLK_UP:
+            {
+                //std::cout <<"Up\n";
+
+                SDL_Rect currentPos = mBox;
+                newPos.x = currentPos.x;
+                newPos.y = currentPos.y -= TILE_FLOOR_HEIGHT;
+                newPos.h = currentPos.h;
+                newPos.w = currentPos.w;
+
+                if( touchesWall( newPos, tiles ) )
                 {
-                    mBox.y -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                  //std::cout<<"Wall\n";
                 }
+                else
+                {
+                    setX(newPos.x);
+                    setY(newPos.y);
+                }
+                break;
+            }
             case SDLK_DOWN:
+            {
+                //std::cout <<"Down\n";
+
+                SDL_Rect currentPos = getBox();
+                newPos.x = currentPos.x;
+                newPos.y = currentPos.y += TILE_FLOOR_HEIGHT;
+                newPos.h = currentPos.h;
+                newPos.w = currentPos.w;
+
+                if( touchesWall( newPos, tiles ) )
                 {
-                    mBox.y += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                  //std::cout<<"Wall\n";
                 }
+                else
+                {
+                    setX(newPos.x);
+                    setY(newPos.y);
+                }
+                break;
+            }
             case SDLK_LEFT:
+            {
+                std::cout <<"Left\n";
+
+                SDL_Rect currentPos = getBox();
+                newPos.x = currentPos.x -= TILE_FLOOR_HEIGHT;
+                newPos.y = currentPos.y;
+                newPos.h = currentPos.h;
+                newPos.w = currentPos.w;
+
+                if( touchesWall( newPos, tiles ) )
                 {
-                     mBox.x -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                  std::cout<<"Wall\n";
                 }
+                else
+                {
+                    setX(newPos.x);
+                    setY(newPos.y);
+                }
+                break;
+            }
             case SDLK_RIGHT:
+            {
+                std::cout <<"Right\n";
+
+                SDL_Rect currentPos = getBox();
+                newPos.x = currentPos.x += TILE_FLOOR_HEIGHT;
+                newPos.y = currentPos.y;
+                newPos.h = currentPos.h;
+                newPos.w = currentPos.w;
+
+                if( touchesWall( newPos, tiles ) )
                 {
-                     mBox.x += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
+                  std::cout<<"Wall\n";
                 }
+                else
+                {
+                    setX(newPos.x);
+                    setY(newPos.y);
+                }
+                break;
+            }
         }
     }
 }
+
 /*
 void Player::move(Tile *tiles[])
 {
@@ -188,15 +267,17 @@ void Player::setCamera( SDL_Rect& camera )
 	{
 		camera.y = 0;
 	}
-	if( camera.x > TILE_WIDTH )
+	if( camera.x > LEVEL_WIDTH )
 	{
-		camera.x = TILE_WIDTH;
+		camera.x = LEVEL_WIDTH;
 	}
-	if( camera.y > TILE_HEIGHT )
+	if( camera.y > LEVEL_HEIGHT )
 	{
-		camera.y = TILE_HEIGHT;
+		camera.y = LEVEL_HEIGHT;
 	}*/
 }
+
+
 
 void Player::render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlayerTexture )
 {
@@ -204,7 +285,7 @@ void Player::render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlaye
         gPlayerTexture.render( mBox.x- camera.x, mBox.y - camera.y, gRenderer );
 }
 
-/*int Player::checkCollision( SDL_Rect a, SDL_Rect b )
+int Player::checkCollision( SDL_Rect a, SDL_Rect b )
 {
     //The sides of the rectangles
     int leftA, leftB;
@@ -249,12 +330,12 @@ void Player::render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlaye
     return 4;
 }
 
-bool Player::touchesWall( SDL_Rect mBox, Tile* tiles[] )
+bool Player::touchesWall( SDL_Rect mBox, std::vector<Tile*> tiles )
 {
     //Go through the tiles
 
 
-    for( int i = 0; i < TOTAL_TILES; ++i )
+    for( int i = 0; i < tiles.size(); ++i )
     {
         //If the tile is a wall type tile
         if( ( tiles[ i ]->getType() >= WALL ) )
@@ -270,8 +351,7 @@ bool Player::touchesWall( SDL_Rect mBox, Tile* tiles[] )
     //If no wall tiles were touched
     return false;
 }
-*/
-/*
+
 void Player::displaySteps( SDL_Renderer* gRenderer )
 {
     LTexture stepTexture;
@@ -284,7 +364,6 @@ void Player::displaySteps( SDL_Renderer* gRenderer )
     stepTexture.render( 25, 445, gRenderer );
 }
 
-
 bool Player::loadFont( std::string fileName )
 {
     bool success = true;
@@ -293,7 +372,7 @@ bool Player::loadFont( std::string fileName )
 
     if( font == NULL )
     {
-        std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
+        //std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
         success = false;
     }
 
@@ -304,4 +383,3 @@ bool Player::loadFont( std::string fileName )
 
     return success;
 }
-*/
