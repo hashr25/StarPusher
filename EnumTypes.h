@@ -19,12 +19,19 @@ const int TILE_HEIGHT = 85;
 const int TILE_FLOOR_HEIGHT = 40;
 const int TOTAL_TILES = 15*15;
 
+<<<<<<< HEAD
 //Levels
 const int TOTAL_LEVELS = 201;
 
 //Camera movement
 ///number is pixels per second
 const int CAMERA_SPEED = 10;
+=======
+//Camera movement
+///number is pixels per second
+const int CAMERA_SPEED = 10;
+const int CAMERA_STOP_SPEED = 0;
+>>>>>>> origin/CharlotteRose
 
 enum Direction
 {
@@ -37,6 +44,7 @@ enum Direction
 
 enum TileType
 {
+<<<<<<< HEAD
     NO_TYPE,        //0
     BOY,            //1
     CAT_GIRL,       //2
@@ -55,6 +63,26 @@ enum TileType
     TALL_TREE,      //15
     UGLY_TREE,      //16
     TOTAL_TYPES     //17
+=======
+    NO_TYPE,
+    BOY,
+    CAT_GIRL,
+    HORN_GIRL,
+    PINK_GIRL,
+    PRINCESS,
+    STAR,
+    ON_GOAL,
+    OFF_GOAL,
+    FLOOR,
+    WALL,
+    CORNER,
+    GRASS,
+    ROCK,
+    SHORT_TREE,
+    TALL_TREE,
+    UGLY_TREE,
+    TOTAL_TEXTURES
+>>>>>>> origin/CharlotteRose
 };
 
 #endif // ENUMTYPES_H

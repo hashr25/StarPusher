@@ -22,9 +22,12 @@ public:
     bool isBlocked( Direction directionToCheck );
     void push( Direction directionToPush );
 
+<<<<<<< HEAD
     bool checkCollision( SDL_Rect a, SDL_Rect b );
     void render( SDL_Rect& camera, SDL_Renderer* gRenderer, SDL_Rect gTileClips[ TOTAL_TYPES ], LTexture& gTileTexture );
 
+=======
+>>>>>>> origin/CharlotteRose
 private:
     bool isAtGoal;
 

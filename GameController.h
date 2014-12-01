@@ -26,7 +26,11 @@ public:
     bool init();
 
     //Loads media
+<<<<<<< HEAD
     bool loadMedia( SDL_Renderer* gRenderer );
+=======
+    bool loadMedia( Tile* tiles[], SDL_Renderer* gRenderer );
+>>>>>>> origin/CharlotteRose
     bool loadFont( std::string fileName );
 
     //Frees media and shuts down SDL
@@ -45,6 +49,7 @@ public:
     void runGame();
 
     //Load game levels
+<<<<<<< HEAD
     void loadLevels();
 
     //Returns levels
@@ -52,6 +57,12 @@ public:
 
     //Changes levels
     void changeLevels( SDL_Event& e );
+=======
+    //void loadLevels();
+
+    //Returns levels
+    //std::vector<Level> getLevels();
+>>>>>>> origin/CharlotteRose
 
     //Displays level number on screen
     void displayLevelNumber();
@@ -62,12 +73,15 @@ public:
     int cameraVelX;
     int cameraVelY;
 
+<<<<<<< HEAD
     //Render level
     void renderLevel();
     void nextLevel();
     void previousLevel();
     void resetLevel();
     void centerCamera();
+=======
+>>>>>>> origin/CharlotteRose
 
 private:
     //The window we'll be rendering to
@@ -82,16 +96,25 @@ private:
     //Scene textures
     LTexture gPlayerTexture;
     LTexture gTileTexture;
+<<<<<<< HEAD
     SDL_Rect gTileClips[ TOTAL_TYPES ];
+=======
+    SDL_Rect gTileClips[ TOTAL_TEXTURES ];
+>>>>>>> origin/CharlotteRose
 
     //Levels
     TTF_Font* font;
     SDL_Color fontColor;
+<<<<<<< HEAD
     Level gameLevels[ TOTAL_LEVELS ];
     int currentLevel;
 
     Player player;
     std::vector<Star> gameStars;
+=======
+    std::vector<Level> gameLevels;
+    int currentLevel;
+>>>>>>> origin/CharlotteRose
 };
 
 #endif // GAMECONTROLLER_H
