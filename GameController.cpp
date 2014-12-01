@@ -228,6 +228,8 @@ void GameController::close()
 
 bool GameController::touchesWall( SDL_Rect mBox, int x, int y )
 {
+    bool touchingWall = false;
+
     //Go through the tiles
 //    for( int i = 0; i < gameLevels[currentLevel].getTiles().size(); ++i )
 //    {
@@ -328,8 +330,6 @@ bool GameController::checkCollision( SDL_Rect a, SDL_Rect b )
     return true;
 }
 
-/// //////////////////////////////////////////////////////////////////////////////////////
-/// WHERE THE SAME THING ACTUALLY WORKS
 bool GameController::setTiles( Tile* tiles[] )
 {
 	//Success flag
@@ -485,8 +485,6 @@ bool GameController::setTiles( Tile* tiles[] )
     //If the map was loaded fine
     return tilesLoaded;
 }
-/// WHERE THE SAME THING ACTUALLY WORKS
-/// //////////////////////////////////////////////////////////////////////////////////////
 
 void GameController::runGame( )
 {
@@ -712,8 +710,6 @@ void GameController::runGame( )
                         }
                     }
                 }
-
-                moveCamera( e );
 
 				//Move the camera
 				//player.setCamera( camera );
@@ -988,6 +984,23 @@ void GameController::moveCamera( SDL_Event& e )
         //move back
         camera.y -= cameraVelY;
     }*/
+
+    if( camera.x  < 60 - gameLevels[currentLevel].getLevelWidthInPixels() )
+	{
+		camera.x = 60 - gameLevels[currentLevel].getLevelWidthInPixels();
+	}
+	if( camera.y < 100 - gameLevels[currentLevel].getLevelHeightInPixels() )
+	{
+		camera.y = 100 - gameLevels[currentLevel].getLevelHeightInPixels();
+	}
+	if( camera.x > gameLevels[currentLevel].getLevelWidthInPixels() - 245)
+	{
+		camera.x = gameLevels[currentLevel].getLevelWidthInPixels() - 245;
+	}
+	if( camera.y > gameLevels[currentLevel].getLevelHeightInPixels() - 180)
+	{
+		camera.y = gameLevels[currentLevel].getLevelHeightInPixels() - 180;
+	}
 }
 
 //Level Methods
