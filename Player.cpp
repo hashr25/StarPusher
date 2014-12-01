@@ -14,18 +14,10 @@ Player::Player()
 	mBox.w = PLAYER_WIDTH;
 	mBox.h = PLAYER_HEIGHT;
 
-<<<<<<< HEAD
-    //Initialize the velocity
-    mVelX = 0;
-    mVelY = 0;
-
     //load font
     TTF_Init();
     loadFont( "Test1.ttf" );
-=======
-    //load font
-    //loadFont( "Test1.ttf" );
->>>>>>> origin/CharlotteRose
+
 }
 
 Player::~Player()
@@ -64,12 +56,6 @@ void Player::setPosition( int xPosition, int yPosition )
     mBox.y = yPosition * TILE_FLOOR_HEIGHT;
 }
 
-//Get box
-SDL_Rect Player::getBox()
-{
-    return mBox;
-}
-
 ///Methods
 void Player::handleEvent( SDL_Event& e, bool& exitFlag )
 {
@@ -85,32 +71,14 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
         switch( e.key.keysym.sym )
         {
             case SDLK_ESCAPE: exitFlag = true; break;
-<<<<<<< HEAD
             case SDLK_UP: mBox.y -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
             case SDLK_DOWN: mBox.y += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
             case SDLK_LEFT: mBox.x -= TILE_WIDTH; oneMoreStep(); break;
             case SDLK_RIGHT: mBox.x += TILE_WIDTH; oneMoreStep(); break;
-=======
-            case SDLK_UP:
-                {
-                    mBox.y -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
-                }
-            case SDLK_DOWN:
-                {
-                    mBox.y += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
-                }
-            case SDLK_LEFT:
-                {
-                     mBox.x -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
-                }
-            case SDLK_RIGHT:
-                {
-                     mBox.x += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
-                }
->>>>>>> origin/CharlotteRose
         }
     }
 }
+
 /*
 void Player::move(Tile *tiles[])
 {
@@ -210,11 +178,7 @@ void Player::setCamera( SDL_Rect& camera )
 	camera.y = ( mBox.y + PLAYER_HEIGHT / 2 ) - SCREEN_HEIGHT / 2;
 
 	//Keep the camera in bounds
-<<<<<<< HEAD
-	/*if( camera.x < 0 - LEVEL_WIDTH)
-=======
 	/*if( camera.x < 0 - TILE_WIDTH)
->>>>>>> origin/CharlotteRose
 	{
 		camera.x = 0;
 	}
@@ -222,7 +186,6 @@ void Player::setCamera( SDL_Rect& camera )
 	{
 		camera.y = 0;
 	}
-<<<<<<< HEAD
 	if( camera.x > LEVEL_WIDTH )
 	{
 		camera.x = LEVEL_WIDTH;
@@ -230,15 +193,6 @@ void Player::setCamera( SDL_Rect& camera )
 	if( camera.y > LEVEL_HEIGHT )
 	{
 		camera.y = LEVEL_HEIGHT;
-=======
-	if( camera.x > TILE_WIDTH )
-	{
-		camera.x = TILE_WIDTH;
-	}
-	if( camera.y > TILE_HEIGHT )
-	{
-		camera.y = TILE_HEIGHT;
->>>>>>> origin/CharlotteRose
 	}*/
 }
 
@@ -250,7 +204,7 @@ void Player::render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlaye
         gPlayerTexture.render( mBox.x- camera.x, mBox.y - camera.y, gRenderer );
 }
 
-/*int Player::checkCollision( SDL_Rect a, SDL_Rect b )
+int Player::checkCollision( SDL_Rect a, SDL_Rect b )
 {
     //The sides of the rectangles
     int leftA, leftB;
@@ -295,12 +249,12 @@ void Player::render( SDL_Rect& camera, SDL_Renderer* gRenderer, LTexture& gPlaye
     return 4;
 }
 
-bool Player::touchesWall( SDL_Rect mBox, Tile* tiles[] )
+bool Player::touchesWall( SDL_Rect mBox, std::vector<Tile*> tiles )
 {
     //Go through the tiles
 
 
-    for( int i = 0; i < TOTAL_TILES; ++i )
+    for( int i = 0; i < tiles.size(); ++i )
     {
         //If the tile is a wall type tile
         if( ( tiles[ i ]->getType() >= WALL ) )
@@ -315,14 +269,8 @@ bool Player::touchesWall( SDL_Rect mBox, Tile* tiles[] )
 
     //If no wall tiles were touched
     return false;
-<<<<<<< HEAD
-}*/
-
-=======
 }
-*/
-/*
->>>>>>> origin/CharlotteRose
+
 void Player::displaySteps( SDL_Renderer* gRenderer )
 {
     LTexture stepTexture;
@@ -335,10 +283,6 @@ void Player::displaySteps( SDL_Renderer* gRenderer )
     stepTexture.render( 25, 445, gRenderer );
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/CharlotteRose
 bool Player::loadFont( std::string fileName )
 {
     bool success = true;
@@ -347,11 +291,7 @@ bool Player::loadFont( std::string fileName )
 
     if( font == NULL )
     {
-<<<<<<< HEAD
         //std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
-=======
-        std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
->>>>>>> origin/CharlotteRose
         success = false;
     }
 
@@ -362,7 +302,3 @@ bool Player::loadFont( std::string fileName )
 
     return success;
 }
-<<<<<<< HEAD
-=======
-*/
->>>>>>> origin/CharlotteRose

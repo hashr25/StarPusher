@@ -1,12 +1,13 @@
 #ifndef PLAYER_H
 #define PLAYER_H
+
 #include "Tile.h"
-#include "GameController.h"
 #include "EnumTypes.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <sstream>
+#include <vector>
 
 class Player
 {
@@ -24,8 +25,6 @@ public:
     void oneMoreStep();
     //Set Position
     void setPosition( int xPosition, int yPosition );
-    //Get box
-    SDL_Rect getBox();
 
     ///Methods
     //Takes key presses and adjusts the Player's velocity
@@ -47,17 +46,10 @@ public:
     void setY(int newY);
 
     //Checks collision
-  /*  int checkCollision( SDL_Rect a, SDL_Rect b );
+    int checkCollision( SDL_Rect a, SDL_Rect b );
 
     //Touches
-    bool touchesWall( SDL_Rect box, Tile* tiles[] );*/
-/*
-    //Display Steps
-    void displaySteps( SDL_Renderer* gRenderer );
-
-    //Load font file
-    bool loadFont( std::string fileName );
-*/
+    bool touchesWall( SDL_Rect box, std::vector<Tile*> tiles );
 
     //Display Steps
     void displaySteps( SDL_Renderer* gRenderer );

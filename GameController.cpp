@@ -3,11 +3,7 @@
 
 GameController::GameController()
 {
-<<<<<<< HEAD
     loadLevels();
-=======
-//    loadLevels();
->>>>>>> origin/CharlotteRose
     currentLevel = 0;
     camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
     cameraVelX = 0;
@@ -86,11 +82,8 @@ bool GameController::loadMedia( SDL_Renderer* gRenderer )
 	//Load Player texture
 	if( !gPlayerTexture.loadFromFile( "Images/boy.png", gRenderer ) )
 	{
-<<<<<<< HEAD
 		//std::cout << "Failed to load dot texture!\n" << std::endl;
-=======
-		printf( "Failed to load Player texture!\n" );
->>>>>>> origin/CharlotteRose
+
 		success = false;
 	}
 
@@ -194,7 +187,7 @@ bool GameController::loadMedia( SDL_Renderer* gRenderer )
 
 	return success;
 }
-/*
+
 bool GameController::loadFont( std::string fileName )
 {
     bool success = true;
@@ -212,29 +205,6 @@ bool GameController::loadFont( std::string fileName )
         fontColor = { 255, 255, 255 };
     }
 
-<<<<<<< HEAD
-bool GameController::loadFont( std::string fileName )
-=======
-    return success;
-}
-*/
-void GameController::close( Tile* tiles[] )
->>>>>>> origin/CharlotteRose
-{
-    bool success = true;
-
-    font = TTF_OpenFont( fileName.c_str(), 20 );
-
-    if( font == NULL )
-    {
-        //std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
-        success = false;
-    }
-
-    else
-    {
-        fontColor = { 255, 255, 255 };
-    }
 
     return success;
 }
@@ -256,16 +226,16 @@ void GameController::close()
 	SDL_Quit();
 }
 
-bool GameController::touchesWall( SDL_Rect mBox, Tile* tiles[] )
+bool GameController::touchesWall( SDL_Rect mBox )
 {
     //Go through the tiles
-    for( int i = 0; i < TOTAL_TILES; ++i )
+    for( int i = 0; i < gameLevels[currentLevel].getTiles().size(); ++i )
     {
         //If the tile is a wall type tile
-        if( ( tiles[ i ]->getType() >= WALL ) )
+        if( ( gameLevels[currentLevel].getTiles()[ i ]->getType() >= WALL ) )
         {
             //If the collision box touches the wall tile
-            if( checkCollision( mBox, tiles[ i ]->getBox() ) )
+            if( checkCollision( mBox, gameLevels[currentLevel].getTiles()[ i ]->getBox() ) )
             {
                 return true;
             }
@@ -355,26 +325,16 @@ bool GameController::setTiles( Tile* tiles[] )
 			if( map.fail() )
 			{
 				//Stop loading map
-<<<<<<< HEAD
-				//std::cout <<  "Error loading map: Unexpected end of file!" << std::endl;
-=======
 				std::cout <<  "Error loading map: Unexpected end of file!" << std::endl;
->>>>>>> origin/CharlotteRose
 				tilesLoaded = false;
 				break;
 			}
-
-/// //////////////////////////////////////////////////////////////////////////////////////
-/// Works here
 
 			//If the number is a valid tile number
 			if( ( tileType >= 0 ) && ( tileType < TOTAL_TYPES ) )
 			{
 				tiles[ i ] = new Tile( x, y, tileType );
 			}
-
-/// Works here
-/// ///////////////////////////////////////////////////////////////////////////////////////
 
 			//If we don't recognize the tile type
 			else
@@ -518,19 +478,11 @@ void GameController::runGame( )
 			//Event handler
 			SDL_Event e;
 
-<<<<<<< HEAD
-			//Level camera
-			player.setCamera( camera );
-=======
-			//The Player that will be moving around on the screen
-			Player player;
-
 			//Level camera
 			player.setCamera( camera );
 
             //where the player was before
             SDL_Rect newPos;
->>>>>>> origin/CharlotteRose
 
 			//While application is running
 			while( !quit )
@@ -544,7 +496,7 @@ void GameController::runGame( )
 						quit = true;
 					}
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 					//Handle input for the dot
 					player.handleEvent( e, quit );
 					moveCamera( e );
@@ -555,7 +507,7 @@ void GameController::runGame( )
 
 				//Move the camera
 				//player.setCamera( camera );
-=======
+=======*/
                     //If a key was pressed
                     if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
                     {
@@ -573,7 +525,7 @@ void GameController::runGame( )
                                     newPos.h = currentPos.h;
                                     newPos.w = currentPos.w;
 
-                                    if(touchesWall(newPos,tileSet))
+                                    if( touchesWall(newPos) )
                                     {
                                       std::cout<<"Wall\n";
                                     }
@@ -593,7 +545,7 @@ void GameController::runGame( )
                                     newPos.h = currentPos.h;
                                     newPos.w = currentPos.w;
 
-                                    if(touchesWall(newPos,tileSet))
+                                    if( touchesWall( newPos ) )
                                     {
                                       std::cout<<"Wall\n";
                                     }
@@ -613,7 +565,7 @@ void GameController::runGame( )
                                     newPos.h = currentPos.h;
                                     newPos.w = currentPos.w;
 
-                                    if(touchesWall(newPos,tileSet))
+                                    if( touchesWall( newPos ) )
                                     {
                                       std::cout<<"Wall\n";
                                     }
@@ -633,7 +585,7 @@ void GameController::runGame( )
                                     newPos.h = currentPos.h;
                                     newPos.w = currentPos.w;
 
-                                    if(touchesWall(newPos,tileSet))
+                                    if( touchesWall( newPos ) )
                                     {
                                       std::cout<<"Wall\n";
                                     }
@@ -651,7 +603,6 @@ void GameController::runGame( )
 
 				//Move the camera
 				player.setCamera( camera );
->>>>>>> origin/CharlotteRose
 
 				//Clear screen
 				SDL_SetRenderDrawColor( gRenderer, 0x66, 0xAA, 0xFF, 0xFF );
@@ -662,13 +613,9 @@ void GameController::runGame( )
 
 				//Render player
 				player.render( camera, gRenderer, gPlayerTexture );
-<<<<<<< HEAD
+
 				player.displaySteps( gRenderer );
 				displayLevelNumber();
-=======
-				//player.displaySteps( gRenderer );
-				//displayLevelNumber();
->>>>>>> origin/CharlotteRose
 
 				//Update screen
 				SDL_RenderPresent( gRenderer );
@@ -679,15 +626,8 @@ void GameController::runGame( )
 		close();
 	}
 }
-<<<<<<< HEAD
 
 //Load game levels
-=======
-/*
-//Load game levels
-/// //////////////////////////////////////////////////////////////////////////////////////
-/// WHERE THE PART OF CODE THAT CRASHES IS
->>>>>>> origin/CharlotteRose
 void GameController::loadLevels()
 {
     std::ifstream inputFile;
@@ -696,8 +636,6 @@ void GameController::loadLevels()
     int lineCounter = 0;
     std::string line = "";
 
-    std::vector<std::string> levelLines;
-<<<<<<< HEAD
     std::vector<Tile*> levelTiles;
 
     Level singleLevel;
@@ -705,11 +643,7 @@ void GameController::loadLevels()
 
     int levelCounter = 0;
     bool levelDone = false;
-=======
     Level eachLevel;
-
-    int levelCounter = 0;
->>>>>>> origin/CharlotteRose
 
     int x = 0;
     int y = 0;
@@ -719,21 +653,16 @@ void GameController::loadLevels()
     {
         if( line.size() > 2 )
         {
-            if( line.at(0) == 'j' )
-            {
-<<<<<<< HEAD
-                //std::cout << line << std::endl;
-=======
-                std::cout << line << std::endl;
->>>>>>> origin/CharlotteRose
 
-                //lineSS << line;
-            }
+        }
+
+        if( line.at(0) == 'j' )
+        {
+
         }
 
 
         ///Finishing Level
-<<<<<<< HEAD
         if( lineCounter > 0 && levelDone )
         {//std::cout << "finishing level" << std::endl;
             ///Finishing level
@@ -741,22 +670,12 @@ void GameController::loadLevels()
 
             gameLevels[levelCounter] = singleLevel;//std::cout << "Pushed level to vector" << std::endl;
             singleLevel.clear();//std::cout << "cleared singleLevel" << std::endl;
-=======
-        if( lineCounter > 0 && line.size() < 2 )
-        {
-            ///Finishing level
-            gameLevels.push_back( eachLevel );
-            eachLevel.clear();
->>>>>>> origin/CharlotteRose
             lineCounter = 0;
             x = 0;
             y = 0;
             tileCounter = 0;
 
-<<<<<<< HEAD
             levelDone = false;
-=======
->>>>>>> origin/CharlotteRose
             levelCounter++;
         }
 
@@ -775,26 +694,15 @@ void GameController::loadLevels()
         ///The actual map lines
         else
         {
-<<<<<<< HEAD
             ///Create stringstream to convert lines to integers
             std::stringstream lineSS( line );
 
-
             ///First line which holds map sizes
-=======
-            std::stringstream lineSS( line );
-            /// ////////////////////////////////////////////////
-            /// BUGGED SECTION
-
-            ///First line which holds map sizes
-
->>>>>>> origin/CharlotteRose
             if( lineCounter == 0 )
             {
                 int mapWidth;
                 int mapHeight;
                 lineSS >> mapWidth;
-<<<<<<< HEAD
                 lineSS >> mapHeight;//std::cout << "MapWidth: " << mapWidth << "\nMapHeight: " << mapHeight << std::endl;
 
                 //std::cout << "setting map #" << levelCounter <<  " mapHeight to " << mapHeight << std::endl;
@@ -817,7 +725,7 @@ void GameController::loadLevels()
                     int tileType;
                     tileTypeSS >> tileType;
 
-                    //assert( tileType > TOTAL_TYPES );
+                    assert( tileType > TOTAL_TYPES );
 
                     if( tileType >= 0 && tileType < TOTAL_TYPES )
                     {
@@ -825,50 +733,9 @@ void GameController::loadLevels()
                         levelTiles.push_back( singleTile );
                         //std::cout << "pushed a tile at " << singleTile -> getBox().x << ", " << singleTile -> getBox().y << " of type " << singleTile -> getType() << std::endl;
                     }
-
-=======
-                lineSS >> mapWidth;
-                eachLevel.setLevelWidthInTiles( mapWidth );
-                eachLevel.setLevelWidthInPixels( mapWidth * TILE_WIDTH );
-                eachLevel.setLevelHeightInTiles( mapHeight );
-                eachLevel.setLevelHeightInPixels( mapHeight * TILE_FLOOR_HEIGHT );
-            }
-
-            /// BUGGED SECTION
-
-            /// //////////////////////////////////////////////////////////////////////
-
-
-            ///Middle lines of key, contains the map key itself
-            if( lineCounter >= 1 && lineCounter <= eachLevel.getLevelHeightInTiles()+1 )
-            {
-                for( int i = 0; i < line.size(); i++ )
-                {
-                    ///Used for Testing
-                    //std::cout << levelCounter << " - " << x << " x " << y << std::endl;
-                    //std::cout << "TileCounter: " << tileCounter << std::endl;
-
-                    int tileType;
-                    lineSS >> tileType;
-
-/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// BUGGED SECTION CAUSING CRASH
-
-                    if( tileType >= 0 && tileType < TOTAL_TEXTURES )
-                    {
-                        ///eachLevel.tiles[ tileCounter ] = new Tile( x, y, tileType );
-                    }
-
-/// BUGGED SECTION CAUSING CRASH
-/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
->>>>>>> origin/CharlotteRose
-                    tileCounter++;
-                    x += TILE_WIDTH;
                 }
             }
 
-<<<<<<< HEAD
             ///First line after map key, hold coordinates for player
             else if( lineCounter == 2 + singleLevel.getLevelHeightInTiles() )
             {
@@ -911,51 +778,15 @@ void GameController::loadLevels()
             }
 
             ///This only returns the carriage for tile display coordinates
-            if( x >= singleLevel.getLevelWidthInPixels() )
-=======
-
-            ///First line after map key, holds number of stars
-            if( lineCounter == (2 + eachLevel.getLevelHeightInTiles() ) )
-            {
-                int numberOfStars;
-                lineSS >> numberOfStars;
-                eachLevel.setNumberOfStars( numberOfStars );
-            }
-
-            ///Coordinates for stars
-            if( lineCounter == ( 3 + eachLevel.getLevelHeightInTiles() ) )
-            {
-                for( int i = 0; i < eachLevel.getNumberOfStars(); i++ )
-                {
-                    int starX, starY;
-                    lineSS >> starX >> starY;
-                    Star thisStar( starX, starY );
-                    eachLevel.addStar( thisStar );
-                }
-            }
-
-            ///This only returns the carriage for tile display coordinates
             if( x >= eachLevel.getLevelWidthInPixels() )
->>>>>>> origin/CharlotteRose
             {
                 x = 0;
                 y += TILE_FLOOR_HEIGHT;
             }
 
-<<<<<<< HEAD
-            //levelLines.push_back( line );
-=======
-            levelLines.push_back( line );
->>>>>>> origin/CharlotteRose
             lineCounter++;
         }
     }
-}
-<<<<<<< HEAD
-
-Level* GameController::getLevels()
-{
-    return gameLevels;
 }
 
 void GameController::changeLevels( SDL_Event& e )
@@ -971,25 +802,18 @@ void GameController::changeLevels( SDL_Event& e )
     }
 }
 
-=======
-/// WHERE THE PART OF CODE THAT CRASHES IS
-/// //////////////////////////////////////////////////////////////////////////////////////
-
-std::vector<Level> GameController::getLevels()
+Level* GameController::getLevels()
 {
     return gameLevels;
 }
-*/
->>>>>>> origin/CharlotteRose
+
 void GameController::displayLevelNumber()
 {
     LTexture levelTexture;
     std::stringstream levelSS;
-<<<<<<< HEAD
-    levelSS << "Level " << currentLevel << " of " << TOTAL_LEVELS;
-=======
-    levelSS << "Level " << currentLevel << " of " << gameLevels.size();
->>>>>>> origin/CharlotteRose
+
+    levelSS << "Level " << currentLevel+1 << " of " << TOTAL_LEVELS;
+
     std::string levelOutput = levelSS.str();
 
     levelTexture.loadFromRenderedText( levelOutput, fontColor, font, gRenderer );
@@ -1024,41 +848,28 @@ void GameController::moveCamera( SDL_Event& e )
         }
     }
 
-<<<<<<< HEAD
-    //Move the dot left or right
-    camera.x += cameraVelX;
 
-    //If the dot went too far to the left or right or touched a wall
-=======
     //Move the Player left or right
     camera.x += cameraVelX;
 
     //If the Player went too far to the left or right or touched a wall
->>>>>>> origin/CharlotteRose
     /*if( ( camera.x < 0 ) || ( camera.x > LEVEL_WIDTH ) )
     {
         //move back
         camera.x -= cameraVelX;
     }*/
 
-<<<<<<< HEAD
-    //Move the dot up or down
-    camera.y += cameraVelY;
 
-    //If the dot went too far up or down or touched a wall
-=======
     //Move the Player up or down
     camera.y += cameraVelY;
 
     //If the Player went too far up or down or touched a wall
->>>>>>> origin/CharlotteRose
     /*if( ( camera.y < 0 ) || ( camera.y > LEVEL_HEIGHT ) )
     {
         //move back
         camera.y -= cameraVelY;
     }*/
 }
-<<<<<<< HEAD
 
 //Level Methods
 void GameController::renderLevel()
@@ -1113,5 +924,3 @@ void GameController::centerCamera()
     camera.x = ( player.getBox().x + PLAYER_WIDTH / 2 ) - SCREEN_WIDTH / 2;
 	camera.y = ( player.getBox().y + PLAYER_HEIGHT / 2 ) - SCREEN_HEIGHT / 2;
 }
-=======
->>>>>>> origin/CharlotteRose
