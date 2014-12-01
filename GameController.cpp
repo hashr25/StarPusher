@@ -593,8 +593,6 @@ void GameController::runGame( )
                     }
                 }
 
-                moveCamera( e );
-
 				//Move the camera
 				//player.setCamera( camera );
 
@@ -868,6 +866,23 @@ void GameController::moveCamera( SDL_Event& e )
         //move back
         camera.y -= cameraVelY;
     }*/
+
+    if( camera.x  < 60 - gameLevels[currentLevel].getLevelWidthInPixels() )
+	{
+		camera.x = 60 - gameLevels[currentLevel].getLevelWidthInPixels();
+	}
+	if( camera.y < 100 - gameLevels[currentLevel].getLevelHeightInPixels() )
+	{
+		camera.y = 100 - gameLevels[currentLevel].getLevelHeightInPixels();
+	}
+	if( camera.x > gameLevels[currentLevel].getLevelWidthInPixels() - 245)
+	{
+		camera.x = gameLevels[currentLevel].getLevelWidthInPixels() - 245;
+	}
+	if( camera.y > gameLevels[currentLevel].getLevelHeightInPixels() - 180)
+	{
+		camera.y = gameLevels[currentLevel].getLevelHeightInPixels() - 180;
+	}
 }
 
 //Level Methods
