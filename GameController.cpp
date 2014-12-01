@@ -228,6 +228,8 @@ void GameController::close()
 
 bool GameController::touchesWall( SDL_Rect mBox )
 {
+    bool touchingWall = false;
+
     //Go through the tiles
     for( int i = 0; i < gameLevels[currentLevel].getTiles().size(); ++i )
     {
@@ -237,13 +239,13 @@ bool GameController::touchesWall( SDL_Rect mBox )
             //If the collision box touches the wall tile
             if( checkCollision( mBox, gameLevels[currentLevel].getTiles()[ i ]->getBox() ) )
             {
-                return true;
+                touchingWall = true;
             }
         }
     }
 
     //If no wall tiles were touched
-    return false;
+    return touchingWall;
 }
 
 bool GameController::checkCollision( SDL_Rect a, SDL_Rect b )
@@ -291,8 +293,6 @@ bool GameController::checkCollision( SDL_Rect a, SDL_Rect b )
     return true;
 }
 
-/// //////////////////////////////////////////////////////////////////////////////////////
-/// WHERE THE SAME THING ACTUALLY WORKS
 bool GameController::setTiles( Tile* tiles[] )
 {
 	//Success flag
@@ -448,8 +448,6 @@ bool GameController::setTiles( Tile* tiles[] )
     //If the map was loaded fine
     return tilesLoaded;
 }
-/// WHERE THE SAME THING ACTUALLY WORKS
-/// //////////////////////////////////////////////////////////////////////////////////////
 
 void GameController::runGame( )
 {
