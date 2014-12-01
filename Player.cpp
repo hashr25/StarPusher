@@ -57,8 +57,9 @@ void Player::setPosition( int xPosition, int yPosition )
 }
 
 ///Methods
-void Player::handleEvent( SDL_Event& e, bool& exitFlag )
+void Player::handleEvent( SDL_Event& e, bool& exitFlag, std::vector<Tile*> tiles )
 {
+    SDL_Rect newPos;
     if( e.type == SDL_QUIT )
     {
         exitFlag = true;
@@ -71,10 +72,90 @@ void Player::handleEvent( SDL_Event& e, bool& exitFlag )
         switch( e.key.keysym.sym )
         {
             case SDLK_ESCAPE: exitFlag = true; break;
-            case SDLK_UP: mBox.y -= TILE_FLOOR_HEIGHT; oneMoreStep(); break;
-            case SDLK_DOWN: mBox.y += TILE_FLOOR_HEIGHT; oneMoreStep(); break;
-            case SDLK_LEFT: mBox.x -= TILE_WIDTH; oneMoreStep(); break;
-            case SDLK_RIGHT: mBox.x += TILE_WIDTH; oneMoreStep(); break;
+            case SDLK_UP:
+            {
+                //std::cout <<"Up\n";
+
+                SDL_Rect currentPos = mBox;
+                newPos.x = currentPos.x;
+                newPos.y = currentPos.y -= TILE_FLOOR_HEIGHT;
+                newPos.h = currentPos.h;
+                newPos.w = currentPos.w;
+
+                if( touchesWall( newPos, tiles ) )
+                {
+                  //std::cout<<"Wall\n";
+                }
+                else
+                {
+                    setX(newPos.x);
+                    setY(newPos.y);
+                }
+                break;
+            }
+            case SDLK_DOWN:
+            {
+                //std::cout <<"Down\n";
+
+                SDL_Rect currentPos = getBox();
+                newPos.x = currentPos.x;
+                newPos.y = currentPos.y += TILE_FLOOR_HEIGHT;
+                newPos.h = currentPos.h;
+                newPos.w = currentPos.w;
+
+                if( touchesWall( newPos, tiles ) )
+                {
+                  //std::cout<<"Wall\n";
+                }
+                else
+                {
+                    setX(newPos.x);
+                    setY(newPos.y);
+                }
+                break;
+            }
+            case SDLK_LEFT:
+            {
+                std::cout <<"Left\n";
+
+                SDL_Rect currentPos = getBox();
+                newPos.x = currentPos.x -= TILE_FLOOR_HEIGHT;
+                newPos.y = currentPos.y;
+                newPos.h = currentPos.h;
+                newPos.w = currentPos.w;
+
+                if( touchesWall( newPos, tiles ) )
+                {
+                  std::cout<<"Wall\n";
+                }
+                else
+                {
+                    setX(newPos.x);
+                    setY(newPos.y);
+                }
+                break;
+            }
+            case SDLK_RIGHT:
+            {
+                std::cout <<"Right\n";
+
+                SDL_Rect currentPos = getBox();
+                newPos.x = currentPos.x += TILE_FLOOR_HEIGHT;
+                newPos.y = currentPos.y;
+                newPos.h = currentPos.h;
+                newPos.w = currentPos.w;
+
+                if( touchesWall( newPos, tiles ) )
+                {
+                  std::cout<<"Wall\n";
+                }
+                else
+                {
+                    setX(newPos.x);
+                    setY(newPos.y);
+                }
+                break;
+            }
         }
     }
 }

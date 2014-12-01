@@ -28,7 +28,7 @@ public:
 
     ///Methods
     //Takes key presses and adjusts the Player's velocity
-    void handleEvent( SDL_Event& e, bool& exitFlag );
+    void handleEvent( SDL_Event& e, bool& exitFlag, std::vector<Tile*> tiles );
 
     //Moves the Player and check collision against tiles
     //void move( Tile *tiles[], bool(*f)(SDL_Rect a, SDL_Rect b ) );
