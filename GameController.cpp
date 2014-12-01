@@ -226,26 +226,63 @@ void GameController::close()
 	SDL_Quit();
 }
 
-bool GameController::touchesWall( SDL_Rect mBox )
+bool GameController::touchesWall( SDL_Rect mBox, int x, int y )
 {
     //Go through the tiles
-    for( int i = 0; i < gameLevels[currentLevel].getTiles().size(); ++i )
+//    for( int i = 0; i < gameLevels[currentLevel].getTiles().size(); ++i )
+//    {
+//        //If the tile is a wall type tile
+//        if( ( gameLevels[currentLevel].getTiles()[ i ]->getType() >= WALL ) )
+//        {
+//            //If the collision box touches the wall tile
+//            if( checkCollision( mBox, gameLevels[currentLevel].getTiles()[ i ]->getBox() ) )
+//            {
+//                return true;
+//            }
+//        }
+//    }
+
+    if ( ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*y) + x]->getType() == WALL ) || (gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*y) + x]->getType() == CORNER ) )
     {
-        //If the tile is a wall type tile
-        if( ( gameLevels[currentLevel].getTiles()[ i ]->getType() >= WALL ) )
-        {
-            //If the collision box touches the wall tile
-            if( checkCollision( mBox, gameLevels[currentLevel].getTiles()[ i ]->getBox() ) )
-            {
-                return true;
-            }
-        }
+        return true;
     }
 
     //If no wall tiles were touched
     return false;
 }
 
+int GameController::touchesStar(int x, int y)
+{
+    for ( int i = 0 ; i < gameStars.size() ; i++ )
+    {
+        if ( (gameStars.at(i).getX() == x ) && ( gameStars.at(i).getY() == y ) )
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+bool GameController::starTouchesWall(int x, int y)
+{
+    if ( ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*y) + x]->getType() == WALL ) || (gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*y) + x]->getType() == CORNER ) )
+    {
+        return true;
+    }
+    return false;
+}
+
+bool GameController::starTouchesStar(int x, int y)
+{
+    for ( int i = 0 ; i < gameStars.size() ; i++ )
+    {
+        if ( (gameStars.at(i).getX() == x ) && ( gameStars.at(i).getY() == y ) )
+        {
+            return true;
+        }
+    }
+    return false;
+}
 bool GameController::checkCollision( SDL_Rect a, SDL_Rect b )
 {
     //The sides of the rectangles
@@ -502,6 +539,8 @@ void GameController::runGame( )
 
                     SDL_RenderPresent( gRenderer );
 
+                    int star = -1;
+
 				//Move the camera
 				//player.setCamera( camera );
                     //If a key was pressed
@@ -521,14 +560,37 @@ void GameController::runGame( )
                                 newPos.h = currentPos.h;
                                 newPos.w = currentPos.w;
 
-                                if( touchesWall(newPos) )
+                                if( touchesWall(newPos, newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) )
                                 {
                                   //std::cout<<"Wall\n";
                                 }
                                 else{
+
                                     player.setX(newPos.x);
                                     player.setY(newPos.y);
+
+                                    if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) > 0 )
+                                    {
+                                        if ( starTouchesWall( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) -1 ) )
+                                        {
+
+                                        }
+                                        else if ( starTouchesStar( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) -1 ) )
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            gameStars.at(star).setNewPos(newPos.x/TILE_WIDTH, (newPos.y/TILE_FLOOR_HEIGHT) -1 );
+                                            player.setX(newPos.x);
+                                            player.setY(newPos.y);
+                                        }
+
+                                        star = -1;
+                                    }
+
                                 }
+
                                 break;
                             }
                             case SDLK_DOWN:
@@ -541,13 +603,31 @@ void GameController::runGame( )
                                 newPos.h = currentPos.h;
                                 newPos.w = currentPos.w;
 
-                                if( touchesWall( newPos ) )
+                                if( touchesWall( newPos, newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT ) )
                                 {
                                   //std::cout<<"Wall\n";
                                 }
                                 else{
                                     player.setX(newPos.x);
                                     player.setY(newPos.y);
+
+                                    if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) > 0 )
+                                    {
+                                        if ( starTouchesWall( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) + 1 ) )
+                                        {
+
+                                        }
+                                        else if ( starTouchesStar( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) + 1 ) )
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            gameStars.at(star).setNewPos(newPos.x/TILE_WIDTH, (newPos.y/TILE_FLOOR_HEIGHT) + 1 );
+                                        }
+
+                                        star = -1;
+                                    }
                                 }
                                 break;
                             }
@@ -561,13 +641,31 @@ void GameController::runGame( )
                                 newPos.h = currentPos.h;
                                 newPos.w = currentPos.w;
 
-                                if( touchesWall( newPos ) )
+                                if( touchesWall( newPos, newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT ) )
                                 {
                                   //std::cout<<"Wall\n";
                                 }
                                 else{
                                     player.setX(newPos.x);
                                     player.setY(newPos.y);
+
+                                    if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) > 0 )
+                                    {
+                                        if ( starTouchesWall( (newPos.x/TILE_WIDTH) - 1, (newPos.y/TILE_FLOOR_HEIGHT) ) )
+                                        {
+
+                                        }
+                                        else if ( starTouchesStar( (newPos.x/TILE_WIDTH) - 1, (newPos.y/TILE_FLOOR_HEIGHT) ) )
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            gameStars.at(star).setNewPos( (newPos.x/TILE_WIDTH) - 1, (newPos.y/TILE_FLOOR_HEIGHT) );
+                                        }
+
+                                        star = -1;
+                                    }
                                 }
                                 break;
                             }
@@ -581,14 +679,34 @@ void GameController::runGame( )
                                 newPos.h = currentPos.h;
                                 newPos.w = currentPos.w;
 
-                                if( touchesWall( newPos ) )
+                                if( touchesWall( newPos, newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT ) )
                                 {
                                   //std::cout<<"Wall\n";
                                 }
                                 else{
+
                                     player.setX(newPos.x);
                                     player.setY(newPos.y);
+
+                                    if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) > 0 )
+                                    {
+                                        if ( starTouchesWall( (newPos.x/TILE_WIDTH) + 1 , (newPos.y/TILE_FLOOR_HEIGHT) ) )
+                                        {
+
+                                        }
+                                        else if ( starTouchesStar( (newPos.x/TILE_WIDTH) + 1, (newPos.y/TILE_FLOOR_HEIGHT) ) )
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            gameStars.at(star).setNewPos( (newPos.x/TILE_WIDTH) + 1, (newPos.y/TILE_FLOOR_HEIGHT) );
+                                        }
+
+                                        star = -1;
+                                    }
                                 }
+
                                 break;
                             }
                         }

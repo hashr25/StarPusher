@@ -21,6 +21,16 @@ bool Star::getIsAtGoal() const
     return isAtGoal;
 }
 
+int Star::getX() const
+{
+    return x;
+}
+
+int Star::getY() const
+{
+    return y;
+}
+
 //Setters
 void Star::setIsAtGoal(bool isAtGoal)
 {
@@ -33,6 +43,12 @@ bool Star::isBlocked( Direction directionToCheckS )
 
 
     return isBlocked;
+}
+
+void Star::setNewPos( int x, int y )
+{
+    this->x = x;
+    this->y = y;
 }
 
 void Star::push( Direction directionToPush )
@@ -119,3 +135,11 @@ void Star::render( SDL_Rect& camera, SDL_Renderer* gRenderer, SDL_Rect gTileClip
         gTileTexture.render( starBox.x - camera.x, starBox.y - camera.y, &gTileClips[ STAR ], gRenderer );
     }
 }
+
+//bool Star::touchesWall(Level gameLevels[TOTAL_LEVELS], int currentLevel, int x, int y)
+//{
+//    if ( ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*y) + x]->getType() == WALL ) || (gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*y) + x]->getType() == CORNER ) )
+//    {
+//        return true;
+//    }
+//}

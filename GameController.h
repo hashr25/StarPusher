@@ -36,7 +36,11 @@ public:
     bool checkCollision( SDL_Rect a, SDL_Rect b );
 
     //Checks collision box against set of tiles
-    bool touchesWall( SDL_Rect box );
+    bool touchesWall( SDL_Rect box, int x, int y );
+    bool starTouchesWall(int x, int y);
+    bool starTouchesStar(int x, int y);
+    int touchesStar( int x, int y );
+
 
     //Sets tiles from tile map
     bool setTiles( Tile *tiles[] );
