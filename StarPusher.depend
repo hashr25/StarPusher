@@ -1257,11 +1257,11 @@
 
 1417150869 source:c:\users\cheech wife\documents\github\starpusher\tile.cpp
 
-1417555286 source:c:\users\chris\documents\github\starpusher\gamecontroller.cpp
+1417556485 source:c:\users\chris\documents\github\starpusher\gamecontroller.cpp
 	"GameController.h"
 	"Player.h"
 
-1417555312 c:\users\chris\documents\github\starpusher\gamecontroller.h
+1417556133 c:\users\chris\documents\github\starpusher\gamecontroller.h
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>

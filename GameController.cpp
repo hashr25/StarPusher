@@ -725,6 +725,7 @@ void GameController::runGame( )
 
                                 break;
                             }
+
                         }
                     }
 
@@ -735,7 +736,10 @@ void GameController::runGame( )
 				//player.setCamera( camera );
 
 
-
+                if ( levelCompleted() )
+                {
+                    std::cout << "Conmplete" << std::endl;
+                }
 
 				//Clear screen
 				SDL_SetRenderDrawColor( gRenderer, 0x66, 0xAA, 0xFF, 0xFF );
@@ -1037,6 +1041,11 @@ void GameController::renderLevel()
     }
     for( int i = 0; i < gameStars.size(); i++ )
     {
+        if ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(i).getY()) + gameStars.at(i).getX()]->getType() == OFF_GOAL )
+        {
+            gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(i).getY()) + gameStars.at(i).getX()]->setType(ON_GOAL);
+        }
+
         gameStars.at(i).render( camera, gRenderer, gTileClips, gTileTexture );
     }
 }
@@ -1080,4 +1089,16 @@ void GameController::centerCamera()
 {
     camera.x = ( player.getBox().x + PLAYER_WIDTH / 2 ) - SCREEN_WIDTH / 2;
 	camera.y = ( player.getBox().y + PLAYER_HEIGHT / 2 ) - SCREEN_HEIGHT / 2;
+}
+
+bool GameController::levelCompleted()
+{
+    for ( int i = 0 ; i < gameStars.size() ; i++ )
+    {
+        if ( ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(i).getY()) + gameStars.at(i).getX()]->getType() != ON_GOAL ) )
+        {
+            return false;
+        }
+    }
+    return true;
 }
