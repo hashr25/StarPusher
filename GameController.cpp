@@ -549,6 +549,11 @@ void GameController::runGame( )
                         switch( e.key.keysym.sym )
                         {
                             case SDLK_ESCAPE: quit = true; break;
+                            case SDLK_a:
+                                {
+                                    currentLevel++;
+                                    break;
+                                }
                             case SDLK_UP:
                             {
                                 //std::cout <<"Up\n";
@@ -565,7 +570,7 @@ void GameController::runGame( )
                                 }
                                 else{
 
-                                    if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) > 0 )
+                                    if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) >= 0 )
                                     {
                                         if ( starTouchesWall( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) -1 ) )
                                         {
@@ -609,7 +614,7 @@ void GameController::runGame( )
                                 }
                                 else{
 
-                                     if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) > 0 )
+                                     if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) >= 0 )
                                     {
                                         if ( starTouchesWall( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) + 1 ) )
                                         {
@@ -651,7 +656,7 @@ void GameController::runGame( )
                                 }
                                 else{
 
-                                     if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) > 0 )
+                                     if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) >= 0 )
                                     {
                                         if ( starTouchesWall( (newPos.x/TILE_WIDTH) - 1 , (newPos.y/TILE_FLOOR_HEIGHT) ) )
                                         {
@@ -693,7 +698,7 @@ void GameController::runGame( )
                                 }
                                 else{
 
-                                    if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) > 0 )
+                                    if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) >= 0 )
                                     {
                                         if ( starTouchesWall( (newPos.x/TILE_WIDTH) + 1, (newPos.y/TILE_FLOOR_HEIGHT) ) )
                                         {
@@ -722,10 +727,15 @@ void GameController::runGame( )
                             }
                         }
                     }
+
+
                 }
 
 				//Move the camera
 				//player.setCamera( camera );
+
+
+
 
 				//Clear screen
 				SDL_SetRenderDrawColor( gRenderer, 0x66, 0xAA, 0xFF, 0xFF );
@@ -736,6 +746,8 @@ void GameController::runGame( )
 
 				//Render player
 				player.render( camera, gRenderer, gPlayerTexture );
+
+                //renderWalls();
 
 				player.displaySteps( gRenderer );
 				displayLevelNumber();
