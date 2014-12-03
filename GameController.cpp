@@ -12,90 +12,90 @@ GameController::GameController()
 
 bool GameController::init()
 {
-    //Initialization flag
-    bool success = true;
+	//Initialization flag
+	bool success = true;
 
-    //Initialize SDL
-    if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
-    {
-        printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
-        success = false;
-    }
-    else
-    {
-        //Set texture filtering to linear
-        if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
-        {
-            printf( "Warning: Linear texture filtering not enabled!" );
-        }
+	//Initialize SDL
+	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+	{
+		printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
+		success = false;
+	}
+	else
+	{
+		//Set texture filtering to linear
+		if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
+		{
+			printf( "Warning: Linear texture filtering not enabled!" );
+		}
 
-        //Create window
-        gWindow = SDL_CreateWindow( "Star Pusher", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-        if( gWindow == NULL )
-        {
-            printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
-            success = false;
-        }
-        else
-        {
-            //Create renderer for window
-            gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
-            if( gRenderer == NULL )
-            {
-                printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
-                success = false;
-            }
-            else
-            {
-                //Initialize renderer color
-                SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+		//Create window
+		gWindow = SDL_CreateWindow( "Star Pusher", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+		if( gWindow == NULL )
+		{
+			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
+			success = false;
+		}
+		else
+		{
+			//Create renderer for window
+			gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
+			if( gRenderer == NULL )
+			{
+				printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+				success = false;
+			}
+			else
+			{
+				//Initialize renderer color
+				SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
 
-                //Initialize PNG loading
-                int imgFlags = IMG_INIT_PNG;
-                if( !( IMG_Init( imgFlags ) & imgFlags ) )
+				//Initialize PNG loading
+				int imgFlags = IMG_INIT_PNG;
+				if( !( IMG_Init( imgFlags ) & imgFlags ) )
+				{
+					printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
+					success = false;
+				}
+
+				else
                 {
-                    printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
-                    success = false;
-                }
-
-                else
-                {
-                    //Initialize SDL_ttf
+                     //Initialize SDL_ttf
                     if( TTF_Init() == -1 )
                     {
                         printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
                         success = false;
                     }
                 }
-            }
-        }
-    }
+			}
+		}
+	}
 
-    return success;
+	return success;
 }
 
 bool GameController::loadMedia( SDL_Renderer* gRenderer )
 {
-    //Loading success flag
-    bool success = true;
+	//Loading success flag
+	bool success = true;
 
-    //Load Player texture
-    if( !gPlayerTexture.loadFromFile( "Images/boy.png", gRenderer ) )
-    {
-        //std::cout << "Failed to load dot texture!\n" << std::endl;
+	//Load Player texture
+	if( !gPlayerTexture.loadFromFile( "Images/boy.png", gRenderer ) )
+	{
+		//std::cout << "Failed to load dot texture!\n" << std::endl;
 
-        success = false;
-    }
+		success = false;
+	}
 
-    //Load tile texture
-    if( !gTileTexture.loadFromFile( "Images/StarTiles.png", gRenderer ) )
-    {
-        //std::cout << "Failed to load tile set texture!\n" << std::endl;
-        success = false;
-    }
+	//Load tile texture
+	if( !gTileTexture.loadFromFile( "Images/StarTiles.png", gRenderer ) )
+	{
+		//std::cout << "Failed to load tile set texture!\n" << std::endl;
+		success = false;
+	}
 
-    //Load font
-    if( !loadFont( "Test1.ttf" ) )
+	//Load font
+	if( !loadFont( "Test1.ttf" ) )
     {
         //std::cout << "Failed to load font" << std::endl;
     }
@@ -180,12 +180,12 @@ bool GameController::loadMedia( SDL_Renderer* gRenderer )
     gTileClips[ UGLY_TREE ].w = TILE_WIDTH;
     gTileClips[ UGLY_TREE ].h = TILE_HEIGHT;
 
-    /*if( !loadFont( "Test1.ttf" ) )
+	/*if( !loadFont( "Test1.ttf" ) )
     {
         //std::cout << "Failed to load font" << std::endl;
     }*/
 
-    return success;
+	return success;
 }
 
 bool GameController::loadFont( std::string fileName )
@@ -211,19 +211,19 @@ bool GameController::loadFont( std::string fileName )
 
 void GameController::close()
 {
-    //Free loaded images
-    gPlayerTexture.free();
-    gTileTexture.free();
+	//Free loaded images
+	gPlayerTexture.free();
+	gTileTexture.free();
 
-    //Destroy window
-    SDL_DestroyRenderer( gRenderer );
-    SDL_DestroyWindow( gWindow );
-    gWindow = NULL;
-    gRenderer = NULL;
+	//Destroy window
+	SDL_DestroyRenderer( gRenderer );
+	SDL_DestroyWindow( gWindow );
+	gWindow = NULL;
+	gRenderer = NULL;
 
-    //Quit SDL subsystems
-    IMG_Quit();
-    SDL_Quit();
+	//Quit SDL subsystems
+	IMG_Quit();
+	SDL_Quit();
 }
 
 bool GameController::touchesWall( SDL_Rect mBox, int x, int y )
@@ -244,8 +244,7 @@ bool GameController::touchesWall( SDL_Rect mBox, int x, int y )
 //        }
 //    }
 
-    if ( ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*y) + x]->getType() == WALL ) ||
-            ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*y) + x]->getType() == CORNER ) )
+    if ( ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*y) + x]->getType() == WALL ) || (gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*y) + x]->getType() == CORNER ) )
     {
         return true;
     }
@@ -286,7 +285,6 @@ bool GameController::starTouchesStar(int x, int y)
     }
     return false;
 }
-
 bool GameController::checkCollision( SDL_Rect a, SDL_Rect b )
 {
     //The sides of the rectangles
@@ -334,8 +332,8 @@ bool GameController::checkCollision( SDL_Rect a, SDL_Rect b )
 
 bool GameController::setTiles( Tile* tiles[] )
 {
-    //Success flag
-    bool tilesLoaded = true;
+	//Success flag
+	bool tilesLoaded = true;
 
     //The tile offsets
     int x = 0, y = 0;
@@ -346,140 +344,140 @@ bool GameController::setTiles( Tile* tiles[] )
     //If the map couldn't be loaded
     if( map == NULL )
     {
-        printf( "Unable to load map file!\n" );
-        tilesLoaded = false;
+		printf( "Unable to load map file!\n" );
+		tilesLoaded = false;
     }
-    else
-    {
-        //Initialize the tiles
-        for( int i = 0; i < TOTAL_TILES; ++i )
-        {
-            //Determines what kind of tile will be made
-            int tileType = NO_TYPE;
+	else
+	{
+		//Initialize the tiles
+		for( int i = 0; i < TOTAL_TILES; ++i )
+		{
+			//Determines what kind of tile will be made
+			int tileType = NO_TYPE;
 
-            //Read tile from map file
-            map >> tileType;
+			//Read tile from map file
+			map >> tileType;
 
-            //If the was a problem in reading the map
-            if( map.fail() )
-            {
-                //Stop loading map
-                //std::cout <<  "Error loading map: Unexpected end of file!" << std::endl;
-                tilesLoaded = false;
-                break;
-            }
+			//If the was a problem in reading the map
+			if( map.fail() )
+			{
+				//Stop loading map
+				//std::cout <<  "Error loading map: Unexpected end of file!" << std::endl;
+				tilesLoaded = false;
+				break;
+			}
 
-            //If the number is a valid tile number
-            if( ( tileType >= 0 ) && ( tileType < TOTAL_TYPES ) )
-            {
-                tiles[ i ] = new Tile( x, y, tileType );
-            }
+			//If the number is a valid tile number
+			if( ( tileType >= 0 ) && ( tileType < TOTAL_TYPES ) )
+			{
+				tiles[ i ] = new Tile( x, y, tileType );
+			}
 
-            //If we don't recognize the tile type
-            else
-            {
-                //Stop loading map
-                std::cout << "Error loading map: Invalid tile type at " << i << "!\n";
-                tilesLoaded = false;
-                break;
-            }
+			//If we don't recognize the tile type
+			else
+			{
+				//Stop loading map
+				printf( "Error loading map: Invalid tile type at %d!\n", i );
+				tilesLoaded = false;
+				break;
+			}
 
-            //Move to next tile spot
-            x += TILE_WIDTH;
+			//Move to next tile spot
+			x += TILE_WIDTH;
 
-            //If we've gone too far
-            if( x >= LEVEL_WIDTH )
-            {
-                //Move back
-                x = 0;
+			//If we've gone too far
+			if( x >= LEVEL_WIDTH )
+			{
+				//Move back
+				x = 0;
                 y += TILE_FLOOR_HEIGHT;
-            }
-        }
+			}
+		}
 
-        //Clip the sprite sheet
-        if( tilesLoaded )
-        {
-            gTileClips[ BOY ].x = 0;
-            gTileClips[ BOY ].y = 0;
-            gTileClips[ BOY ].w = TILE_WIDTH;
-            gTileClips[ BOY ].h = TILE_HEIGHT;
+		//Clip the sprite sheet
+		if( tilesLoaded )
+		{
+			gTileClips[ BOY ].x = 0;
+			gTileClips[ BOY ].y = 0;
+			gTileClips[ BOY ].w = TILE_WIDTH;
+			gTileClips[ BOY ].h = TILE_HEIGHT;
 
-            gTileClips[ CAT_GIRL ].x = 50;
-            gTileClips[ CAT_GIRL ].y = 0;
-            gTileClips[ CAT_GIRL ].w = TILE_WIDTH;
-            gTileClips[ CAT_GIRL ].h = TILE_HEIGHT;
+			gTileClips[ CAT_GIRL ].x = 50;
+			gTileClips[ CAT_GIRL ].y = 0;
+			gTileClips[ CAT_GIRL ].w = TILE_WIDTH;
+			gTileClips[ CAT_GIRL ].h = TILE_HEIGHT;
 
-            gTileClips[ HORN_GIRL ].x = 100;
-            gTileClips[ HORN_GIRL ].y = 0;
-            gTileClips[ HORN_GIRL ].w = TILE_WIDTH;
-            gTileClips[ HORN_GIRL ].h = TILE_HEIGHT;
+			gTileClips[ HORN_GIRL ].x = 100;
+			gTileClips[ HORN_GIRL ].y = 0;
+			gTileClips[ HORN_GIRL ].w = TILE_WIDTH;
+			gTileClips[ HORN_GIRL ].h = TILE_HEIGHT;
 
-            gTileClips[ PINK_GIRL ].x = 150;
-            gTileClips[ PINK_GIRL ].y = 0;
-            gTileClips[ PINK_GIRL ].w = TILE_WIDTH;
-            gTileClips[ PINK_GIRL ].h = TILE_HEIGHT;
+			gTileClips[ PINK_GIRL ].x = 150;
+			gTileClips[ PINK_GIRL ].y = 0;
+			gTileClips[ PINK_GIRL ].w = TILE_WIDTH;
+			gTileClips[ PINK_GIRL ].h = TILE_HEIGHT;
 
-            gTileClips[ PRINCESS ].x = 0;
-            gTileClips[ PRINCESS ].y = 85;
-            gTileClips[ PRINCESS ].w = TILE_WIDTH;
-            gTileClips[ PRINCESS ].h = TILE_HEIGHT;
+			gTileClips[ PRINCESS ].x = 0;
+			gTileClips[ PRINCESS ].y = 85;
+			gTileClips[ PRINCESS ].w = TILE_WIDTH;
+			gTileClips[ PRINCESS ].h = TILE_HEIGHT;
 
-            gTileClips[ STAR ].x = 50;
-            gTileClips[ STAR ].y = 85;
-            gTileClips[ STAR ].w = TILE_WIDTH;
-            gTileClips[ STAR ].h = TILE_HEIGHT;
+			gTileClips[ STAR ].x = 50;
+			gTileClips[ STAR ].y = 85;
+			gTileClips[ STAR ].w = TILE_WIDTH;
+			gTileClips[ STAR ].h = TILE_HEIGHT;
 
-            gTileClips[ ON_GOAL ].x = 100;
-            gTileClips[ ON_GOAL ].y = 85;
-            gTileClips[ ON_GOAL ].w = TILE_WIDTH;
-            gTileClips[ ON_GOAL ].h = TILE_HEIGHT;
+			gTileClips[ ON_GOAL ].x = 100;
+			gTileClips[ ON_GOAL ].y = 85;
+			gTileClips[ ON_GOAL ].w = TILE_WIDTH;
+			gTileClips[ ON_GOAL ].h = TILE_HEIGHT;
 
-            gTileClips[ OFF_GOAL ].x = 150;
-            gTileClips[ OFF_GOAL ].y = 85;
-            gTileClips[ OFF_GOAL ].w = TILE_WIDTH;
-            gTileClips[ OFF_GOAL ].h = TILE_HEIGHT;
+			gTileClips[ OFF_GOAL ].x = 150;
+			gTileClips[ OFF_GOAL ].y = 85;
+			gTileClips[ OFF_GOAL ].w = TILE_WIDTH;
+			gTileClips[ OFF_GOAL ].h = TILE_HEIGHT;
 
-            gTileClips[ FLOOR ].x = 0;
-            gTileClips[ FLOOR ].y = 170;
-            gTileClips[ FLOOR ].w = TILE_WIDTH;
-            gTileClips[ FLOOR ].h = TILE_HEIGHT;
+			gTileClips[ FLOOR ].x = 0;
+			gTileClips[ FLOOR ].y = 170;
+			gTileClips[ FLOOR ].w = TILE_WIDTH;
+			gTileClips[ FLOOR ].h = TILE_HEIGHT;
 
-            gTileClips[ WALL ].x = 50;
-            gTileClips[ WALL ].y = 170;
-            gTileClips[ WALL ].w = TILE_WIDTH;
-            gTileClips[ WALL ].h = TILE_HEIGHT;
+			gTileClips[ WALL ].x = 50;
+			gTileClips[ WALL ].y = 170;
+			gTileClips[ WALL ].w = TILE_WIDTH;
+			gTileClips[ WALL ].h = TILE_HEIGHT;
 
-            gTileClips[ CORNER ].x = 100;
-            gTileClips[ CORNER ].y = 170;
-            gTileClips[ CORNER ].w = TILE_WIDTH;
-            gTileClips[ CORNER ].h = TILE_HEIGHT;
+			gTileClips[ CORNER ].x = 100;
+			gTileClips[ CORNER ].y = 170;
+			gTileClips[ CORNER ].w = TILE_WIDTH;
+			gTileClips[ CORNER ].h = TILE_HEIGHT;
 
-            gTileClips[ GRASS ].x = 150;
-            gTileClips[ GRASS ].y = 170;
-            gTileClips[ GRASS ].w = TILE_WIDTH;
-            gTileClips[ GRASS ].h = TILE_HEIGHT;
+			gTileClips[ GRASS ].x = 150;
+			gTileClips[ GRASS ].y = 170;
+			gTileClips[ GRASS ].w = TILE_WIDTH;
+			gTileClips[ GRASS ].h = TILE_HEIGHT;
 
-            gTileClips[ ROCK ].x = 0;
-            gTileClips[ ROCK ].y = 255;
-            gTileClips[ ROCK ].w = TILE_WIDTH;
-            gTileClips[ ROCK ].h = TILE_HEIGHT;
+			gTileClips[ ROCK ].x = 0;
+			gTileClips[ ROCK ].y = 255;
+			gTileClips[ ROCK ].w = TILE_WIDTH;
+			gTileClips[ ROCK ].h = TILE_HEIGHT;
 
-            gTileClips[ SHORT_TREE ].x = 50;
-            gTileClips[ SHORT_TREE ].y = 255;
-            gTileClips[ SHORT_TREE ].w = TILE_WIDTH;
-            gTileClips[ SHORT_TREE ].h = TILE_HEIGHT;
+			gTileClips[ SHORT_TREE ].x = 50;
+			gTileClips[ SHORT_TREE ].y = 255;
+			gTileClips[ SHORT_TREE ].w = TILE_WIDTH;
+			gTileClips[ SHORT_TREE ].h = TILE_HEIGHT;
 
-            gTileClips[ TALL_TREE ].x = 100;
-            gTileClips[ TALL_TREE ].y = 255;
-            gTileClips[ TALL_TREE ].w = TILE_WIDTH;
-            gTileClips[ TALL_TREE ].h = TILE_HEIGHT;
+			gTileClips[ TALL_TREE ].x = 100;
+			gTileClips[ TALL_TREE ].y = 255;
+			gTileClips[ TALL_TREE ].w = TILE_WIDTH;
+			gTileClips[ TALL_TREE ].h = TILE_HEIGHT;
 
-            gTileClips[ UGLY_TREE ].x = 150;
-            gTileClips[ UGLY_TREE ].y = 255;
-            gTileClips[ UGLY_TREE ].w = TILE_WIDTH;
-            gTileClips[ UGLY_TREE ].h = TILE_HEIGHT;
-        }
-    }
+			gTileClips[ UGLY_TREE ].x = 150;
+			gTileClips[ UGLY_TREE ].y = 255;
+			gTileClips[ UGLY_TREE ].w = TILE_WIDTH;
+			gTileClips[ UGLY_TREE ].h = TILE_HEIGHT;
+		}
+	}
 
     //Close the file
     map.close();
@@ -491,271 +489,265 @@ bool GameController::setTiles( Tile* tiles[] )
 void GameController::runGame( )
 {
     //Start up SDL and create window
-    if( !init() )
-    {
-        std::cout << "Failed to initialize!\n";
-    }
-    else
-    {
-        //The level tiles
-        //Tile* tileSet[ TOTAL_TILES ];
+	if( !init() )
+	{
+		printf( "Failed to initialize!\n" );
+	}
+	else
+	{
+		//The level tiles
+		//Tile* tileSet[ TOTAL_TILES ];
 
-        //Load media
-        if( !loadMedia( gRenderer ) )
-        {
-            std::cout << "Failed to load media!\n";
-        }
-        else
-        {
-            resetLevel();
+		//Load media
+		if( !loadMedia( gRenderer ) )
+		{
+			printf( "Failed to load media!\n" );
+		}
+		else
+		{
+		    resetLevel();
 
-            //Main loop flag
-            bool quit = false;
+			//Main loop flag
+			bool quit = false;
 
-            //Event handler
-            SDL_Event e;
+			//Event handler
+			SDL_Event e;
 
-            //Level camera
-            player.setCamera( camera );
+			//Level camera
+			player.setCamera( camera );
 
             //where the player was before
             SDL_Rect newPos;
 
-            //While application is running
-            while( !quit )
-            {
-                //Handle events on queue
-                while( SDL_PollEvent( &e ) != 0 )
-                {
-                    //User requests quit
-                    if( e.type == SDL_QUIT )
-                    {
-                        quit = true;
-                    }
-                    //Handle input for the dot
-                    //player.handleEvent( e, quit, gameLevels[currentLevel].getTiles() );
-                    moveCamera( e );
-                    changeLevels( e );
+			//While application is running
+			while( !quit )
+			{
+				//Handle events on queue
+				while( SDL_PollEvent( &e ) != 0 )
+				{
+					//User requests quit
+					if( e.type == SDL_QUIT )
+					{
+						quit = true;
+					}
+					//Handle input for the dot
+					//player.handleEvent( e, quit, gameLevels[currentLevel].getTiles() );
+					moveCamera( e );
+					changeLevels( e );
 
                     SDL_RenderPresent( gRenderer );
 
                     int star = -1;
                     bool playerCanMove = true;
 
-                    //Move the camera
-                    //player.setCamera( camera );
+				//Move the camera
+				//player.setCamera( camera );
                     //If a key was pressed
                     if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
                     {
                         //Adjust the velocity
                         switch( e.key.keysym.sym )
                         {
-                        case SDLK_ESCAPE:
-                            quit = true;
-                            break;
-                        case SDLK_UP:
-                        {
-                            //std::cout <<"Up\n";
-
-                            SDL_Rect currentPos = player.getBox();
-                            newPos.x = currentPos.x;
-                            newPos.y = currentPos.y -= TILE_FLOOR_HEIGHT;
-                            newPos.h = currentPos.h;
-                            newPos.w = currentPos.w;
-
-                            if( touchesWall(newPos, newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) )
+                            case SDLK_ESCAPE: quit = true; break;
+                            case SDLK_UP:
                             {
-                                //std::cout<<"Wall\n";
-                            }
-                            else
-                            {
+                                //std::cout <<"Up\n";
 
-                                if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) >= 0 )
+                                SDL_Rect currentPos = player.getBox();
+                                newPos.x = currentPos.x;
+                                newPos.y = currentPos.y -= TILE_FLOOR_HEIGHT;
+                                newPos.h = currentPos.h;
+                                newPos.w = currentPos.w;
+
+                                if( touchesWall(newPos, newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) )
                                 {
-                                    if ( starTouchesWall( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) -1 ) )
+                                  //std::cout<<"Wall\n";
+                                }
+                                else{
+
+                                    if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) > 0 )
                                     {
-                                        playerCanMove = false;
+                                        if ( starTouchesWall( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) -1 ) )
+                                        {
+                                            playerCanMove = false;
+                                        }
+                                        else if ( starTouchesStar( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) -1 ) )
+                                        {
+                                            playerCanMove = false;
+                                        }
+                                        else
+                                        {
+                                            gameStars.at(star).setNewPos(newPos.x/TILE_WIDTH, (newPos.y/TILE_FLOOR_HEIGHT) -1 );
+                                            playerCanMove = true;
+                                        }
+
                                     }
-                                    else if ( starTouchesStar( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) -1 ) )
+
+                                    if (playerCanMove)
                                     {
-                                        playerCanMove = false;
-                                    }
-                                    else
-                                    {
-                                        gameStars.at(star).setNewPos(newPos.x/TILE_WIDTH, (newPos.y/TILE_FLOOR_HEIGHT) -1 );
-                                        playerCanMove = true;
+                                        player.setX(newPos.x);
+                                        player.setY(newPos.y);
                                     }
 
                                 }
 
-                                if (playerCanMove)
-                                {
-                                    player.setX(newPos.x);
-                                    player.setY(newPos.y);
-                                }
-
+                                break;
                             }
-
-                            break;
-                        }
-                        case SDLK_DOWN:
-                        {
-                            //std::cout <<"Down\n";
-
-                            SDL_Rect currentPos = player.getBox();
-                            newPos.x = currentPos.x;
-                            newPos.y = currentPos.y += TILE_FLOOR_HEIGHT;
-                            newPos.h = currentPos.h;
-                            newPos.w = currentPos.w;
-
-                            if( touchesWall( newPos, newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT ) )
+                            case SDLK_DOWN:
                             {
-                                //std::cout<<"Wall\n";
+                                //std::cout <<"Down\n";
+
+                                SDL_Rect currentPos = player.getBox();
+                                newPos.x = currentPos.x;
+                                newPos.y = currentPos.y += TILE_FLOOR_HEIGHT;
+                                newPos.h = currentPos.h;
+                                newPos.w = currentPos.w;
+
+                                if( touchesWall( newPos, newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT ) )
+                                {
+                                  //std::cout<<"Wall\n";
+                                }
+                                else{
+
+                                     if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) > 0 )
+                                    {
+                                        if ( starTouchesWall( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) + 1 ) )
+                                        {
+                                            playerCanMove = false;
+                                        }
+                                        else if ( starTouchesStar( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) + 1 ) )
+                                        {
+                                            playerCanMove = false;
+                                        }
+                                        else
+                                        {
+                                            gameStars.at(star).setNewPos(newPos.x/TILE_WIDTH, (newPos.y/TILE_FLOOR_HEIGHT) + 1 );
+                                            playerCanMove = true;
+                                        }
+
+                                    }
+
+                                    if (playerCanMove)
+                                    {
+                                        player.setX(newPos.x);
+                                        player.setY(newPos.y);
+                                    }
+                                }
+                                break;
                             }
-                            else
+                            case SDLK_LEFT:
                             {
+                                //std::cout <<"Left\n";
 
-                                if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) >= 0 )
+                                SDL_Rect currentPos = player.getBox();
+                                newPos.x = currentPos.x -= TILE_WIDTH;
+                                newPos.y = currentPos.y;
+                                newPos.h = currentPos.h;
+                                newPos.w = currentPos.w;
+
+                                if( touchesWall( newPos, newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT ) )
                                 {
-                                    if ( starTouchesWall( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) + 1 ) )
+                                  //std::cout<<"Wall\n";
+                                }
+                                else{
+
+                                     if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) > 0 )
                                     {
-                                        playerCanMove = false;
-                                    }
-                                    else if ( starTouchesStar( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) + 1 ) )
-                                    {
-                                        playerCanMove = false;
-                                    }
-                                    else
-                                    {
-                                        gameStars.at(star).setNewPos(newPos.x/TILE_WIDTH, (newPos.y/TILE_FLOOR_HEIGHT) + 1 );
-                                        playerCanMove = true;
+                                        if ( starTouchesWall( (newPos.x/TILE_WIDTH) - 1 , (newPos.y/TILE_FLOOR_HEIGHT) ) )
+                                        {
+                                            playerCanMove = false;
+                                        }
+                                        else if ( starTouchesStar( (newPos.x/TILE_WIDTH) - 1 , (newPos.y/TILE_FLOOR_HEIGHT) ) )
+                                        {
+                                            playerCanMove = false;
+                                        }
+                                        else
+                                        {
+                                            gameStars.at(star).setNewPos( (newPos.x/TILE_WIDTH) - 1 , (newPos.y/TILE_FLOOR_HEIGHT) );
+                                            playerCanMove = true;
+                                        }
+
                                     }
 
+                                    if (playerCanMove)
+                                    {
+                                        player.setX(newPos.x);
+                                        player.setY(newPos.y);
+                                    }
                                 }
-
-                                if (playerCanMove)
-                                {
-                                    player.setX(newPos.x);
-                                    player.setY(newPos.y);
-                                }
+                                break;
                             }
-                            break;
-                        }
-                        case SDLK_LEFT:
-                        {
-                            //std::cout <<"Left\n";
-
-                            SDL_Rect currentPos = player.getBox();
-                            newPos.x = currentPos.x -= TILE_WIDTH;
-                            newPos.y = currentPos.y;
-                            newPos.h = currentPos.h;
-                            newPos.w = currentPos.w;
-
-                            if( touchesWall( newPos, newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT ) )
+                            case SDLK_RIGHT:
                             {
-                                //std::cout<<"Wall\n";
-                            }
-                            else
-                            {
+                                //std::cout <<"Right\n";
 
-                                if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) >= 0 )
+                                SDL_Rect currentPos = player.getBox();
+                                newPos.x = currentPos.x += TILE_WIDTH;
+                                newPos.y = currentPos.y;
+                                newPos.h = currentPos.h;
+                                newPos.w = currentPos.w;
+
+                                if( touchesWall( newPos, newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT ) )
                                 {
-                                    if ( starTouchesWall( (newPos.x/TILE_WIDTH) - 1 , (newPos.y/TILE_FLOOR_HEIGHT) ) )
+                                  //std::cout<<"Wall\n";
+                                }
+                                else{
+
+                                    if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) > 0 )
                                     {
-                                        playerCanMove = false;
-                                    }
-                                    else if ( starTouchesStar( (newPos.x/TILE_WIDTH) - 1 , (newPos.y/TILE_FLOOR_HEIGHT) ) )
-                                    {
-                                        playerCanMove = false;
-                                    }
-                                    else
-                                    {
-                                        gameStars.at(star).setNewPos( (newPos.x/TILE_WIDTH) - 1 , (newPos.y/TILE_FLOOR_HEIGHT) );
-                                        playerCanMove = true;
+                                        if ( starTouchesWall( (newPos.x/TILE_WIDTH) + 1, (newPos.y/TILE_FLOOR_HEIGHT) ) )
+                                        {
+                                            playerCanMove = false;
+                                        }
+                                        else if ( starTouchesStar( (newPos.x/TILE_WIDTH) + 1, (newPos.y/TILE_FLOOR_HEIGHT) ) )
+                                        {
+                                            playerCanMove = false;
+                                        }
+                                        else
+                                        {
+                                            gameStars.at(star).setNewPos( (newPos.x/TILE_WIDTH) + 1, (newPos.y/TILE_FLOOR_HEIGHT) );
+                                            playerCanMove = true;
+                                        }
+
                                     }
 
+                                    if (playerCanMove)
+                                    {
+                                        player.setX(newPos.x);
+                                        player.setY(newPos.y);
+                                    }
                                 }
 
-                                if (playerCanMove)
-                                {
-                                    player.setX(newPos.x);
-                                    player.setY(newPos.y);
-                                }
+                                break;
                             }
-                            break;
-                        }
-                        case SDLK_RIGHT:
-                        {
-                            //std::cout <<"Right\n";
-
-                            SDL_Rect currentPos = player.getBox();
-                            newPos.x = currentPos.x += TILE_WIDTH;
-                            newPos.y = currentPos.y;
-                            newPos.h = currentPos.h;
-                            newPos.w = currentPos.w;
-
-                            if( touchesWall( newPos, newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT ) )
-                            {
-                                //std::cout<<"Wall\n";
-                            }
-                            else
-                            {
-
-                                if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) >= 0 )
-                                {
-                                    if ( starTouchesWall( (newPos.x/TILE_WIDTH) + 1, (newPos.y/TILE_FLOOR_HEIGHT) ) )
-                                    {
-                                        playerCanMove = false;
-                                    }
-                                    else if ( starTouchesStar( (newPos.x/TILE_WIDTH) + 1, (newPos.y/TILE_FLOOR_HEIGHT) ) )
-                                    {
-                                        playerCanMove = false;
-                                    }
-                                    else
-                                    {
-                                        gameStars.at(star).setNewPos( (newPos.x/TILE_WIDTH) + 1, (newPos.y/TILE_FLOOR_HEIGHT) );
-                                        playerCanMove = true;
-                                    }
-
-                                }
-
-                                if (playerCanMove)
-                                {
-                                    player.setX(newPos.x);
-                                    player.setY(newPos.y);
-                                }
-                            }
-
-                            break;
-                        }
                         }
                     }
                 }
 
-                //Move the camera
-                //player.setCamera( camera );
+				//Move the camera
+				//player.setCamera( camera );
 
-                //Clear screen
-                SDL_SetRenderDrawColor( gRenderer, 0x66, 0xAA, 0xFF, 0xFF );
-                SDL_RenderClear( gRenderer );
+				//Clear screen
+				SDL_SetRenderDrawColor( gRenderer, 0x66, 0xAA, 0xFF, 0xFF );
+				SDL_RenderClear( gRenderer );
 
-                //Render level
-                renderLevel();
+				//Render level
+				renderLevel();
 
-                //Render player
-                player.render( camera, gRenderer, gPlayerTexture );
+				//Render player
+				player.render( camera, gRenderer, gPlayerTexture );
 
-                player.displaySteps( gRenderer );
-                displayLevelNumber();
+				player.displaySteps( gRenderer );
+				displayLevelNumber();
 
-                //Update screen
-                SDL_RenderPresent( gRenderer );
-            }
-        }
+				//Update screen
+				SDL_RenderPresent( gRenderer );
+			}
+		}
 
-        //Free resources and close SDL
-        close();
-    }
+		//Free resources and close SDL
+		close();
+	}
 }
 
 //Load game levels
@@ -795,8 +787,7 @@ void GameController::loadLevels()
 
         ///Finishing Level
         if( lineCounter > 0 && levelDone )
-        {
-            //std::cout << "finishing level" << std::endl;
+        {//std::cout << "finishing level" << std::endl;
             ///Finishing level
             singleLevel.setTotalTiles();//std::cout << "set total tiles" << std::endl;
 
@@ -851,8 +842,7 @@ void GameController::loadLevels()
 
             ///Middle lines of key, contains the map key itself
             else if( lineCounter >= 1 && lineCounter <= singleLevel.getLevelHeightInTiles()+1 )
-            {
-                //std::cout << line <<std::endl;
+            {//std::cout << line <<std::endl;
                 for( int i = 0; i < singleLevel.getLevelWidthInTiles(); i++ )
                 {
                     std::stringstream tileTypeSS( line.substr(i*3, 3) );
@@ -887,8 +877,7 @@ void GameController::loadLevels()
             ////std::cout << lineCounter << " : " << singleLevel.getLevelHeightInTiles()+2 << std::endl;
             ///Second line after map key, holds number of stars
             else if( lineCounter == 3 + singleLevel.getLevelHeightInTiles() )
-            {
-                //std::cout << line << std::endl;
+            {//std::cout << line << std::endl;
                 //Ending tile creation
                 singleLevel.setTiles( levelTiles );//std::cout << "number of total Tiles: " << levelTiles.size() << std::endl;
                 levelTiles.clear();//std::cout << "number of total Tiles: " << levelTiles.size() << std::endl;
@@ -901,8 +890,7 @@ void GameController::loadLevels()
 
             ///Third line after map key, coordinates for stars
             else if( lineCounter == ( 4 + singleLevel.getLevelHeightInTiles() ) )
-            {
-                //std::cout << line << std::endl;
+            {//std::cout << line << std::endl;
                 for( int i = 0; i < singleLevel.getNumberOfStars(); i++ )
                 {
                     int starX, starY;
@@ -935,15 +923,9 @@ void GameController::changeLevels( SDL_Event& e )
     {
         switch( e.key.keysym.sym )
         {
-        case SDLK_n:
-            nextLevel();
-            break;
-        case SDLK_p:
-            previousLevel();
-            break;
-        case SDLK_r:
-            resetLevel();
-            break;
+            case SDLK_n: nextLevel(); break;
+            case SDLK_p: previousLevel(); break;
+            case SDLK_r: resetLevel(); break;
         }
     }
 }
@@ -974,18 +956,10 @@ void GameController::moveCamera( SDL_Event& e )
         //Adjust the velocity
         switch( e.key.keysym.sym )
         {
-        case SDLK_w:
-            cameraVelY -= CAMERA_SPEED;
-            break;
-        case SDLK_a:
-            cameraVelX -= CAMERA_SPEED;
-            break;
-        case SDLK_s:
-            cameraVelY += CAMERA_SPEED;
-            break;
-        case SDLK_d:
-            cameraVelX += CAMERA_SPEED;
-            break;
+            case SDLK_w: cameraVelY -= CAMERA_SPEED; break;
+            case SDLK_a: cameraVelX -= CAMERA_SPEED; break;
+            case SDLK_s: cameraVelY += CAMERA_SPEED; break;
+            case SDLK_d: cameraVelX += CAMERA_SPEED; break;
         }
     }
 
@@ -995,18 +969,10 @@ void GameController::moveCamera( SDL_Event& e )
         //Adjust the velocity
         switch( e.key.keysym.sym )
         {
-        case SDLK_w:
-            cameraVelY += CAMERA_SPEED;
-            break;
-        case SDLK_a:
-            cameraVelX += CAMERA_SPEED;
-            break;
-        case SDLK_s:
-            cameraVelY -= CAMERA_SPEED;
-            break;
-        case SDLK_d:
-            cameraVelX -= CAMERA_SPEED;
-            break;
+            case SDLK_w: cameraVelY += CAMERA_SPEED; break;
+            case SDLK_a: cameraVelX += CAMERA_SPEED; break;
+            case SDLK_s: cameraVelY -= CAMERA_SPEED; break;
+            case SDLK_d: cameraVelX -= CAMERA_SPEED; break;
         }
     }
 
@@ -1033,21 +999,21 @@ void GameController::moveCamera( SDL_Event& e )
     }*/
 
     if( camera.x  < 60 - gameLevels[currentLevel].getLevelWidthInPixels() )
-    {
-        camera.x = 60 - gameLevels[currentLevel].getLevelWidthInPixels();
-    }
-    if( camera.y < 100 - gameLevels[currentLevel].getLevelHeightInPixels() )
-    {
-        camera.y = 100 - gameLevels[currentLevel].getLevelHeightInPixels();
-    }
-    if( camera.x > gameLevels[currentLevel].getLevelWidthInPixels() - 245)
-    {
-        camera.x = gameLevels[currentLevel].getLevelWidthInPixels() - 245;
-    }
-    if( camera.y > gameLevels[currentLevel].getLevelHeightInPixels() - 180)
-    {
-        camera.y = gameLevels[currentLevel].getLevelHeightInPixels() - 180;
-    }
+	{
+		camera.x = 60 - gameLevels[currentLevel].getLevelWidthInPixels();
+	}
+	if( camera.y < 100 - gameLevels[currentLevel].getLevelHeightInPixels() )
+	{
+		camera.y = 100 - gameLevels[currentLevel].getLevelHeightInPixels();
+	}
+	if( camera.x > gameLevels[currentLevel].getLevelWidthInPixels() - 245)
+	{
+		camera.x = gameLevels[currentLevel].getLevelWidthInPixels() - 245;
+	}
+	if( camera.y > gameLevels[currentLevel].getLevelHeightInPixels() - 180)
+	{
+		camera.y = gameLevels[currentLevel].getLevelHeightInPixels() - 180;
+	}
 }
 
 //Level Methods
@@ -1101,5 +1067,5 @@ void GameController::resetLevel()
 void GameController::centerCamera()
 {
     camera.x = ( player.getBox().x + PLAYER_WIDTH / 2 ) - SCREEN_WIDTH / 2;
-    camera.y = ( player.getBox().y + PLAYER_HEIGHT / 2 ) - SCREEN_HEIGHT / 2;
+	camera.y = ( player.getBox().y + PLAYER_HEIGHT / 2 ) - SCREEN_HEIGHT / 2;
 }
