@@ -64,7 +64,6 @@ public:
 
     //Camera Motion
     void moveCamera( SDL_Event& e );
-    void changeCamera();
     int cameraVelX;
     int cameraVelY;
 

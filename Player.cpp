@@ -361,7 +361,7 @@ void Player::displaySteps( SDL_Renderer* gRenderer )
 
     stepTexture.loadFromRenderedText( stepsOutput, fontColor, font, gRenderer );
 
-    stepTexture.render( 25, 445, gRenderer );
+    stepTexture.render( 25, (SCREEN_HEIGHT-60), gRenderer );
 }
 
 bool Player::loadFont( std::string fileName )

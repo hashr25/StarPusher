@@ -10,14 +10,13 @@ const int LEVEL_WIDTH = 750;
 const int LEVEL_HEIGHT = 675;
 
 //The dimensions of the game window
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 600;
 
 //Tile constants
 const int TILE_WIDTH = 50;
 const int TILE_HEIGHT = 85;
 const int TILE_FLOOR_HEIGHT = 40;
-const int TOTAL_TILES = 15*15;
 
 //Levels
 const int TOTAL_LEVELS = 201;
