@@ -572,6 +572,11 @@ void GameController::runGame( )
 
                                     if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) >= 0 )
                                     {
+                                        if ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->getType() == ON_GOAL )
+                                        {
+                                            gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->setType(OFF_GOAL);
+                                        }
+
                                         if ( starTouchesWall( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) -1 ) )
                                         {
                                             playerCanMove = false;
@@ -583,6 +588,10 @@ void GameController::runGame( )
                                         else
                                         {
                                             gameStars.at(star).setNewPos(newPos.x/TILE_WIDTH, (newPos.y/TILE_FLOOR_HEIGHT) -1 );
+                                            if ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->getType() == OFF_GOAL )
+                                            {
+                                                gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->setType(ON_GOAL);
+                                            }
                                             playerCanMove = true;
                                         }
 
@@ -616,6 +625,11 @@ void GameController::runGame( )
 
                                      if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) >= 0 )
                                     {
+                                        if ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->getType() == ON_GOAL )
+                                        {
+                                            gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->setType(OFF_GOAL);
+                                        }
+
                                         if ( starTouchesWall( (newPos.x/TILE_WIDTH) , (newPos.y/TILE_FLOOR_HEIGHT) + 1 ) )
                                         {
                                             playerCanMove = false;
@@ -627,6 +641,10 @@ void GameController::runGame( )
                                         else
                                         {
                                             gameStars.at(star).setNewPos(newPos.x/TILE_WIDTH, (newPos.y/TILE_FLOOR_HEIGHT) + 1 );
+                                            if ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->getType() == OFF_GOAL )
+                                            {
+                                                gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->setType(ON_GOAL);
+                                            }
                                             playerCanMove = true;
                                         }
 
@@ -658,6 +676,11 @@ void GameController::runGame( )
 
                                      if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) >= 0 )
                                     {
+                                        if ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->getType() == ON_GOAL )
+                                        {
+                                            gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->setType(OFF_GOAL);
+                                        }
+
                                         if ( starTouchesWall( (newPos.x/TILE_WIDTH) - 1 , (newPos.y/TILE_FLOOR_HEIGHT) ) )
                                         {
                                             playerCanMove = false;
@@ -669,6 +692,10 @@ void GameController::runGame( )
                                         else
                                         {
                                             gameStars.at(star).setNewPos( (newPos.x/TILE_WIDTH) - 1 , (newPos.y/TILE_FLOOR_HEIGHT) );
+                                            if ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->getType() == OFF_GOAL )
+                                            {
+                                                gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->setType(ON_GOAL);
+                                            }
                                             playerCanMove = true;
                                         }
 
@@ -700,6 +727,12 @@ void GameController::runGame( )
 
                                     if ( (star = touchesStar(newPos.x/TILE_WIDTH, newPos.y/TILE_FLOOR_HEIGHT) ) >= 0 )
                                     {
+                                        // If the star is currently on a goal then it is going to move off of it so the goal needs to change its image
+                                        if ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->getType() == ON_GOAL )
+                                        {
+                                            gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->setType(OFF_GOAL);
+                                        }
+
                                         if ( starTouchesWall( (newPos.x/TILE_WIDTH) + 1, (newPos.y/TILE_FLOOR_HEIGHT) ) )
                                         {
                                             playerCanMove = false;
@@ -711,6 +744,11 @@ void GameController::runGame( )
                                         else
                                         {
                                             gameStars.at(star).setNewPos( (newPos.x/TILE_WIDTH) + 1, (newPos.y/TILE_FLOOR_HEIGHT) );
+                                            // if the new star position is on a goal then the goal needs to change its image to reflect that
+                                            if ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->getType() == OFF_GOAL )
+                                            {
+                                                gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(star).getY()) + gameStars.at(star).getX()]->setType(ON_GOAL);
+                                            }
                                             playerCanMove = true;
                                         }
 
@@ -1041,10 +1079,10 @@ void GameController::renderLevel()
     }
     for( int i = 0; i < gameStars.size(); i++ )
     {
-        if ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(i).getY()) + gameStars.at(i).getX()]->getType() == OFF_GOAL )
-        {
-            gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(i).getY()) + gameStars.at(i).getX()]->setType(ON_GOAL);
-        }
+//        if ( gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(i).getY()) + gameStars.at(i).getX()]->getType() == OFF_GOAL )
+//        {
+//            gameLevels[currentLevel].getTiles()[(gameLevels[currentLevel].getLevelWidthInTiles()*gameStars.at(i).getY()) + gameStars.at(i).getX()]->setType(ON_GOAL);
+//        }
 
         gameStars.at(i).render( camera, gRenderer, gTileClips, gTileTexture );
     }
