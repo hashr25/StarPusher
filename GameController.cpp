@@ -601,6 +601,7 @@ void GameController::runGame( )
                                     {
                                         player.setX(newPos.x);
                                         player.setY(newPos.y);
+                                        player.oneMoreStep();
                                     }
 
                                 }
@@ -654,6 +655,7 @@ void GameController::runGame( )
                                     {
                                         player.setX(newPos.x);
                                         player.setY(newPos.y);
+                                        player.oneMoreStep();
                                     }
                                 }
                                 break;
@@ -705,6 +707,7 @@ void GameController::runGame( )
                                     {
                                         player.setX(newPos.x);
                                         player.setY(newPos.y);
+                                        player.oneMoreStep();
                                     }
                                 }
                                 break;
@@ -758,6 +761,7 @@ void GameController::runGame( )
                                     {
                                         player.setX(newPos.x);
                                         player.setY(newPos.y);
+                                        player.oneMoreStep();
                                     }
                                 }
 
@@ -776,7 +780,7 @@ void GameController::runGame( )
 
                 if ( levelCompleted() )
                 {
-                    std::cout << "Conmplete" << std::endl;
+                    std::cout << "Complete" << std::endl;
                 }
 
 				//Clear screen
