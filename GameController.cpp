@@ -285,6 +285,7 @@ bool GameController::starTouchesStar(int x, int y)
     }
     return false;
 }
+
 bool GameController::checkCollision( SDL_Rect a, SDL_Rect b )
 {
     //The sides of the rectangles
@@ -549,11 +550,11 @@ void GameController::runGame( )
                         switch( e.key.keysym.sym )
                         {
                             case SDLK_ESCAPE: quit = true; break;
-                            case SDLK_a:
+                            /*case SDLK_a:
                                 {
                                     currentLevel++;
                                     break;
-                                }
+                                }*/
                             case SDLK_UP:
                             {
                                 //std::cout <<"Up\n";
@@ -982,8 +983,8 @@ void GameController::changeLevels( SDL_Event& e )
         switch( e.key.keysym.sym )
         {
             case SDLK_n: nextLevel(); break;
-            case SDLK_p: previousLevel(); break;
-            case SDLK_r: resetLevel(); break;
+            case SDLK_b: previousLevel(); break;
+            case SDLK_BACKSPACE: resetLevel(); break;
         }
     }
 }
