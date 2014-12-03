@@ -16,6 +16,7 @@
 #include "Star.h"
 #include "Level.h"
 
+
 class GameController
 {
 public:
@@ -41,6 +42,7 @@ public:
     bool starTouchesStar(int x, int y);
     int touchesStar( int x, int y );
 
+    bool levelCompleted();
 
     //Sets tiles from tile map
     bool setTiles( Tile *tiles[] );
