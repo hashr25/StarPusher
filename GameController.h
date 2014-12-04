@@ -44,9 +44,6 @@ public:
 
     bool levelCompleted();
 
-    //Sets tiles from tile map
-    bool setTiles( Tile *tiles[] );
-
     //Main game loop
     void runGame();
 
